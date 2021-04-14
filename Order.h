@@ -8,6 +8,7 @@ namespace CargoTransportation
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
+	using namespace System::Data::OleDb;
 	using namespace System::Drawing;
 
 	/// <summary>
@@ -178,6 +179,8 @@ namespace CargoTransportation
 			this->buttonFinans->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonFinans->UseVisualStyleBackColor = false;
 			this->buttonFinans->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonFinans_Click);
+			this->buttonFinans->MouseLeave += gcnew System::EventHandler(this, &MyFormOrder::button_MouseLeave);
+			this->buttonFinans->MouseHover += gcnew System::EventHandler(this, &MyFormOrder::button_MouseHover);
 			// 
 			// buttonRoute
 			// 
@@ -199,6 +202,8 @@ namespace CargoTransportation
 			this->buttonRoute->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonRoute->UseVisualStyleBackColor = false;
 			this->buttonRoute->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonRoute_Click);
+			this->buttonRoute->MouseLeave += gcnew System::EventHandler(this, &MyFormOrder::button_MouseLeave);
+			this->buttonRoute->MouseHover += gcnew System::EventHandler(this, &MyFormOrder::button_MouseHover);
 			// 
 			// buttonDriver
 			// 
@@ -220,6 +225,8 @@ namespace CargoTransportation
 			this->buttonDriver->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonDriver->UseVisualStyleBackColor = false;
 			this->buttonDriver->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonDriver_Click);
+			this->buttonDriver->MouseLeave += gcnew System::EventHandler(this, &MyFormOrder::button_MouseLeave);
+			this->buttonDriver->MouseHover += gcnew System::EventHandler(this, &MyFormOrder::button_MouseHover);
 			// 
 			// buttonAuto
 			// 
@@ -242,6 +249,8 @@ namespace CargoTransportation
 			this->buttonAuto->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonAuto->UseVisualStyleBackColor = true;
 			this->buttonAuto->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonAuto_Click);
+			this->buttonAuto->MouseLeave += gcnew System::EventHandler(this, &MyFormOrder::button_MouseLeave);
+			this->buttonAuto->MouseHover += gcnew System::EventHandler(this, &MyFormOrder::button_MouseHover);
 			// 
 			// buttonOrder
 			// 
@@ -531,6 +540,7 @@ namespace CargoTransportation
 			this->ShowIcon = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Kuafer";
+			this->Load += gcnew System::EventHandler(this, &MyFormOrder::MyFormOrder_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -547,6 +557,9 @@ namespace CargoTransportation
 	private: System::Void buttonChange_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void buttonDelete_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void buttonExit_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void button_MouseHover(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void button_MouseLeave(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void MyFormOrder_Load(System::Object^ sender, System::EventArgs^ e);
 };
 
 

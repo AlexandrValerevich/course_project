@@ -39,42 +39,25 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Button^ buttonExit;
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Button^ buttonAuto;
-
-
-
 	private: System::Windows::Forms::Button^ buttonDriver;
-
-
 	private: System::Windows::Forms::Button^ buttonFinans;
-
-
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBoxCity_1;
 	private: System::Windows::Forms::TextBox^ textBoxCity_2;
-
-
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::TextBox^ textBoxDistance;
-
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Button^ buttonAdd;
 	private: System::Windows::Forms::Button^ buttonChange;
 	private: System::Windows::Forms::Button^ buttonDelete;
-
-
-
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Button^ buttonOrder;
-
 	private: System::Windows::Forms::Button^ buttonRoute;
 	private: System::Windows::Forms::TextBox^ textBoxAuto;
-
-
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::TextBox^ textBoxDriver;
-
 	private: System::Windows::Forms::Label^ label6;
 
 	protected:
@@ -137,6 +120,7 @@ namespace CargoTransportation
 			this->buttonExit->TabIndex = 1;
 			this->buttonExit->Text = L"X";
 			this->buttonExit->UseVisualStyleBackColor = false;
+			this->buttonExit->Click += gcnew System::EventHandler(this, &MyFormRoute::buttonExit_Click);
 			// 
 			// panel1
 			// 
@@ -193,6 +177,9 @@ namespace CargoTransportation
 			this->buttonOrder->Text = L"Заказы";
 			this->buttonOrder->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonOrder->UseVisualStyleBackColor = false;
+			this->buttonOrder->Click += gcnew System::EventHandler(this, &MyFormRoute::buttonOrder_Click);
+			this->buttonOrder->MouseLeave += gcnew System::EventHandler(this, &MyFormRoute::button_MouseLeave);
+			this->buttonOrder->MouseHover += gcnew System::EventHandler(this, &MyFormRoute::button_MouseHover);
 			// 
 			// label9
 			// 
@@ -225,6 +212,9 @@ namespace CargoTransportation
 			this->buttonFinans->Text = L"Финансы";
 			this->buttonFinans->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonFinans->UseVisualStyleBackColor = false;
+			this->buttonFinans->Click += gcnew System::EventHandler(this, &MyFormRoute::buttonFinans_Click);
+			this->buttonFinans->MouseLeave += gcnew System::EventHandler(this, &MyFormRoute::button_MouseLeave);
+			this->buttonFinans->MouseHover += gcnew System::EventHandler(this, &MyFormRoute::button_MouseHover);
 			// 
 			// buttonAuto
 			// 
@@ -245,6 +235,9 @@ namespace CargoTransportation
 			this->buttonAuto->Text = L"Авто";
 			this->buttonAuto->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonAuto->UseVisualStyleBackColor = false;
+			this->buttonAuto->Click += gcnew System::EventHandler(this, &MyFormRoute::buttonAuto_Click);
+			this->buttonAuto->MouseLeave += gcnew System::EventHandler(this, &MyFormRoute::button_MouseLeave);
+			this->buttonAuto->MouseHover += gcnew System::EventHandler(this, &MyFormRoute::button_MouseHover);
 			// 
 			// buttonDriver
 			// 
@@ -265,6 +258,9 @@ namespace CargoTransportation
 			this->buttonDriver->Text = L"Водители";
 			this->buttonDriver->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonDriver->UseVisualStyleBackColor = false;
+			this->buttonDriver->Click += gcnew System::EventHandler(this, &MyFormRoute::buttonDriver_Click);
+			this->buttonDriver->MouseLeave += gcnew System::EventHandler(this, &MyFormRoute::button_MouseLeave);
+			this->buttonDriver->MouseHover += gcnew System::EventHandler(this, &MyFormRoute::button_MouseHover);
 			// 
 			// dataGridView1
 			// 
@@ -285,7 +281,7 @@ namespace CargoTransportation
 			this->label1->Font = (gcnew System::Drawing::Font(L"Montserrat SemiBold", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label1->ForeColor = System::Drawing::Color::Black;
-			this->label1->Location = System::Drawing::Point(533, 9);
+			this->label1->Location = System::Drawing::Point(515, 9);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(108, 29);
 			this->label1->TabIndex = 4;
@@ -374,6 +370,7 @@ namespace CargoTransportation
 			this->buttonAdd->TabIndex = 19;
 			this->buttonAdd->Text = L"Добавить";
 			this->buttonAdd->UseVisualStyleBackColor = false;
+			this->buttonAdd->Click += gcnew System::EventHandler(this, &MyFormRoute::buttonAdd_Click);
 			// 
 			// buttonChange
 			// 
@@ -389,6 +386,7 @@ namespace CargoTransportation
 			this->buttonChange->TabIndex = 20;
 			this->buttonChange->Text = L"Изменить";
 			this->buttonChange->UseVisualStyleBackColor = false;
+			this->buttonChange->Click += gcnew System::EventHandler(this, &MyFormRoute::buttonChange_Click);
 			// 
 			// buttonDelete
 			// 
@@ -404,6 +402,7 @@ namespace CargoTransportation
 			this->buttonDelete->TabIndex = 21;
 			this->buttonDelete->Text = L"Удалить";
 			this->buttonDelete->UseVisualStyleBackColor = false;
+			this->buttonDelete->Click += gcnew System::EventHandler(this, &MyFormRoute::buttonDelete_Click);
 			// 
 			// textBoxAuto
 			// 
@@ -481,6 +480,7 @@ namespace CargoTransportation
 			this->ShowIcon = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Kuafer";
+			this->Load += gcnew System::EventHandler(this, &MyFormRoute::MyFormRoute_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -490,7 +490,18 @@ namespace CargoTransportation
 		}
 #pragma endregion
 
-	};
+	private: System::Void buttonOrder_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonAuto_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonDriver_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonFinans_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonChange_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonDelete_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonExit_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void MyFormRoute_Load(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void button_MouseHover(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void button_MouseLeave(System::Object^ sender, System::EventArgs^ e);
+};
 
 
 }

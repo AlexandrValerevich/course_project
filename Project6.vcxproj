@@ -122,8 +122,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Auto.cpp" />
     <ClCompile Include="CargoTransportation.cpp" />
+    <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="Finans.cpp" />
     <ClCompile Include="Order.cpp" />
+    <ClCompile Include="Route.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auto.h">
