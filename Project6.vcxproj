@@ -119,7 +119,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="CargoTransportation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Auto.h">

@@ -94,6 +94,8 @@ namespace CargoTransportation
 		{
 			this->buttonExit = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->buttonOrder = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->buttonFinans = (gcnew System::Windows::Forms::Button());
 			this->buttonRoute = (gcnew System::Windows::Forms::Button());
@@ -113,8 +115,6 @@ namespace CargoTransportation
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->buttonOrder = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -137,7 +137,6 @@ namespace CargoTransportation
 			this->buttonExit->TabIndex = 1;
 			this->buttonExit->Text = L"X";
 			this->buttonExit->UseVisualStyleBackColor = false;
-			this->buttonExit->Click += gcnew System::EventHandler(this, &MyFormAuto::button2_Click);
 			// 
 			// panel1
 			// 
@@ -154,6 +153,46 @@ namespace CargoTransportation
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(170, 600);
 			this->panel1->TabIndex = 2;
+			// 
+			// buttonOrder
+			// 
+			this->buttonOrder->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->buttonOrder->FlatAppearance->BorderSize = 0;
+			this->buttonOrder->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->buttonOrder->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonOrder->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->buttonOrder->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->buttonOrder->Location = System::Drawing::Point(0, 145);
+			this->buttonOrder->Margin = System::Windows::Forms::Padding(0);
+			this->buttonOrder->Name = L"buttonOrder";
+			this->buttonOrder->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
+			this->buttonOrder->Size = System::Drawing::Size(170, 35);
+			this->buttonOrder->TabIndex = 7;
+			this->buttonOrder->Text = L"Авто";
+			this->buttonOrder->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->buttonOrder->UseVisualStyleBackColor = false;
+			// 
+			// button4
+			// 
+			this->button4->BackColor = System::Drawing::Color::Transparent;
+			this->button4->FlatAppearance->BorderSize = 0;
+			this->button4->FlatAppearance->CheckedBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)),
+				static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)));
+			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button4->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button4->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->button4->Location = System::Drawing::Point(0, 110);
+			this->button4->Margin = System::Windows::Forms::Padding(0);
+			this->button4->Name = L"button4";
+			this->button4->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
+			this->button4->Size = System::Drawing::Size(170, 35);
+			this->button4->TabIndex = 6;
+			this->button4->Text = L"Заказы";
+			this->button4->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->button4->UseVisualStyleBackColor = false;
 			// 
 			// label9
 			// 
@@ -186,8 +225,6 @@ namespace CargoTransportation
 			this->buttonFinans->Text = L"Финансы";
 			this->buttonFinans->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonFinans->UseVisualStyleBackColor = false;
-			this->buttonFinans->MouseLeave += gcnew System::EventHandler(this, &MyFormAuto::OnMouseLeaveBar);
-			this->buttonFinans->MouseHover += gcnew System::EventHandler(this, &MyFormAuto::OnMouseHoverBar);
 			// 
 			// buttonRoute
 			// 
@@ -208,8 +245,6 @@ namespace CargoTransportation
 			this->buttonRoute->Text = L"Рейсы";
 			this->buttonRoute->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonRoute->UseVisualStyleBackColor = false;
-			this->buttonRoute->MouseLeave += gcnew System::EventHandler(this, &MyFormAuto::OnMouseLeaveBar);
-			this->buttonRoute->MouseHover += gcnew System::EventHandler(this, &MyFormAuto::OnMouseHoverBar);
 			// 
 			// buttonDriver
 			// 
@@ -230,8 +265,6 @@ namespace CargoTransportation
 			this->buttonDriver->Text = L"Водители";
 			this->buttonDriver->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonDriver->UseVisualStyleBackColor = false;
-			this->buttonDriver->MouseLeave += gcnew System::EventHandler(this, &MyFormAuto::OnMouseLeaveBar);
-			this->buttonDriver->MouseHover += gcnew System::EventHandler(this, &MyFormAuto::OnMouseHoverBar);
 			// 
 			// dataGridView1
 			// 
@@ -387,7 +420,6 @@ namespace CargoTransportation
 			this->button1->TabIndex = 19;
 			this->button1->Text = L"Добавить";
 			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Click += gcnew System::EventHandler(this, &MyFormAuto::button1_Click_1);
 			// 
 			// button2
 			// 
@@ -418,48 +450,6 @@ namespace CargoTransportation
 			this->button3->TabIndex = 21;
 			this->button3->Text = L"Удалить";
 			this->button3->UseVisualStyleBackColor = false;
-			// 
-			// button4
-			// 
-			this->button4->BackColor = System::Drawing::Color::Transparent;
-			this->button4->FlatAppearance->BorderSize = 0;
-			this->button4->FlatAppearance->CheckedBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)),
-				static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button4->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button4->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->button4->Location = System::Drawing::Point(0, 110);
-			this->button4->Margin = System::Windows::Forms::Padding(0);
-			this->button4->Name = L"button4";
-			this->button4->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
-			this->button4->Size = System::Drawing::Size(170, 35);
-			this->button4->TabIndex = 6;
-			this->button4->Text = L"Заказы";
-			this->button4->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->button4->UseVisualStyleBackColor = false;
-			this->button4->MouseLeave += gcnew System::EventHandler(this, &MyFormAuto::OnMouseLeaveBar);
-			this->button4->MouseHover += gcnew System::EventHandler(this, &MyFormAuto::OnMouseHoverBar);
-			// 
-			// buttonOrder
-			// 
-			this->buttonOrder->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
-				static_cast<System::Int32>(static_cast<System::Byte>(64)));
-			this->buttonOrder->FlatAppearance->BorderSize = 0;
-			this->buttonOrder->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
-			this->buttonOrder->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->buttonOrder->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->buttonOrder->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->buttonOrder->Location = System::Drawing::Point(0, 145);
-			this->buttonOrder->Margin = System::Windows::Forms::Padding(0);
-			this->buttonOrder->Name = L"buttonOrder";
-			this->buttonOrder->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
-			this->buttonOrder->Size = System::Drawing::Size(170, 35);
-			this->buttonOrder->TabIndex = 7;
-			this->buttonOrder->Text = L"Авто";
-			this->buttonOrder->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->buttonOrder->UseVisualStyleBackColor = false;
 			// 
 			// MyFormAuto
 			// 
@@ -499,30 +489,8 @@ namespace CargoTransportation
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		Application::Exit();
-	}
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		Application::Exit();
-	}
 
-	private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
-
-	}
-
-	private: System::Void OnMouseHoverBar(System::Object^ sender, System::EventArgs^ e) {
-		Button^ temp = static_cast<Button^> (sender);
-		temp->BackColor = System::Drawing::Color::FromArgb(64, 64, 64);
-	}
-	private: System::Void OnMouseLeaveBar(System::Object^ sender, System::EventArgs^ e) {
-		Button^ temp = static_cast<Button^> (sender);
-		temp->BackColor = System::Drawing::Color::FromArgb(0, 64, 64, 64);
-	}
-
-
-	private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
-	}
-	};
+};
 
 
 }

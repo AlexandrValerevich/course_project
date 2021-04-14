@@ -138,7 +138,6 @@ namespace CargoTransportation
 			this->buttonExit->TabIndex = 1;
 			this->buttonExit->Text = L"X";
 			this->buttonExit->UseVisualStyleBackColor = false;
-			this->buttonExit->Click += gcnew System::EventHandler(this, &MyFormOrder::button2_Click);
 			// 
 			// panel1
 			// 
@@ -187,9 +186,6 @@ namespace CargoTransportation
 			this->buttonFinans->Text = L"Финансы";
 			this->buttonFinans->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonFinans->UseVisualStyleBackColor = false;
-			this->buttonFinans->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonFinans_Click);
-			this->buttonFinans->MouseLeave += gcnew System::EventHandler(this, &MyFormOrder::OnMouseLeaveBar);
-			this->buttonFinans->MouseHover += gcnew System::EventHandler(this, &MyFormOrder::OnMouseHoverBar);
 			// 
 			// buttonRoute
 			// 
@@ -210,9 +206,6 @@ namespace CargoTransportation
 			this->buttonRoute->Text = L"Рейсы";
 			this->buttonRoute->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonRoute->UseVisualStyleBackColor = false;
-			this->buttonRoute->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonRoute_Click);
-			this->buttonRoute->MouseLeave += gcnew System::EventHandler(this, &MyFormOrder::OnMouseLeaveBar);
-			this->buttonRoute->MouseHover += gcnew System::EventHandler(this, &MyFormOrder::OnMouseHoverBar);
 			// 
 			// buttonDriver
 			// 
@@ -233,9 +226,6 @@ namespace CargoTransportation
 			this->buttonDriver->Text = L"Водители";
 			this->buttonDriver->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonDriver->UseVisualStyleBackColor = false;
-			this->buttonDriver->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonDriver_Click);
-			this->buttonDriver->MouseLeave += gcnew System::EventHandler(this, &MyFormOrder::OnMouseLeaveBar);
-			this->buttonDriver->MouseHover += gcnew System::EventHandler(this, &MyFormOrder::OnMouseHoverBar);
 			// 
 			// buttonAuto
 			// 
@@ -257,9 +247,6 @@ namespace CargoTransportation
 			this->buttonAuto->Text = L"Авто";
 			this->buttonAuto->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonAuto->UseVisualStyleBackColor = true;
-			this->buttonAuto->Click += gcnew System::EventHandler(this, &MyFormOrder::button2_Click_1);
-			this->buttonAuto->MouseLeave += gcnew System::EventHandler(this, &MyFormOrder::OnMouseLeaveBar);
-			this->buttonAuto->MouseHover += gcnew System::EventHandler(this, &MyFormOrder::OnMouseHoverBar);
 			// 
 			// buttonOrder
 			// 
@@ -481,7 +468,6 @@ namespace CargoTransportation
 			this->button1->TabIndex = 19;
 			this->button1->Text = L"Добавить";
 			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Click += gcnew System::EventHandler(this, &MyFormOrder::button1_Click_1);
 			// 
 			// button2
 			// 
@@ -555,30 +541,6 @@ namespace CargoTransportation
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		Application::Exit();
-	}
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		Application::Exit();
-	}
-
-	private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e);
-
-	private: System::Void OnMouseHoverBar(System::Object^ sender, System::EventArgs^ e) {
-		Button^ temp = static_cast<Button^> (sender);
-		temp->BackColor = System::Drawing::Color::FromArgb(64, 64, 64);
-	}
-
-	private: System::Void OnMouseLeaveBar(System::Object^ sender, System::EventArgs^ e) {
-		Button^ temp = static_cast<Button^> (sender);
-		temp->BackColor = System::Drawing::Color::FromArgb(0, 64, 64, 64);
-	}
-
-
-	private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {}
-	private: System::Void buttonDriver_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonRoute_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonFinans_Click(System::Object^ sender, System::EventArgs^ e);
 };
 
 
