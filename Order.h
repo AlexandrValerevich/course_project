@@ -40,51 +40,29 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Button^ buttonOrder;
 	private: System::Windows::Forms::Button^ buttonRoute;
-
 	private: System::Windows::Forms::Button^ buttonDriver;
-
 	private: System::Windows::Forms::Button^ buttonAuto;
 	private: System::Windows::Forms::Button^ buttonFinans;
-
-
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBoxCustomer;
 	private: System::Windows::Forms::TextBox^ textBoxFrom;
-
-
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::TextBox^ textBoxTo;
-
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::TextBox^ textBoxCost;
-
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::TextBox^ textBoxNameCargo;
-
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::TextBox^ textBoxWeight;
-
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::TextBox^ textBoxLength;
-
-
-
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Button^ buttonAdd;
 	private: System::Windows::Forms::Button^ buttonChange;
 	private: System::Windows::Forms::Button^ buttonDelete;
-
-
-
 	private: System::Windows::Forms::Label^ label9;
-
-
-
-
-
-
 
 	protected:
 
@@ -150,6 +128,7 @@ namespace CargoTransportation
 			this->buttonExit->TabIndex = 1;
 			this->buttonExit->Text = L"X";
 			this->buttonExit->UseVisualStyleBackColor = false;
+			this->buttonExit->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonExit_Click);
 			// 
 			// panel1
 			// 
@@ -198,6 +177,7 @@ namespace CargoTransportation
 			this->buttonFinans->Text = L"Финансы";
 			this->buttonFinans->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonFinans->UseVisualStyleBackColor = false;
+			this->buttonFinans->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonFinans_Click);
 			// 
 			// buttonRoute
 			// 
@@ -218,6 +198,7 @@ namespace CargoTransportation
 			this->buttonRoute->Text = L"Рейсы";
 			this->buttonRoute->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonRoute->UseVisualStyleBackColor = false;
+			this->buttonRoute->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonRoute_Click);
 			// 
 			// buttonDriver
 			// 
@@ -238,6 +219,7 @@ namespace CargoTransportation
 			this->buttonDriver->Text = L"Водители";
 			this->buttonDriver->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonDriver->UseVisualStyleBackColor = false;
+			this->buttonDriver->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonDriver_Click);
 			// 
 			// buttonAuto
 			// 
@@ -259,6 +241,7 @@ namespace CargoTransportation
 			this->buttonAuto->Text = L"Авто";
 			this->buttonAuto->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonAuto->UseVisualStyleBackColor = true;
+			this->buttonAuto->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonAuto_Click);
 			// 
 			// buttonOrder
 			// 
@@ -480,6 +463,7 @@ namespace CargoTransportation
 			this->buttonAdd->TabIndex = 19;
 			this->buttonAdd->Text = L"Добавить";
 			this->buttonAdd->UseVisualStyleBackColor = false;
+			this->buttonAdd->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonAdd_Click);
 			// 
 			// buttonChange
 			// 
@@ -495,6 +479,7 @@ namespace CargoTransportation
 			this->buttonChange->TabIndex = 20;
 			this->buttonChange->Text = L"Изменить";
 			this->buttonChange->UseVisualStyleBackColor = false;
+			this->buttonChange->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonChange_Click);
 			// 
 			// buttonDelete
 			// 
@@ -510,6 +495,7 @@ namespace CargoTransportation
 			this->buttonDelete->TabIndex = 21;
 			this->buttonDelete->Text = L"Удалить";
 			this->buttonDelete->UseVisualStyleBackColor = false;
+			this->buttonDelete->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonDelete_Click);
 			// 
 			// MyFormOrder
 			// 
@@ -553,6 +539,14 @@ namespace CargoTransportation
 
 		}
 #pragma endregion
+	private: System::Void buttonAuto_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonDriver_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonRoute_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonFinans_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonChange_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonDelete_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void buttonExit_Click(System::Object^ sender, System::EventArgs^ e);
 };
 
 
