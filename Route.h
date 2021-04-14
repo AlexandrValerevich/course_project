@@ -38,8 +38,9 @@ namespace CargoTransportation
 
 	private: System::Windows::Forms::Button^ buttonExit;
 	private: System::Windows::Forms::Panel^ panel1;
+	private: System::Windows::Forms::Button^ buttonAuto;
 
-	private: System::Windows::Forms::Button^ buttonRoute;
+
 
 	private: System::Windows::Forms::Button^ buttonDriver;
 
@@ -50,20 +51,30 @@ namespace CargoTransportation
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ textBoxCity_1;
+	private: System::Windows::Forms::TextBox^ textBoxCity_2;
+
+
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::TextBox^ textBoxDistance;
+
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ buttonAdd;
+	private: System::Windows::Forms::Button^ buttonChange;
+	private: System::Windows::Forms::Button^ buttonDelete;
+
+
+
 	private: System::Windows::Forms::Label^ label9;
-	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Button^ buttonOrder;
-	private: System::Windows::Forms::TextBox^ textBox4;
+
+	private: System::Windows::Forms::Button^ buttonRoute;
+	private: System::Windows::Forms::TextBox^ textBoxAuto;
+
+
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::TextBox^ textBox5;
+	private: System::Windows::Forms::TextBox^ textBoxDriver;
+
 	private: System::Windows::Forms::Label^ label6;
 
 	protected:
@@ -83,26 +94,26 @@ namespace CargoTransportation
 		{
 			this->buttonExit = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->buttonRoute = (gcnew System::Windows::Forms::Button());
 			this->buttonOrder = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->buttonFinans = (gcnew System::Windows::Forms::Button());
-			this->buttonRoute = (gcnew System::Windows::Forms::Button());
+			this->buttonAuto = (gcnew System::Windows::Forms::Button());
 			this->buttonDriver = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxCity_1 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxCity_2 = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxDistance = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->buttonAdd = (gcnew System::Windows::Forms::Button());
+			this->buttonChange = (gcnew System::Windows::Forms::Button());
+			this->buttonDelete = (gcnew System::Windows::Forms::Button());
+			this->textBoxAuto = (gcnew System::Windows::Forms::TextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxDriver = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -131,11 +142,11 @@ namespace CargoTransportation
 			// 
 			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
+			this->panel1->Controls->Add(this->buttonRoute);
 			this->panel1->Controls->Add(this->buttonOrder);
-			this->panel1->Controls->Add(this->button4);
 			this->panel1->Controls->Add(this->label9);
 			this->panel1->Controls->Add(this->buttonFinans);
-			this->panel1->Controls->Add(this->buttonRoute);
+			this->panel1->Controls->Add(this->buttonAuto);
 			this->panel1->Controls->Add(this->buttonDriver);
 			this->panel1->Location = System::Drawing::Point(0, 0);
 			this->panel1->Margin = System::Windows::Forms::Padding(0);
@@ -143,45 +154,45 @@ namespace CargoTransportation
 			this->panel1->Size = System::Drawing::Size(170, 600);
 			this->panel1->TabIndex = 2;
 			// 
+			// buttonRoute
+			// 
+			this->buttonRoute->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->buttonRoute->FlatAppearance->BorderSize = 0;
+			this->buttonRoute->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->buttonRoute->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonRoute->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->buttonRoute->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->buttonRoute->Location = System::Drawing::Point(0, 215);
+			this->buttonRoute->Margin = System::Windows::Forms::Padding(0);
+			this->buttonRoute->Name = L"buttonRoute";
+			this->buttonRoute->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
+			this->buttonRoute->Size = System::Drawing::Size(170, 35);
+			this->buttonRoute->TabIndex = 7;
+			this->buttonRoute->Text = L"Рейсы";
+			this->buttonRoute->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->buttonRoute->UseVisualStyleBackColor = false;
+			// 
 			// buttonOrder
 			// 
-			this->buttonOrder->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
-				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->buttonOrder->BackColor = System::Drawing::Color::Transparent;
 			this->buttonOrder->FlatAppearance->BorderSize = 0;
-			this->buttonOrder->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->buttonOrder->FlatAppearance->CheckedBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)),
+				static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonOrder->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->buttonOrder->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->buttonOrder->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonOrder->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->buttonOrder->Location = System::Drawing::Point(0, 215);
+			this->buttonOrder->Location = System::Drawing::Point(0, 110);
 			this->buttonOrder->Margin = System::Windows::Forms::Padding(0);
 			this->buttonOrder->Name = L"buttonOrder";
 			this->buttonOrder->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
 			this->buttonOrder->Size = System::Drawing::Size(170, 35);
-			this->buttonOrder->TabIndex = 7;
-			this->buttonOrder->Text = L"Рейсы";
+			this->buttonOrder->TabIndex = 6;
+			this->buttonOrder->Text = L"Заказы";
 			this->buttonOrder->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonOrder->UseVisualStyleBackColor = false;
-			// 
-			// button4
-			// 
-			this->button4->BackColor = System::Drawing::Color::Transparent;
-			this->button4->FlatAppearance->BorderSize = 0;
-			this->button4->FlatAppearance->CheckedBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)),
-				static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button4->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button4->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->button4->Location = System::Drawing::Point(0, 110);
-			this->button4->Margin = System::Windows::Forms::Padding(0);
-			this->button4->Name = L"button4";
-			this->button4->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
-			this->button4->Size = System::Drawing::Size(170, 35);
-			this->button4->TabIndex = 6;
-			this->button4->Text = L"Заказы";
-			this->button4->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->button4->UseVisualStyleBackColor = false;
 			// 
 			// label9
 			// 
@@ -215,25 +226,25 @@ namespace CargoTransportation
 			this->buttonFinans->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonFinans->UseVisualStyleBackColor = false;
 			// 
-			// buttonRoute
+			// buttonAuto
 			// 
-			this->buttonRoute->BackColor = System::Drawing::Color::Transparent;
-			this->buttonRoute->FlatAppearance->BorderSize = 0;
-			this->buttonRoute->FlatAppearance->CheckedBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)),
+			this->buttonAuto->BackColor = System::Drawing::Color::Transparent;
+			this->buttonAuto->FlatAppearance->BorderSize = 0;
+			this->buttonAuto->FlatAppearance->CheckedBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->buttonRoute->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->buttonRoute->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->buttonAuto->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonAuto->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->buttonRoute->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->buttonRoute->Location = System::Drawing::Point(0, 145);
-			this->buttonRoute->Margin = System::Windows::Forms::Padding(0);
-			this->buttonRoute->Name = L"buttonRoute";
-			this->buttonRoute->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
-			this->buttonRoute->Size = System::Drawing::Size(170, 35);
-			this->buttonRoute->TabIndex = 3;
-			this->buttonRoute->Text = L"Авто";
-			this->buttonRoute->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->buttonRoute->UseVisualStyleBackColor = false;
+			this->buttonAuto->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->buttonAuto->Location = System::Drawing::Point(0, 145);
+			this->buttonAuto->Margin = System::Windows::Forms::Padding(0);
+			this->buttonAuto->Name = L"buttonAuto";
+			this->buttonAuto->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
+			this->buttonAuto->Size = System::Drawing::Size(170, 35);
+			this->buttonAuto->TabIndex = 3;
+			this->buttonAuto->Text = L"Авто";
+			this->buttonAuto->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->buttonAuto->UseVisualStyleBackColor = false;
 			// 
 			// buttonDriver
 			// 
@@ -276,9 +287,9 @@ namespace CargoTransportation
 			this->label1->ForeColor = System::Drawing::Color::Black;
 			this->label1->Location = System::Drawing::Point(533, 9);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(76, 29);
+			this->label1->Size = System::Drawing::Size(108, 29);
 			this->label1->TabIndex = 4;
-			this->label1->Text = L"АВТО";
+			this->label1->Text = L"ЗАКАЗЫ";
 			// 
 			// label2
 			// 
@@ -293,25 +304,25 @@ namespace CargoTransportation
 			this->label2->TabIndex = 5;
 			this->label2->Text = L"Город 1:";
 			// 
-			// textBox1
+			// textBoxCity_1
 			// 
-			this->textBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxCity_1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox1->Location = System::Drawing::Point(254, 85);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(112, 21);
-			this->textBox1->TabIndex = 6;
+			this->textBoxCity_1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxCity_1->Location = System::Drawing::Point(254, 85);
+			this->textBoxCity_1->Name = L"textBoxCity_1";
+			this->textBoxCity_1->Size = System::Drawing::Size(112, 21);
+			this->textBoxCity_1->TabIndex = 6;
 			// 
-			// textBox2
+			// textBoxCity_2
 			// 
-			this->textBox2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxCity_2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox2->Location = System::Drawing::Point(254, 112);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(112, 21);
-			this->textBox2->TabIndex = 8;
+			this->textBoxCity_2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxCity_2->Location = System::Drawing::Point(254, 112);
+			this->textBoxCity_2->Name = L"textBoxCity_2";
+			this->textBoxCity_2->Size = System::Drawing::Size(112, 21);
+			this->textBoxCity_2->TabIndex = 8;
 			// 
 			// label3
 			// 
@@ -326,15 +337,15 @@ namespace CargoTransportation
 			this->label3->TabIndex = 7;
 			this->label3->Text = L"Город 2:";
 			// 
-			// textBox3
+			// textBoxDistance
 			// 
-			this->textBox3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxDistance->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox3->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox3->Location = System::Drawing::Point(206, 194);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(112, 21);
-			this->textBox3->TabIndex = 10;
+			this->textBoxDistance->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxDistance->Location = System::Drawing::Point(206, 194);
+			this->textBoxDistance->Name = L"textBoxDistance";
+			this->textBoxDistance->Size = System::Drawing::Size(112, 21);
+			this->textBoxDistance->TabIndex = 10;
 			// 
 			// label4
 			// 
@@ -349,60 +360,60 @@ namespace CargoTransportation
 			this->label4->TabIndex = 9;
 			this->label4->Text = L"Расстояние:";
 			// 
-			// button1
+			// buttonAdd
 			// 
-			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->buttonAdd->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
+			this->buttonAdd->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button1->Location = System::Drawing::Point(372, 435);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(100, 30);
-			this->button1->TabIndex = 19;
-			this->button1->Text = L"Добавить";
-			this->button1->UseVisualStyleBackColor = false;
+			this->buttonAdd->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonAdd->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->buttonAdd->Location = System::Drawing::Point(372, 435);
+			this->buttonAdd->Name = L"buttonAdd";
+			this->buttonAdd->Size = System::Drawing::Size(100, 30);
+			this->buttonAdd->TabIndex = 19;
+			this->buttonAdd->Text = L"Добавить";
+			this->buttonAdd->UseVisualStyleBackColor = false;
 			// 
-			// button2
+			// buttonChange
 			// 
-			this->button2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->buttonChange->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->button2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
+			this->buttonChange->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button2->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button2->Location = System::Drawing::Point(520, 435);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(100, 30);
-			this->button2->TabIndex = 20;
-			this->button2->Text = L"Изменить";
-			this->button2->UseVisualStyleBackColor = false;
+			this->buttonChange->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonChange->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->buttonChange->Location = System::Drawing::Point(520, 435);
+			this->buttonChange->Name = L"buttonChange";
+			this->buttonChange->Size = System::Drawing::Size(100, 30);
+			this->buttonChange->TabIndex = 20;
+			this->buttonChange->Text = L"Изменить";
+			this->buttonChange->UseVisualStyleBackColor = false;
 			// 
-			// button3
+			// buttonDelete
 			// 
-			this->button3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->buttonDelete->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->button3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
+			this->buttonDelete->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button3->Location = System::Drawing::Point(668, 435);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(100, 30);
-			this->button3->TabIndex = 21;
-			this->button3->Text = L"Удалить";
-			this->button3->UseVisualStyleBackColor = false;
+			this->buttonDelete->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonDelete->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->buttonDelete->Location = System::Drawing::Point(668, 435);
+			this->buttonDelete->Name = L"buttonDelete";
+			this->buttonDelete->Size = System::Drawing::Size(100, 30);
+			this->buttonDelete->TabIndex = 21;
+			this->buttonDelete->Text = L"Удалить";
+			this->buttonDelete->UseVisualStyleBackColor = false;
 			// 
-			// textBox4
+			// textBoxAuto
 			// 
-			this->textBox4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxAuto->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox4->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox4->Location = System::Drawing::Point(254, 277);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(112, 21);
-			this->textBox4->TabIndex = 25;
+			this->textBoxAuto->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxAuto->Location = System::Drawing::Point(254, 277);
+			this->textBoxAuto->Name = L"textBoxAuto";
+			this->textBoxAuto->Size = System::Drawing::Size(112, 21);
+			this->textBoxAuto->TabIndex = 25;
 			// 
 			// label5
 			// 
@@ -417,15 +428,15 @@ namespace CargoTransportation
 			this->label5->TabIndex = 24;
 			this->label5->Text = L"Авто:";
 			// 
-			// textBox5
+			// textBoxDriver
 			// 
-			this->textBox5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxDriver->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox5->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox5->Location = System::Drawing::Point(254, 250);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(112, 21);
-			this->textBox5->TabIndex = 23;
+			this->textBoxDriver->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxDriver->Location = System::Drawing::Point(254, 250);
+			this->textBoxDriver->Name = L"textBoxDriver";
+			this->textBoxDriver->Size = System::Drawing::Size(112, 21);
+			this->textBoxDriver->TabIndex = 23;
 			// 
 			// label6
 			// 
@@ -446,18 +457,18 @@ namespace CargoTransportation
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScrollMargin = System::Drawing::Size(10, 10);
 			this->ClientSize = System::Drawing::Size(800, 600);
-			this->Controls->Add(this->textBox4);
+			this->Controls->Add(this->textBoxAuto);
 			this->Controls->Add(this->label5);
-			this->Controls->Add(this->textBox5);
+			this->Controls->Add(this->textBoxDriver);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox3);
+			this->Controls->Add(this->buttonDelete);
+			this->Controls->Add(this->buttonChange);
+			this->Controls->Add(this->buttonAdd);
+			this->Controls->Add(this->textBoxDistance);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->textBoxCity_2);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->textBoxCity_1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dataGridView1);

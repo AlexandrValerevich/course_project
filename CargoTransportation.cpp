@@ -6,6 +6,7 @@
 #include <Windows.h>
 
 using namespace CargoTransportation;
+using namespace System::Data::OleDb;
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Application::EnableVisualStyles();

@@ -40,23 +40,34 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Button^ buttonRoute;
 	private: System::Windows::Forms::Button^ buttonDriver;
-	private: System::Windows::Forms::Button^ buttonFinans;
+	private: System::Windows::Forms::Button^ buttonAuto;
+
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ textBoxCustomer;
+	private: System::Windows::Forms::TextBox^ textBoxPayment;
+
+
+
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::TextBox^ textBoxCost;
+
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::TextBox^ textBox5;
+	private: System::Windows::Forms::TextBox^ textBoxSumProfit;
+
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ buttonAdd;
+	private: System::Windows::Forms::Button^ buttonChange;
+	private: System::Windows::Forms::Button^ buttonDelete;
+
+
+
 	private: System::Windows::Forms::Label^ label9;
-	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Button^ buttonOrder;
+
+	private: System::Windows::Forms::Button^ buttonFinanse;
+
 
 	protected:
 	private:
@@ -74,25 +85,25 @@ namespace CargoTransportation
 		{
 			this->buttonExit = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->buttonFinanse = (gcnew System::Windows::Forms::Button());
 			this->buttonOrder = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->label9 = (gcnew System::Windows::Forms::Label());
-			this->buttonFinans = (gcnew System::Windows::Forms::Button());
+			this->buttonAuto = (gcnew System::Windows::Forms::Button());
 			this->buttonRoute = (gcnew System::Windows::Forms::Button());
 			this->buttonDriver = (gcnew System::Windows::Forms::Button());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxCustomer = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxPayment = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxCost = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxSumProfit = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->buttonAdd = (gcnew System::Windows::Forms::Button());
+			this->buttonChange = (gcnew System::Windows::Forms::Button());
+			this->buttonDelete = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -120,10 +131,10 @@ namespace CargoTransportation
 			// 
 			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
+			this->panel1->Controls->Add(this->buttonFinanse);
 			this->panel1->Controls->Add(this->buttonOrder);
-			this->panel1->Controls->Add(this->button4);
 			this->panel1->Controls->Add(this->label9);
-			this->panel1->Controls->Add(this->buttonFinans);
+			this->panel1->Controls->Add(this->buttonAuto);
 			this->panel1->Controls->Add(this->buttonRoute);
 			this->panel1->Controls->Add(this->buttonDriver);
 			this->panel1->Location = System::Drawing::Point(0, 0);
@@ -132,45 +143,45 @@ namespace CargoTransportation
 			this->panel1->Size = System::Drawing::Size(170, 600);
 			this->panel1->TabIndex = 2;
 			// 
+			// buttonFinanse
+			// 
+			this->buttonFinanse->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->buttonFinanse->FlatAppearance->BorderSize = 0;
+			this->buttonFinanse->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->buttonFinanse->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonFinanse->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->buttonFinanse->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->buttonFinanse->Location = System::Drawing::Point(0, 250);
+			this->buttonFinanse->Margin = System::Windows::Forms::Padding(0);
+			this->buttonFinanse->Name = L"buttonFinanse";
+			this->buttonFinanse->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
+			this->buttonFinanse->Size = System::Drawing::Size(170, 35);
+			this->buttonFinanse->TabIndex = 7;
+			this->buttonFinanse->Text = L"Финансы";
+			this->buttonFinanse->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->buttonFinanse->UseVisualStyleBackColor = false;
+			// 
 			// buttonOrder
 			// 
-			this->buttonOrder->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
-				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->buttonOrder->BackColor = System::Drawing::Color::Transparent;
 			this->buttonOrder->FlatAppearance->BorderSize = 0;
-			this->buttonOrder->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Transparent;
+			this->buttonOrder->FlatAppearance->CheckedBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)),
+				static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonOrder->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->buttonOrder->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->buttonOrder->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonOrder->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->buttonOrder->Location = System::Drawing::Point(0, 250);
+			this->buttonOrder->Location = System::Drawing::Point(0, 110);
 			this->buttonOrder->Margin = System::Windows::Forms::Padding(0);
 			this->buttonOrder->Name = L"buttonOrder";
 			this->buttonOrder->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
 			this->buttonOrder->Size = System::Drawing::Size(170, 35);
-			this->buttonOrder->TabIndex = 7;
-			this->buttonOrder->Text = L"Финансы";
+			this->buttonOrder->TabIndex = 6;
+			this->buttonOrder->Text = L"Заказы";
 			this->buttonOrder->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonOrder->UseVisualStyleBackColor = false;
-			// 
-			// button4
-			// 
-			this->button4->BackColor = System::Drawing::Color::Transparent;
-			this->button4->FlatAppearance->BorderSize = 0;
-			this->button4->FlatAppearance->CheckedBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)),
-				static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button4->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->button4->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->button4->Location = System::Drawing::Point(0, 110);
-			this->button4->Margin = System::Windows::Forms::Padding(0);
-			this->button4->Name = L"button4";
-			this->button4->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
-			this->button4->Size = System::Drawing::Size(170, 35);
-			this->button4->TabIndex = 6;
-			this->button4->Text = L"Заказы";
-			this->button4->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->button4->UseVisualStyleBackColor = false;
 			// 
 			// label9
 			// 
@@ -184,25 +195,25 @@ namespace CargoTransportation
 			this->label9->TabIndex = 5;
 			this->label9->Text = L"Kuafer";
 			// 
-			// buttonFinans
+			// buttonAuto
 			// 
-			this->buttonFinans->BackColor = System::Drawing::Color::Transparent;
-			this->buttonFinans->FlatAppearance->BorderSize = 0;
-			this->buttonFinans->FlatAppearance->CheckedBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)),
+			this->buttonAuto->BackColor = System::Drawing::Color::Transparent;
+			this->buttonAuto->FlatAppearance->BorderSize = 0;
+			this->buttonAuto->FlatAppearance->CheckedBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->buttonFinans->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->buttonFinans->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->buttonAuto->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonAuto->Font = (gcnew System::Drawing::Font(L"Montserrat Medium", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->buttonFinans->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->buttonFinans->Location = System::Drawing::Point(0, 145);
-			this->buttonFinans->Margin = System::Windows::Forms::Padding(0);
-			this->buttonFinans->Name = L"buttonFinans";
-			this->buttonFinans->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
-			this->buttonFinans->Size = System::Drawing::Size(170, 35);
-			this->buttonFinans->TabIndex = 4;
-			this->buttonFinans->Text = L"Авто";
-			this->buttonFinans->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->buttonFinans->UseVisualStyleBackColor = false;
+			this->buttonAuto->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->buttonAuto->Location = System::Drawing::Point(0, 145);
+			this->buttonAuto->Margin = System::Windows::Forms::Padding(0);
+			this->buttonAuto->Name = L"buttonAuto";
+			this->buttonAuto->Padding = System::Windows::Forms::Padding(25, 5, 10, 5);
+			this->buttonAuto->Size = System::Drawing::Size(170, 35);
+			this->buttonAuto->TabIndex = 4;
+			this->buttonAuto->Text = L"Авто";
+			this->buttonAuto->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->buttonAuto->UseVisualStyleBackColor = false;
 			// 
 			// buttonRoute
 			// 
@@ -263,11 +274,11 @@ namespace CargoTransportation
 			this->label1->Font = (gcnew System::Drawing::Font(L"Montserrat SemiBold", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label1->ForeColor = System::Drawing::Color::Black;
-			this->label1->Location = System::Drawing::Point(533, 9);
+			this->label1->Location = System::Drawing::Point(515, 9);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(76, 29);
+			this->label1->Size = System::Drawing::Size(136, 29);
 			this->label1->TabIndex = 4;
-			this->label1->Text = L"АВТО";
+			this->label1->Text = L"ФИНАНСЫ";
 			// 
 			// label2
 			// 
@@ -282,25 +293,25 @@ namespace CargoTransportation
 			this->label2->TabIndex = 5;
 			this->label2->Text = L"Заказчик:";
 			// 
-			// textBox1
+			// textBoxCustomer
 			// 
-			this->textBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxCustomer->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox1->Location = System::Drawing::Point(254, 85);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(112, 21);
-			this->textBox1->TabIndex = 6;
+			this->textBoxCustomer->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxCustomer->Location = System::Drawing::Point(254, 85);
+			this->textBoxCustomer->Name = L"textBoxCustomer";
+			this->textBoxCustomer->Size = System::Drawing::Size(112, 21);
+			this->textBoxCustomer->TabIndex = 6;
 			// 
-			// textBox2
+			// textBoxPayment
 			// 
-			this->textBox2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxPayment->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox2->Location = System::Drawing::Point(254, 141);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(112, 21);
-			this->textBox2->TabIndex = 8;
+			this->textBoxPayment->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxPayment->Location = System::Drawing::Point(254, 141);
+			this->textBoxPayment->Name = L"textBoxPayment";
+			this->textBoxPayment->Size = System::Drawing::Size(112, 21);
+			this->textBoxPayment->TabIndex = 8;
 			// 
 			// label3
 			// 
@@ -315,15 +326,15 @@ namespace CargoTransportation
 			this->label3->TabIndex = 7;
 			this->label3->Text = L"Плата:";
 			// 
-			// textBox3
+			// textBoxCost
 			// 
-			this->textBox3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxCost->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox3->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox3->Location = System::Drawing::Point(254, 168);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(112, 21);
-			this->textBox3->TabIndex = 10;
+			this->textBoxCost->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxCost->Location = System::Drawing::Point(254, 168);
+			this->textBoxCost->Name = L"textBoxCost";
+			this->textBoxCost->Size = System::Drawing::Size(112, 21);
+			this->textBoxCost->TabIndex = 10;
 			// 
 			// label4
 			// 
@@ -338,15 +349,15 @@ namespace CargoTransportation
 			this->label4->TabIndex = 9;
 			this->label4->Text = L"Издержки:";
 			// 
-			// textBox5
+			// textBoxSumProfit
 			// 
-			this->textBox5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxSumProfit->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox5->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox5->Location = System::Drawing::Point(213, 250);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(112, 21);
-			this->textBox5->TabIndex = 14;
+			this->textBoxSumProfit->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxSumProfit->Location = System::Drawing::Point(213, 250);
+			this->textBoxSumProfit->Name = L"textBoxSumProfit";
+			this->textBoxSumProfit->Size = System::Drawing::Size(112, 21);
+			this->textBoxSumProfit->TabIndex = 14;
 			// 
 			// label6
 			// 
@@ -361,50 +372,50 @@ namespace CargoTransportation
 			this->label6->TabIndex = 13;
 			this->label6->Text = L"Суммируемая прибыль:";
 			// 
-			// button1
+			// buttonAdd
 			// 
-			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->buttonAdd->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
+			this->buttonAdd->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button1->Location = System::Drawing::Point(372, 435);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(100, 30);
-			this->button1->TabIndex = 19;
-			this->button1->Text = L"Добавить";
-			this->button1->UseVisualStyleBackColor = false;
+			this->buttonAdd->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonAdd->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->buttonAdd->Location = System::Drawing::Point(372, 435);
+			this->buttonAdd->Name = L"buttonAdd";
+			this->buttonAdd->Size = System::Drawing::Size(100, 30);
+			this->buttonAdd->TabIndex = 19;
+			this->buttonAdd->Text = L"Добавить";
+			this->buttonAdd->UseVisualStyleBackColor = false;
 			// 
-			// button2
+			// buttonChange
 			// 
-			this->button2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->buttonChange->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->button2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
+			this->buttonChange->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button2->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button2->Location = System::Drawing::Point(520, 435);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(100, 30);
-			this->button2->TabIndex = 20;
-			this->button2->Text = L"Изменить";
-			this->button2->UseVisualStyleBackColor = false;
+			this->buttonChange->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonChange->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->buttonChange->Location = System::Drawing::Point(520, 435);
+			this->buttonChange->Name = L"buttonChange";
+			this->buttonChange->Size = System::Drawing::Size(100, 30);
+			this->buttonChange->TabIndex = 20;
+			this->buttonChange->Text = L"Изменить";
+			this->buttonChange->UseVisualStyleBackColor = false;
 			// 
-			// button3
+			// buttonDelete
 			// 
-			this->button3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->buttonDelete->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->button3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
+			this->buttonDelete->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button3->Location = System::Drawing::Point(668, 435);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(100, 30);
-			this->button3->TabIndex = 21;
-			this->button3->Text = L"Удалить";
-			this->button3->UseVisualStyleBackColor = false;
+			this->buttonDelete->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonDelete->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->buttonDelete->Location = System::Drawing::Point(668, 435);
+			this->buttonDelete->Name = L"buttonDelete";
+			this->buttonDelete->Size = System::Drawing::Size(100, 30);
+			this->buttonDelete->TabIndex = 21;
+			this->buttonDelete->Text = L"Удалить";
+			this->buttonDelete->UseVisualStyleBackColor = false;
 			// 
 			// MyFormFinans
 			// 
@@ -412,16 +423,16 @@ namespace CargoTransportation
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScrollMargin = System::Drawing::Size(10, 10);
 			this->ClientSize = System::Drawing::Size(800, 600);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox5);
+			this->Controls->Add(this->buttonDelete);
+			this->Controls->Add(this->buttonChange);
+			this->Controls->Add(this->buttonAdd);
+			this->Controls->Add(this->textBoxSumProfit);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->textBox3);
+			this->Controls->Add(this->textBoxCost);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->textBoxPayment);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->textBoxCustomer);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dataGridView1);

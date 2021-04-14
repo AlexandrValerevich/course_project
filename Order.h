@@ -50,22 +50,34 @@ namespace CargoTransportation
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ textBoxCustomer;
+	private: System::Windows::Forms::TextBox^ textBoxFrom;
+
+
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::TextBox^ textBoxTo;
+
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::TextBox^ textBox4;
+	private: System::Windows::Forms::TextBox^ textBoxCost;
+
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::TextBox^ textBox5;
+	private: System::Windows::Forms::TextBox^ textBoxNameCargo;
+
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::TextBox^ textBox6;
+	private: System::Windows::Forms::TextBox^ textBoxWeight;
+
 	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::TextBox^ textBox7;
+	private: System::Windows::Forms::TextBox^ textBoxLength;
+
+
+
 	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ buttonAdd;
+	private: System::Windows::Forms::Button^ buttonChange;
+	private: System::Windows::Forms::Button^ buttonDelete;
+
+
+
 	private: System::Windows::Forms::Label^ label9;
 
 
@@ -100,22 +112,22 @@ namespace CargoTransportation
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxCustomer = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxFrom = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxTo = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxCost = (gcnew System::Windows::Forms::TextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxNameCargo = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxWeight = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxLength = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->buttonAdd = (gcnew System::Windows::Forms::Button());
+			this->buttonChange = (gcnew System::Windows::Forms::Button());
+			this->buttonDelete = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -306,25 +318,25 @@ namespace CargoTransportation
 			this->label2->TabIndex = 5;
 			this->label2->Text = L"Заказчик:";
 			// 
-			// textBox1
+			// textBoxCustomer
 			// 
-			this->textBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxCustomer->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox1->Location = System::Drawing::Point(254, 85);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(112, 21);
-			this->textBox1->TabIndex = 6;
+			this->textBoxCustomer->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxCustomer->Location = System::Drawing::Point(254, 85);
+			this->textBoxCustomer->Name = L"textBoxCustomer";
+			this->textBoxCustomer->Size = System::Drawing::Size(112, 21);
+			this->textBoxCustomer->TabIndex = 6;
 			// 
-			// textBox2
+			// textBoxFrom
 			// 
-			this->textBox2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxFrom->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox2->Location = System::Drawing::Point(254, 132);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(112, 21);
-			this->textBox2->TabIndex = 8;
+			this->textBoxFrom->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxFrom->Location = System::Drawing::Point(254, 132);
+			this->textBoxFrom->Name = L"textBoxFrom";
+			this->textBoxFrom->Size = System::Drawing::Size(112, 21);
+			this->textBoxFrom->TabIndex = 8;
 			// 
 			// label3
 			// 
@@ -339,15 +351,15 @@ namespace CargoTransportation
 			this->label3->TabIndex = 7;
 			this->label3->Text = L"Откуда:";
 			// 
-			// textBox3
+			// textBoxTo
 			// 
-			this->textBox3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxTo->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox3->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox3->Location = System::Drawing::Point(254, 159);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(112, 21);
-			this->textBox3->TabIndex = 10;
+			this->textBoxTo->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxTo->Location = System::Drawing::Point(254, 159);
+			this->textBoxTo->Name = L"textBoxTo";
+			this->textBoxTo->Size = System::Drawing::Size(112, 21);
+			this->textBoxTo->TabIndex = 10;
 			// 
 			// label4
 			// 
@@ -362,15 +374,15 @@ namespace CargoTransportation
 			this->label4->TabIndex = 9;
 			this->label4->Text = L"Куда:";
 			// 
-			// textBox4
+			// textBoxCost
 			// 
-			this->textBox4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxCost->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox4->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox4->Location = System::Drawing::Point(254, 215);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(112, 21);
-			this->textBox4->TabIndex = 12;
+			this->textBoxCost->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxCost->Location = System::Drawing::Point(254, 215);
+			this->textBoxCost->Name = L"textBoxCost";
+			this->textBoxCost->Size = System::Drawing::Size(112, 21);
+			this->textBoxCost->TabIndex = 12;
 			// 
 			// label5
 			// 
@@ -385,15 +397,15 @@ namespace CargoTransportation
 			this->label5->TabIndex = 11;
 			this->label5->Text = L"Стоимость:";
 			// 
-			// textBox5
+			// textBoxNameCargo
 			// 
-			this->textBox5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxNameCargo->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox5->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox5->Location = System::Drawing::Point(254, 264);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(112, 21);
-			this->textBox5->TabIndex = 14;
+			this->textBoxNameCargo->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxNameCargo->Location = System::Drawing::Point(254, 264);
+			this->textBoxNameCargo->Name = L"textBoxNameCargo";
+			this->textBoxNameCargo->Size = System::Drawing::Size(112, 21);
+			this->textBoxNameCargo->TabIndex = 14;
 			// 
 			// label6
 			// 
@@ -408,15 +420,15 @@ namespace CargoTransportation
 			this->label6->TabIndex = 13;
 			this->label6->Text = L"Груз:";
 			// 
-			// textBox6
+			// textBoxWeight
 			// 
-			this->textBox6->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxWeight->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox6->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox6->Location = System::Drawing::Point(254, 291);
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(112, 21);
-			this->textBox6->TabIndex = 16;
+			this->textBoxWeight->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxWeight->Location = System::Drawing::Point(254, 291);
+			this->textBoxWeight->Name = L"textBoxWeight";
+			this->textBoxWeight->Size = System::Drawing::Size(112, 21);
+			this->textBoxWeight->TabIndex = 16;
 			// 
 			// label7
 			// 
@@ -431,15 +443,15 @@ namespace CargoTransportation
 			this->label7->TabIndex = 15;
 			this->label7->Text = L"Вес:";
 			// 
-			// textBox7
+			// textBoxLength
 			// 
-			this->textBox7->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxLength->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox7->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox7->Location = System::Drawing::Point(254, 318);
-			this->textBox7->Name = L"textBox7";
-			this->textBox7->Size = System::Drawing::Size(112, 21);
-			this->textBox7->TabIndex = 18;
+			this->textBoxLength->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxLength->Location = System::Drawing::Point(254, 318);
+			this->textBoxLength->Name = L"textBoxLength";
+			this->textBoxLength->Size = System::Drawing::Size(112, 21);
+			this->textBoxLength->TabIndex = 18;
 			// 
 			// label8
 			// 
@@ -454,50 +466,50 @@ namespace CargoTransportation
 			this->label8->TabIndex = 17;
 			this->label8->Text = L"Длинна:";
 			// 
-			// button1
+			// buttonAdd
 			// 
-			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->buttonAdd->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
+			this->buttonAdd->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button1->Location = System::Drawing::Point(372, 435);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(100, 30);
-			this->button1->TabIndex = 19;
-			this->button1->Text = L"Добавить";
-			this->button1->UseVisualStyleBackColor = false;
+			this->buttonAdd->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonAdd->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->buttonAdd->Location = System::Drawing::Point(372, 435);
+			this->buttonAdd->Name = L"buttonAdd";
+			this->buttonAdd->Size = System::Drawing::Size(100, 30);
+			this->buttonAdd->TabIndex = 19;
+			this->buttonAdd->Text = L"Добавить";
+			this->buttonAdd->UseVisualStyleBackColor = false;
 			// 
-			// button2
+			// buttonChange
 			// 
-			this->button2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->buttonChange->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->button2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
+			this->buttonChange->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button2->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button2->Location = System::Drawing::Point(520, 435);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(100, 30);
-			this->button2->TabIndex = 20;
-			this->button2->Text = L"Изменить";
-			this->button2->UseVisualStyleBackColor = false;
+			this->buttonChange->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonChange->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->buttonChange->Location = System::Drawing::Point(520, 435);
+			this->buttonChange->Name = L"buttonChange";
+			this->buttonChange->Size = System::Drawing::Size(100, 30);
+			this->buttonChange->TabIndex = 20;
+			this->buttonChange->Text = L"Изменить";
+			this->buttonChange->UseVisualStyleBackColor = false;
 			// 
-			// button3
+			// buttonDelete
 			// 
-			this->button3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->buttonDelete->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->button3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
+			this->buttonDelete->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(42)), static_cast<System::Int32>(static_cast<System::Byte>(42)),
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
-			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button3->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->button3->Location = System::Drawing::Point(668, 435);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(100, 30);
-			this->button3->TabIndex = 21;
-			this->button3->Text = L"Удалить";
-			this->button3->UseVisualStyleBackColor = false;
+			this->buttonDelete->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->buttonDelete->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->buttonDelete->Location = System::Drawing::Point(668, 435);
+			this->buttonDelete->Name = L"buttonDelete";
+			this->buttonDelete->Size = System::Drawing::Size(100, 30);
+			this->buttonDelete->TabIndex = 21;
+			this->buttonDelete->Text = L"Удалить";
+			this->buttonDelete->UseVisualStyleBackColor = false;
 			// 
 			// MyFormOrder
 			// 
@@ -505,22 +517,22 @@ namespace CargoTransportation
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScrollMargin = System::Drawing::Size(10, 10);
 			this->ClientSize = System::Drawing::Size(800, 600);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox7);
+			this->Controls->Add(this->buttonDelete);
+			this->Controls->Add(this->buttonChange);
+			this->Controls->Add(this->buttonAdd);
+			this->Controls->Add(this->textBoxLength);
 			this->Controls->Add(this->label8);
-			this->Controls->Add(this->textBox6);
+			this->Controls->Add(this->textBoxWeight);
 			this->Controls->Add(this->label7);
-			this->Controls->Add(this->textBox5);
+			this->Controls->Add(this->textBoxNameCargo);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->textBox4);
+			this->Controls->Add(this->textBoxCost);
 			this->Controls->Add(this->label5);
-			this->Controls->Add(this->textBox3);
+			this->Controls->Add(this->textBoxTo);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->textBoxFrom);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->textBoxCustomer);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dataGridView1);
