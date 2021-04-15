@@ -11,3 +11,4 @@ C:\Users\Александр\source\repos\Project6_curs\Project6\Debug\Project6.F
 C:\Users\Александр\source\repos\Project6_curs\Project6\Debug\Project6.Order.resources
 C:\Users\Александр\source\repos\Project6_curs\Project6\Debug\Project6.Route.resources
 C:\Users\Александр\source\repos\Project6_curs\Project6\Debug\Project6.vcxproj.GenerateResource.cache
+C:\Users\Александр\source\repos\Project6_curs\Project6\Debug\Project6.vcxprojAssemblyReference.cache
