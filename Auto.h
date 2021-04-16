@@ -123,7 +123,7 @@ namespace CargoTransportation
 			this->buttonExit->Font = (gcnew System::Drawing::Font(L"Montserrat SemiBold", 9.749999F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonExit->ForeColor = System::Drawing::Color::Black;
-			this->buttonExit->Location = System::Drawing::Point(771, 0);
+			this->buttonExit->Location = System::Drawing::Point(796, 0);
 			this->buttonExit->Margin = System::Windows::Forms::Padding(0);
 			this->buttonExit->Name = L"buttonExit";
 			this->buttonExit->Size = System::Drawing::Size(29, 28);
@@ -277,7 +277,7 @@ namespace CargoTransportation
 			this->dataGridView1->BackgroundColor = System::Drawing::Color::White;
 			this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(372, 41);
+			this->dataGridView1->Location = System::Drawing::Point(417, 41);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->Size = System::Drawing::Size(396, 350);
 			this->dataGridView1->TabIndex = 3;
@@ -291,7 +291,7 @@ namespace CargoTransportation
 			this->label1->Font = (gcnew System::Drawing::Font(L"Montserrat SemiBold", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label1->ForeColor = System::Drawing::Color::Black;
-			this->label1->Location = System::Drawing::Point(533, 9);
+			this->label1->Location = System::Drawing::Point(558, 9);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(76, 29);
 			this->label1->TabIndex = 4;
@@ -420,7 +420,7 @@ namespace CargoTransportation
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonAdd->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonAdd->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->buttonAdd->Location = System::Drawing::Point(372, 435);
+			this->buttonAdd->Location = System::Drawing::Point(397, 435);
 			this->buttonAdd->Name = L"buttonAdd";
 			this->buttonAdd->Size = System::Drawing::Size(100, 30);
 			this->buttonAdd->TabIndex = 19;
@@ -436,7 +436,7 @@ namespace CargoTransportation
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonChange->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonChange->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->buttonChange->Location = System::Drawing::Point(520, 435);
+			this->buttonChange->Location = System::Drawing::Point(545, 435);
 			this->buttonChange->Name = L"buttonChange";
 			this->buttonChange->Size = System::Drawing::Size(100, 30);
 			this->buttonChange->TabIndex = 20;
@@ -452,7 +452,7 @@ namespace CargoTransportation
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonDelete->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonDelete->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->buttonDelete->Location = System::Drawing::Point(668, 435);
+			this->buttonDelete->Location = System::Drawing::Point(693, 435);
 			this->buttonDelete->Name = L"buttonDelete";
 			this->buttonDelete->Size = System::Drawing::Size(100, 30);
 			this->buttonDelete->TabIndex = 21;
@@ -465,7 +465,7 @@ namespace CargoTransportation
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 15);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScrollMargin = System::Drawing::Size(10, 10);
-			this->ClientSize = System::Drawing::Size(800, 600);
+			this->ClientSize = System::Drawing::Size(825, 600);
 			this->Controls->Add(this->buttonDelete);
 			this->Controls->Add(this->buttonChange);
 			this->Controls->Add(this->buttonAdd);

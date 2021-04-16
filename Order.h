@@ -44,7 +44,8 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Button^ buttonDriver;
 	private: System::Windows::Forms::Button^ buttonAuto;
 	private: System::Windows::Forms::Button^ buttonFinans;
-	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::DataGridView^ dataGridViewOrder;
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBoxCustomer;
@@ -58,12 +59,48 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::TextBox^ textBoxWeight;
 	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::TextBox^ textBoxLength;
-	private: System::Windows::Forms::Label^ label8;
+
+
 	private: System::Windows::Forms::Button^ buttonAdd;
 	private: System::Windows::Forms::Button^ buttonChange;
 	private: System::Windows::Forms::Button^ buttonDelete;
 	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id_order;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ owner;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ cargo;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ departure;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Arrival;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ price;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ weight;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ lenght;
+	private: System::Windows::Forms::TextBox^ textBoxDistance;
+
+	private: System::Windows::Forms::Label^ distance;
+	private: System::Windows::Forms::TextBox^ textBoxId;
+	private: System::Windows::Forms::Label^ label8;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	protected:
 
@@ -88,7 +125,15 @@ namespace CargoTransportation
 			this->buttonDriver = (gcnew System::Windows::Forms::Button());
 			this->buttonAuto = (gcnew System::Windows::Forms::Button());
 			this->buttonOrder = (gcnew System::Windows::Forms::Button());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewOrder = (gcnew System::Windows::Forms::DataGridView());
+			this->id_order = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->owner = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->cargo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->departure = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Arrival = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->weight = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->lenght = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBoxCustomer = (gcnew System::Windows::Forms::TextBox());
@@ -102,13 +147,15 @@ namespace CargoTransportation
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->textBoxWeight = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->textBoxLength = (gcnew System::Windows::Forms::TextBox());
-			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->buttonAdd = (gcnew System::Windows::Forms::Button());
 			this->buttonChange = (gcnew System::Windows::Forms::Button());
 			this->buttonDelete = (gcnew System::Windows::Forms::Button());
+			this->textBoxDistance = (gcnew System::Windows::Forms::TextBox());
+			this->distance = (gcnew System::Windows::Forms::Label());
+			this->textBoxId = (gcnew System::Windows::Forms::TextBox());
+			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewOrder))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// buttonExit
@@ -122,7 +169,7 @@ namespace CargoTransportation
 			this->buttonExit->Font = (gcnew System::Drawing::Font(L"Montserrat SemiBold", 9.749999F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonExit->ForeColor = System::Drawing::Color::Black;
-			this->buttonExit->Location = System::Drawing::Point(771, 0);
+			this->buttonExit->Location = System::Drawing::Point(796, 0);
 			this->buttonExit->Margin = System::Windows::Forms::Padding(0);
 			this->buttonExit->Name = L"buttonExit";
 			this->buttonExit->Size = System::Drawing::Size(29, 28);
@@ -272,15 +319,65 @@ namespace CargoTransportation
 			this->buttonOrder->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->buttonOrder->UseVisualStyleBackColor = false;
 			// 
-			// dataGridView1
+			// dataGridViewOrder
 			// 
-			this->dataGridView1->BackgroundColor = System::Drawing::Color::White;
-			this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(372, 41);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(396, 350);
-			this->dataGridView1->TabIndex = 3;
+			this->dataGridViewOrder->BackgroundColor = System::Drawing::Color::White;
+			this->dataGridViewOrder->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->dataGridViewOrder->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::Single;
+			this->dataGridViewOrder->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewOrder->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
+				this->id_order,
+					this->owner, this->cargo, this->departure, this->Arrival, this->price, this->weight, this->lenght
+			});
+			this->dataGridViewOrder->Location = System::Drawing::Point(417, 41);
+			this->dataGridViewOrder->Name = L"dataGridViewOrder";
+			this->dataGridViewOrder->Size = System::Drawing::Size(396, 350);
+			this->dataGridViewOrder->TabIndex = 3;
+			this->dataGridViewOrder->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormOrder::FillingTextBoxForm);
+			this->dataGridViewOrder->RowLeave += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormOrder::ClearTextBoxForm);
+			// 
+			// id_order
+			// 
+			this->id_order->HeaderText = L"id";
+			this->id_order->Name = L"id_order";
+			this->id_order->Visible = false;
+			// 
+			// owner
+			// 
+			this->owner->HeaderText = L"Заказчик";
+			this->owner->Name = L"owner";
+			// 
+			// cargo
+			// 
+			this->cargo->HeaderText = L"Груз";
+			this->cargo->Name = L"cargo";
+			// 
+			// departure
+			// 
+			this->departure->HeaderText = L"Пункт_отправления";
+			this->departure->Name = L"departure";
+			// 
+			// Arrival
+			// 
+			this->Arrival->HeaderText = L"Пункт_назначения";
+			this->Arrival->Name = L"Arrival";
+			// 
+			// price
+			// 
+			this->price->HeaderText = L"Стоимость";
+			this->price->Name = L"price";
+			// 
+			// weight
+			// 
+			this->weight->HeaderText = L"Вес";
+			this->weight->Name = L"weight";
+			this->weight->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+			this->weight->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
+			// 
+			// lenght
+			// 
+			this->lenght->HeaderText = L"Расстояние";
+			this->lenght->Name = L"lenght";
 			// 
 			// label1
 			// 
@@ -291,7 +388,7 @@ namespace CargoTransportation
 			this->label1->Font = (gcnew System::Drawing::Font(L"Montserrat SemiBold", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label1->ForeColor = System::Drawing::Color::Black;
-			this->label1->Location = System::Drawing::Point(533, 9);
+			this->label1->Location = System::Drawing::Point(558, 9);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(108, 29);
 			this->label1->TabIndex = 4;
@@ -304,7 +401,7 @@ namespace CargoTransportation
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(173, 88);
+			this->label2->Location = System::Drawing::Point(178, 119);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(75, 18);
 			this->label2->TabIndex = 5;
@@ -315,7 +412,7 @@ namespace CargoTransportation
 			this->textBoxCustomer->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxCustomer->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxCustomer->Location = System::Drawing::Point(254, 85);
+			this->textBoxCustomer->Location = System::Drawing::Point(274, 116);
 			this->textBoxCustomer->Name = L"textBoxCustomer";
 			this->textBoxCustomer->Size = System::Drawing::Size(112, 21);
 			this->textBoxCustomer->TabIndex = 6;
@@ -325,7 +422,7 @@ namespace CargoTransportation
 			this->textBoxFrom->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxFrom->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxFrom->Location = System::Drawing::Point(254, 132);
+			this->textBoxFrom->Location = System::Drawing::Point(274, 163);
 			this->textBoxFrom->Name = L"textBoxFrom";
 			this->textBoxFrom->Size = System::Drawing::Size(112, 21);
 			this->textBoxFrom->TabIndex = 8;
@@ -337,7 +434,7 @@ namespace CargoTransportation
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label3->Location = System::Drawing::Point(173, 135);
+			this->label3->Location = System::Drawing::Point(178, 166);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(59, 18);
 			this->label3->TabIndex = 7;
@@ -348,7 +445,7 @@ namespace CargoTransportation
 			this->textBoxTo->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxTo->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxTo->Location = System::Drawing::Point(254, 159);
+			this->textBoxTo->Location = System::Drawing::Point(274, 190);
 			this->textBoxTo->Name = L"textBoxTo";
 			this->textBoxTo->Size = System::Drawing::Size(112, 21);
 			this->textBoxTo->TabIndex = 10;
@@ -360,7 +457,7 @@ namespace CargoTransportation
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label4->Location = System::Drawing::Point(173, 162);
+			this->label4->Location = System::Drawing::Point(178, 193);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(43, 18);
 			this->label4->TabIndex = 9;
@@ -371,7 +468,7 @@ namespace CargoTransportation
 			this->textBoxCost->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxCost->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxCost->Location = System::Drawing::Point(254, 215);
+			this->textBoxCost->Location = System::Drawing::Point(274, 266);
 			this->textBoxCost->Name = L"textBoxCost";
 			this->textBoxCost->Size = System::Drawing::Size(112, 21);
 			this->textBoxCost->TabIndex = 12;
@@ -383,7 +480,7 @@ namespace CargoTransportation
 			this->label5->AutoSize = true;
 			this->label5->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label5->Location = System::Drawing::Point(173, 218);
+			this->label5->Location = System::Drawing::Point(178, 269);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(81, 18);
 			this->label5->TabIndex = 11;
@@ -394,7 +491,7 @@ namespace CargoTransportation
 			this->textBoxNameCargo->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxNameCargo->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxNameCargo->Location = System::Drawing::Point(254, 264);
+			this->textBoxNameCargo->Location = System::Drawing::Point(274, 315);
 			this->textBoxNameCargo->Name = L"textBoxNameCargo";
 			this->textBoxNameCargo->Size = System::Drawing::Size(112, 21);
 			this->textBoxNameCargo->TabIndex = 14;
@@ -406,7 +503,7 @@ namespace CargoTransportation
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label6->Location = System::Drawing::Point(173, 267);
+			this->label6->Location = System::Drawing::Point(178, 318);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(39, 18);
 			this->label6->TabIndex = 13;
@@ -417,7 +514,7 @@ namespace CargoTransportation
 			this->textBoxWeight->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxWeight->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxWeight->Location = System::Drawing::Point(254, 291);
+			this->textBoxWeight->Location = System::Drawing::Point(274, 342);
 			this->textBoxWeight->Name = L"textBoxWeight";
 			this->textBoxWeight->Size = System::Drawing::Size(112, 21);
 			this->textBoxWeight->TabIndex = 16;
@@ -429,34 +526,11 @@ namespace CargoTransportation
 			this->label7->AutoSize = true;
 			this->label7->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label7->Location = System::Drawing::Point(173, 294);
+			this->label7->Location = System::Drawing::Point(178, 345);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(36, 18);
 			this->label7->TabIndex = 15;
 			this->label7->Text = L"Вес:";
-			// 
-			// textBoxLength
-			// 
-			this->textBoxLength->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBoxLength->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxLength->Location = System::Drawing::Point(254, 318);
-			this->textBoxLength->Name = L"textBoxLength";
-			this->textBoxLength->Size = System::Drawing::Size(112, 21);
-			this->textBoxLength->TabIndex = 18;
-			// 
-			// label8
-			// 
-			this->label8->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left));
-			this->label8->AutoSize = true;
-			this->label8->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label8->Location = System::Drawing::Point(173, 321);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(64, 18);
-			this->label8->TabIndex = 17;
-			this->label8->Text = L"Длинна:";
 			// 
 			// buttonAdd
 			// 
@@ -466,7 +540,7 @@ namespace CargoTransportation
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonAdd->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonAdd->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->buttonAdd->Location = System::Drawing::Point(372, 435);
+			this->buttonAdd->Location = System::Drawing::Point(397, 435);
 			this->buttonAdd->Name = L"buttonAdd";
 			this->buttonAdd->Size = System::Drawing::Size(100, 30);
 			this->buttonAdd->TabIndex = 19;
@@ -482,7 +556,7 @@ namespace CargoTransportation
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonChange->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonChange->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->buttonChange->Location = System::Drawing::Point(520, 435);
+			this->buttonChange->Location = System::Drawing::Point(545, 435);
 			this->buttonChange->Name = L"buttonChange";
 			this->buttonChange->Size = System::Drawing::Size(100, 30);
 			this->buttonChange->TabIndex = 20;
@@ -498,7 +572,7 @@ namespace CargoTransportation
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonDelete->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonDelete->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->buttonDelete->Location = System::Drawing::Point(668, 435);
+			this->buttonDelete->Location = System::Drawing::Point(693, 435);
 			this->buttonDelete->Name = L"buttonDelete";
 			this->buttonDelete->Size = System::Drawing::Size(100, 30);
 			this->buttonDelete->TabIndex = 21;
@@ -506,17 +580,66 @@ namespace CargoTransportation
 			this->buttonDelete->UseVisualStyleBackColor = false;
 			this->buttonDelete->Click += gcnew System::EventHandler(this, &MyFormOrder::buttonDelete_Click);
 			// 
+			// textBoxDistance
+			// 
+			this->textBoxDistance->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left));
+			this->textBoxDistance->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxDistance->Location = System::Drawing::Point(274, 217);
+			this->textBoxDistance->Name = L"textBoxDistance";
+			this->textBoxDistance->Size = System::Drawing::Size(112, 21);
+			this->textBoxDistance->TabIndex = 23;
+			// 
+			// distance
+			// 
+			this->distance->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left));
+			this->distance->AutoSize = true;
+			this->distance->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->distance->Location = System::Drawing::Point(178, 220);
+			this->distance->Name = L"distance";
+			this->distance->Size = System::Drawing::Size(90, 18);
+			this->distance->TabIndex = 22;
+			this->distance->Text = L"Расстояние:";
+			// 
+			// textBoxId
+			// 
+			this->textBoxId->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left));
+			this->textBoxId->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxId->Location = System::Drawing::Point(274, 41);
+			this->textBoxId->Name = L"textBoxId";
+			this->textBoxId->ReadOnly = true;
+			this->textBoxId->Size = System::Drawing::Size(112, 21);
+			this->textBoxId->TabIndex = 25;
+			// 
+			// label8
+			// 
+			this->label8->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left));
+			this->label8->AutoSize = true;
+			this->label8->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label8->Location = System::Drawing::Point(178, 44);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(24, 18);
+			this->label8->TabIndex = 24;
+			this->label8->Text = L"id:";
+			// 
 			// MyFormOrder
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 15);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScrollMargin = System::Drawing::Size(10, 10);
-			this->ClientSize = System::Drawing::Size(800, 600);
+			this->ClientSize = System::Drawing::Size(825, 600);
+			this->Controls->Add(this->textBoxId);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->textBoxDistance);
+			this->Controls->Add(this->distance);
 			this->Controls->Add(this->buttonDelete);
 			this->Controls->Add(this->buttonChange);
 			this->Controls->Add(this->buttonAdd);
-			this->Controls->Add(this->textBoxLength);
-			this->Controls->Add(this->label8);
 			this->Controls->Add(this->textBoxWeight);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->textBoxNameCargo);
@@ -530,7 +653,7 @@ namespace CargoTransportation
 			this->Controls->Add(this->textBoxCustomer);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->dataGridView1);
+			this->Controls->Add(this->dataGridViewOrder);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->buttonExit);
 			this->Font = (gcnew System::Drawing::Font(L"Montserrat", 8.249999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -543,7 +666,7 @@ namespace CargoTransportation
 			this->Load += gcnew System::EventHandler(this, &MyFormOrder::MyFormOrder_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewOrder))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -560,6 +683,11 @@ namespace CargoTransportation
 	private: System::Void button_MouseHover(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void button_MouseLeave(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void MyFormOrder_Load(System::Object^ sender, System::EventArgs^ e);
+
+
+/*private: System::Void dataGridViewOrder_RowStateChanged(System::Object^ sender, System::Windows::Forms::DataGridViewRowStateChangedEventArgs^ e);*/
+private: System::Void FillingTextBoxForm(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+private: System::Void ClearTextBoxForm(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 };
 
 
