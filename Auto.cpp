@@ -70,7 +70,7 @@ System::Void CargoTransportation::MyFormAuto::buttonAdd_Click(System::Object^ se
 	auto dbReader = dbCommand->ExecuteReader();
 
 	while (dbReader->Read()) {
-		dataGridViewAuto->Rows->Add(dbReader[0], dbReader[1], dbReader[2], dbReader[3], dbReader[4], dbReader[5], dbReader[6], dbReader[7]);
+		dataGridViewAuto->Rows->Add(dbReader[0], dbReader[1], dbReader[2], dbReader[3], dbReader[4], dbReader[5]);
 	}
 
 	//Закрываем соединение
@@ -81,6 +81,55 @@ System::Void CargoTransportation::MyFormAuto::buttonAdd_Click(System::Object^ se
 
 System::Void CargoTransportation::MyFormAuto::buttonChange_Click(System::Object^ sender, System::EventArgs^ e)
 {
+	if (!(textBoxId->Text->Length)) {
+		MessageBox::Show("Выберете строку!", "Внимание!");
+		return;
+	}
+
+	if (dataGridViewAuto->SelectedRows->Count > 1) {
+		MessageBox::Show("Выберите одну строку!", "Внимание!");
+		return;
+	}
+
+	if (!(textBoxMark->Text->Length && textBoxNumber->Text->Length &&
+		textBoxTonnage->Text->Length && textBoxExpences->Text->Length &&
+		textBoxLenght->Text->Length )) {
+		MessageBox::Show("Введены не все данные!", "Внимание!");
+		return;
+	}
+
+	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
+	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
+
+	//выполнить запрос к БД
+	dbConnection->Open(); //открываем соединение
+
+	String^ query = "UPDATE truck SET  truck_name = '" + textBoxMark->Text + "',license_plate ='" + textBoxNumber->Text + "'," +
+		" load_capacity = " + textBoxTonnage->Text + ", " +
+		" fuel_consumption = " + textBoxExpences->Text + ", trailer_length = " + textBoxLenght->Text + " "
+		"WHERE truck_id = " + textBoxId->Text + ";";//Текст завпрос
+	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+
+	if (dbCommand->ExecuteNonQuery() == 1) {
+		MessageBox::Show("Запись обнавлена!");
+	}
+	else {
+		MessageBox::Show("Ошибка при Обнавлении элемента таблицы!", "Внимание!");
+	}
+
+
+	int index = dataGridViewAuto->SelectedRows[0]->Index;
+	auto row = dataGridViewAuto->Rows[index];
+
+	row->SetValues(textBoxId->Text,
+		textBoxMark->Text,
+		textBoxNumber->Text,
+		Convert::ToDouble(textBoxTonnage->Text->Replace('.',',')),
+		Convert::ToDouble(textBoxExpences->Text->Replace('.', ',')),
+		Convert::ToDouble(textBoxLenght->Text->Replace('.', ',')));
+
+	//Закрываем соединение
+	dbConnection->Close();
 	return System::Void();
 }
 
