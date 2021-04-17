@@ -46,9 +46,10 @@ namespace CargoTransportation
 
 
 	private: System::Windows::Forms::Button^ buttonFinans;
+	private: System::Windows::Forms::DataGridView^ dataGridViewDriver;
 
 
-	private: System::Windows::Forms::DataGridView^ dataGridView1;
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBoxName;
@@ -56,7 +57,8 @@ namespace CargoTransportation
 
 
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::TextBox^ textBoxDriverClass;
+
 	private: System::Windows::Forms::Label^ labelClassnoDriversClass;
 
 
@@ -80,7 +82,8 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Button^ buttonOrder;
 
 	private: System::Windows::Forms::Button^ buttonDriver;
-	private: System::Windows::Forms::TextBox^ textBoxPatronimic;
+	private: System::Windows::Forms::TextBox^ textBoxPatronymic;
+
 
 
 	private: System::Windows::Forms::Label^ label7;
@@ -92,6 +95,31 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::TextBox^ textBoxId;
 	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Name_driver;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Surname_driver;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Patronymic_driver;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ driver_class;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Partner;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ truck_num;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ AutoBase;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Stage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -124,20 +152,20 @@ namespace CargoTransportation
 			this->buttonFinans = (gcnew System::Windows::Forms::Button());
 			this->buttonRoute = (gcnew System::Windows::Forms::Button());
 			this->buttonAuto = (gcnew System::Windows::Forms::Button());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewDriver = (gcnew System::Windows::Forms::DataGridView());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBoxName = (gcnew System::Windows::Forms::TextBox());
 			this->textBoxSurname = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxDriverClass = (gcnew System::Windows::Forms::TextBox());
 			this->labelClassnoDriversClass = (gcnew System::Windows::Forms::Label());
 			this->textBoxAuto = (gcnew System::Windows::Forms::TextBox());
 			this->label = (gcnew System::Windows::Forms::Label());
 			this->buttonAdd = (gcnew System::Windows::Forms::Button());
 			this->buttonChange = (gcnew System::Windows::Forms::Button());
 			this->buttonDelete = (gcnew System::Windows::Forms::Button());
-			this->textBoxPatronimic = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxPatronymic = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->textBoxStage = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
@@ -147,8 +175,17 @@ namespace CargoTransportation
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->textBoxId = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Name_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Surname_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Patronymic_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->driver_class = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Partner = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->truck_num = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->AutoBase = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Stage = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->panel1->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewDriver))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// buttonExit
@@ -311,18 +348,23 @@ namespace CargoTransportation
 			this->buttonAuto->MouseLeave += gcnew System::EventHandler(this, &MyFormDriver::button_MouseLeave);
 			this->buttonAuto->MouseHover += gcnew System::EventHandler(this, &MyFormDriver::button_MouseHover);
 			// 
-			// dataGridView1
+			// dataGridViewDriver
 			// 
-			this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
-			this->dataGridView1->BackgroundColor = System::Drawing::Color::White;
-			this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(417, 41);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(471, 350);
-			this->dataGridView1->TabIndex = 3;
-			this->dataGridView1->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormDriver::FillingTextBoxFormDriver);
+			this->dataGridViewDriver->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->dataGridViewDriver->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::ColumnHeader;
+			this->dataGridViewDriver->BackgroundColor = System::Drawing::Color::White;
+			this->dataGridViewDriver->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->dataGridViewDriver->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewDriver->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
+				this->id,
+					this->Name_driver, this->Surname_driver, this->Patronymic_driver, this->driver_class, this->Partner, this->truck_num, this->AutoBase,
+					this->Stage
+			});
+			this->dataGridViewDriver->Location = System::Drawing::Point(417, 41);
+			this->dataGridViewDriver->Name = L"dataGridViewDriver";
+			this->dataGridViewDriver->Size = System::Drawing::Size(471, 350);
+			this->dataGridViewDriver->TabIndex = 3;
+			this->dataGridViewDriver->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormDriver::FillingTextBoxFormDriver);
 			// 
 			// label1
 			// 
@@ -385,15 +427,15 @@ namespace CargoTransportation
 			this->label3->TabIndex = 7;
 			this->label3->Text = L"Фамилия:";
 			// 
-			// textBox3
+			// textBoxDriverClass
 			// 
-			this->textBox3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxDriverClass->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBox3->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBox3->Location = System::Drawing::Point(268, 194);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(112, 21);
-			this->textBox3->TabIndex = 10;
+			this->textBoxDriverClass->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxDriverClass->Location = System::Drawing::Point(268, 194);
+			this->textBoxDriverClass->Name = L"textBoxDriverClass";
+			this->textBoxDriverClass->Size = System::Drawing::Size(112, 21);
+			this->textBoxDriverClass->TabIndex = 10;
 			// 
 			// labelClassnoDriversClass
 			// 
@@ -480,15 +522,15 @@ namespace CargoTransportation
 			this->buttonDelete->UseVisualStyleBackColor = false;
 			this->buttonDelete->Click += gcnew System::EventHandler(this, &MyFormDriver::buttonDelete_Click);
 			// 
-			// textBoxPatronimic
+			// textBoxPatronymic
 			// 
-			this->textBoxPatronimic->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->textBoxPatronymic->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBoxPatronimic->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxPatronimic->Location = System::Drawing::Point(268, 139);
-			this->textBoxPatronimic->Name = L"textBoxPatronimic";
-			this->textBoxPatronimic->Size = System::Drawing::Size(112, 21);
-			this->textBoxPatronimic->TabIndex = 23;
+			this->textBoxPatronymic->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxPatronymic->Location = System::Drawing::Point(268, 139);
+			this->textBoxPatronymic->Name = L"textBoxPatronymic";
+			this->textBoxPatronymic->Size = System::Drawing::Size(112, 21);
+			this->textBoxPatronymic->TabIndex = 23;
 			// 
 			// label7
 			// 
@@ -599,6 +641,60 @@ namespace CargoTransportation
 			this->label8->TabIndex = 38;
 			this->label8->Text = L"id:";
 			// 
+			// id
+			// 
+			this->id->HeaderText = L"id";
+			this->id->Name = L"id";
+			this->id->Visible = false;
+			// 
+			// Name_driver
+			// 
+			this->Name_driver->HeaderText = L"Имя";
+			this->Name_driver->Name = L"Name_driver";
+			this->Name_driver->Width = 57;
+			// 
+			// Surname_driver
+			// 
+			this->Surname_driver->HeaderText = L"Фамилия";
+			this->Surname_driver->Name = L"Surname_driver";
+			this->Surname_driver->Width = 87;
+			// 
+			// Patronymic_driver
+			// 
+			this->Patronymic_driver->HeaderText = L"Отчество";
+			this->Patronymic_driver->Name = L"Patronymic_driver";
+			this->Patronymic_driver->Width = 85;
+			// 
+			// driver_class
+			// 
+			this->driver_class->HeaderText = L"Классность";
+			this->driver_class->Name = L"driver_class";
+			this->driver_class->Width = 96;
+			// 
+			// Partner
+			// 
+			this->Partner->HeaderText = L"Партнер";
+			this->Partner->Name = L"Partner";
+			this->Partner->Width = 82;
+			// 
+			// truck_num
+			// 
+			this->truck_num->HeaderText = L"Номер авто";
+			this->truck_num->Name = L"truck_num";
+			this->truck_num->Width = 92;
+			// 
+			// AutoBase
+			// 
+			this->AutoBase->HeaderText = L"Автобаза";
+			this->AutoBase->Name = L"AutoBase";
+			this->AutoBase->Width = 84;
+			// 
+			// Stage
+			// 
+			this->Stage->HeaderText = L"Стаж";
+			this->Stage->Name = L"Stage";
+			this->Stage->Width = 60;
+			// 
 			// MyFormDriver
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 15);
@@ -613,21 +709,21 @@ namespace CargoTransportation
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->textBoxStage);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->textBoxPatronimic);
+			this->Controls->Add(this->textBoxPatronymic);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->buttonDelete);
 			this->Controls->Add(this->buttonChange);
 			this->Controls->Add(this->buttonAdd);
 			this->Controls->Add(this->textBoxAuto);
 			this->Controls->Add(this->label);
-			this->Controls->Add(this->textBox3);
+			this->Controls->Add(this->textBoxDriverClass);
 			this->Controls->Add(this->labelClassnoDriversClass);
 			this->Controls->Add(this->textBoxSurname);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->textBoxName);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->dataGridView1);
+			this->Controls->Add(this->dataGridViewDriver);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->buttonExit);
 			this->Font = (gcnew System::Drawing::Font(L"Montserrat", 8.249999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -640,7 +736,7 @@ namespace CargoTransportation
 			this->Load += gcnew System::EventHandler(this, &MyFormDriver::MyFormDriver_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewDriver))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -658,6 +754,7 @@ private: System::Void MyFormDriver_Load(System::Object^ sender, System::EventArg
 private: System::Void button_MouseHover(System::Object^ sender, System::EventArgs^ e);
 private: System::Void button_MouseLeave(System::Object^ sender, System::EventArgs^ e);
 private: System::Void FillingTextBoxFormDriver(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+private: System::Void ClearTextBoxFormAuto();
 };
 
 
