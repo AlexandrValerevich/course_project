@@ -135,6 +135,39 @@ System::Void CargoTransportation::MyFormAuto::buttonChange_Click(System::Object^
 
 System::Void CargoTransportation::MyFormAuto::buttonDelete_Click(System::Object^ sender, System::EventArgs^ e)
 {
+	if (!(textBoxId->Text->Length)) {
+		MessageBox::Show("Невыбрана ни одна строка!", "Внимание!");
+		return;
+	}
+
+	if (dataGridViewAuto->SelectedRows->Count > 1) {
+		MessageBox::Show("Выберите одну строку!", "Внимание!");
+		return;
+	}
+
+	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
+	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
+
+	//выполнить запрос к БД
+	dbConnection->Open(); //открываем соединение
+
+	String^ query = "DELETE FROM truck WHERE truck_id = " + textBoxId->Text + " ;"; //Текст завпрос
+	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+
+	if (dbCommand->ExecuteNonQuery() == 1) {
+		MessageBox::Show("Запись удалена!");
+	}
+	else {
+		MessageBox::Show("Ошибка при удалени элемента из таблицу!", "Внимание!");
+	}
+
+	ClearTextBoxFormAuto();
+
+	int index = dataGridViewAuto->SelectedRows[0]->Index;
+	dataGridViewAuto->Rows->RemoveAt(index);
+
+	//Закрываем соединение
+	dbConnection->Close();
 	return System::Void();
 }
 

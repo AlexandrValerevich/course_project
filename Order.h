@@ -547,7 +547,7 @@ namespace CargoTransportation
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonAdd->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonAdd->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->buttonAdd->Location = System::Drawing::Point(472, 435);
+			this->buttonAdd->Location = System::Drawing::Point(452, 435);
 			this->buttonAdd->Name = L"buttonAdd";
 			this->buttonAdd->Size = System::Drawing::Size(100, 30);
 			this->buttonAdd->TabIndex = 19;
@@ -563,7 +563,7 @@ namespace CargoTransportation
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonChange->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonChange->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->buttonChange->Location = System::Drawing::Point(620, 435);
+			this->buttonChange->Location = System::Drawing::Point(600, 435);
 			this->buttonChange->Name = L"buttonChange";
 			this->buttonChange->Size = System::Drawing::Size(100, 30);
 			this->buttonChange->TabIndex = 20;
@@ -579,7 +579,7 @@ namespace CargoTransportation
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonDelete->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonDelete->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->buttonDelete->Location = System::Drawing::Point(768, 435);
+			this->buttonDelete->Location = System::Drawing::Point(748, 435);
 			this->buttonDelete->Name = L"buttonDelete";
 			this->buttonDelete->Size = System::Drawing::Size(100, 30);
 			this->buttonDelete->TabIndex = 21;
