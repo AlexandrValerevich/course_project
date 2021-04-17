@@ -78,6 +78,10 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Label^ distance;
 	private: System::Windows::Forms::TextBox^ textBoxId;
 	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::ListBox^ listBoxSort;
+
+
 
 
 
@@ -154,6 +158,8 @@ namespace CargoTransportation
 			this->distance = (gcnew System::Windows::Forms::Label());
 			this->textBoxId = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->listBoxSort = (gcnew System::Windows::Forms::ListBox());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewOrder))->BeginInit();
 			this->SuspendLayout();
@@ -334,7 +340,6 @@ namespace CargoTransportation
 			this->dataGridViewOrder->Size = System::Drawing::Size(396, 350);
 			this->dataGridViewOrder->TabIndex = 3;
 			this->dataGridViewOrder->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormOrder::FillingTextBoxForm);
-			this->dataGridViewOrder->RowLeave += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormOrder::ClearTextBoxForm);
 			// 
 			// id_order
 			// 
@@ -627,12 +632,38 @@ namespace CargoTransportation
 			this->label8->TabIndex = 24;
 			this->label8->Text = L"id:";
 			// 
+			// label10
+			// 
+			this->label10->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left));
+			this->label10->AutoSize = true;
+			this->label10->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label10->Location = System::Drawing::Point(178, 393);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(93, 18);
+			this->label10->TabIndex = 26;
+			this->label10->Text = L"Сортировка:";
+			// 
+			// listBoxSort
+			// 
+			this->listBoxSort->FormattingEnabled = true;
+			this->listBoxSort->ItemHeight = 15;
+			this->listBoxSort->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Вес", L"Расстояние" });
+			this->listBoxSort->Location = System::Drawing::Point(274, 393);
+			this->listBoxSort->Name = L"listBoxSort";
+			this->listBoxSort->Size = System::Drawing::Size(112, 34);
+			this->listBoxSort->TabIndex = 28;
+			this->listBoxSort->SelectedIndexChanged += gcnew System::EventHandler(this, &MyFormOrder::listBoxSort_SelectedIndexChanged);
+			// 
 			// MyFormOrder
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 15);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScrollMargin = System::Drawing::Size(10, 10);
 			this->ClientSize = System::Drawing::Size(825, 600);
+			this->Controls->Add(this->listBoxSort);
+			this->Controls->Add(this->label10);
 			this->Controls->Add(this->textBoxId);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->textBoxDistance);
@@ -688,6 +719,9 @@ namespace CargoTransportation
 /*private: System::Void dataGridViewOrder_RowStateChanged(System::Object^ sender, System::Windows::Forms::DataGridViewRowStateChangedEventArgs^ e);*/
 private: System::Void FillingTextBoxForm(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 private: System::Void ClearTextBoxForm(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+
+private: System::Void listBoxSort_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e);
+
 };
 
 

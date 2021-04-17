@@ -283,9 +283,9 @@ namespace CargoTransportation
 			this->label1->ForeColor = System::Drawing::Color::Black;
 			this->label1->Location = System::Drawing::Point(569, 9);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(108, 29);
+			this->label1->Size = System::Drawing::Size(95, 29);
 			this->label1->TabIndex = 4;
-			this->label1->Text = L"«¿ ¿«€";
+			this->label1->Text = L"–≈…—€";
 			// 
 			// label2
 			// 

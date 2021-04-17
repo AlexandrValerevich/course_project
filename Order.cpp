@@ -38,16 +38,142 @@ System::Void CargoTransportation::MyFormOrder::buttonFinans_Click(System::Object
 
 System::Void CargoTransportation::MyFormOrder::buttonAdd_Click(System::Object^ sender, System::EventArgs^ e)
 {
+	if (!(textBoxCustomer->Text->Length && textBoxFrom->Text->Length &&
+		textBoxTo->Text->Length && textBoxDistance->Text->Length  &&
+		textBoxCost->Text->Length && textBoxNameCargo->Text->Length  &&
+		textBoxWeight->Text->Length)) {
+		MessageBox::Show("Введены не все данные!", "Внимание!");
+		return;
+	}
+
+	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
+	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
+
+	//выполнить запрос к БД
+	dbConnection->Open(); //открываем соединение
+
+	String^ query = "INSERT INTO order_db (order_owner, order_departure, order_arrival, lenght, price, order_cargo, weight )"+
+" VALUES ('"+ textBoxCustomer->Text +"', '"+textBoxFrom->Text+"', '" + textBoxTo->Text + "', " + textBoxDistance->Text + ", " + textBoxCost->Text + ", '" + textBoxNameCargo->Text + "', " + textBoxWeight->Text + ") ;"; //Текст завпрос
+	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+
+	if (dbCommand->ExecuteNonQuery() == 1) {
+		MessageBox::Show("Запись добавлена!");
+	}
+	else {
+		MessageBox::Show("Ошибка при добавлений элемента в таблицу!", "Внимание!");
+	}
+
+	query = "SELECT * FROM order_db WHERE order_id IN(SELECT MAX(order_id) FROM order_db);";
+	dbCommand->CommandText = query;
+
+	auto dbReader = dbCommand->ExecuteReader();
+
+	while (dbReader->Read()) {
+		dataGridViewOrder->Rows->Add(dbReader[0], dbReader[1], dbReader[2], dbReader[3], dbReader[4], dbReader[5], dbReader[6], dbReader[7]);
+	}
+
+	//Закрываем соединение
+	dbReader->Close();
+	dbConnection->Close();
+
 	return System::Void();
 }
 
 System::Void CargoTransportation::MyFormOrder::buttonChange_Click(System::Object^ sender, System::EventArgs^ e)
 {
+	if (!(textBoxId->Text->Length)) {
+		MessageBox::Show("Выберете строку!", "Внимание!");
+		return;
+	}
+
+	if (dataGridViewOrder->SelectedRows->Count > 1) {
+		MessageBox::Show("Выберите одну строку!", "Внимание!");
+		return;
+	}
+
+	if (!(textBoxCustomer->Text->Length && textBoxFrom->Text->Length &&
+		textBoxTo->Text->Length && textBoxDistance->Text->Length &&
+		textBoxCost->Text->Length && textBoxNameCargo->Text->Length &&
+		textBoxWeight->Text->Length)) {
+		MessageBox::Show("Введены не все данные!", "Внимание!");
+		return;
+	}
+
+	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
+	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
+
+	//выполнить запрос к БД
+	dbConnection->Open(); //открываем соединение
+
+	String^ query = "UPDATE order_db SET  order_owner = '" + textBoxCustomer->Text + "',order_cargo ='"+textBoxNameCargo->Text+"',"+
+		" order_departure = '"+textBoxFrom->Text+"' ,order_arrival = '"+textBoxTo->Text+"', price = "+textBoxCost->Text+","+
+		" weight = "+textBoxWeight->Text+", lenght = "+ textBoxDistance->Text + " "
+		"WHERE order_id = " + textBoxId->Text + ";";//Текст завпрос
+	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+
+	if (dbCommand->ExecuteNonQuery() == 1) {
+		MessageBox::Show("Запись обнавлена!");
+	}
+	else {
+		MessageBox::Show("Ошибка при Обнавлении элемента таблицы!", "Внимание!");
+	}
+
+
+	int index = dataGridViewOrder->SelectedRows[0]->Index;
+	auto row = dataGridViewOrder->Rows[index];
+
+	row->SetValues(textBoxId->Text,
+		textBoxCustomer->Text,
+		textBoxNameCargo->Text,
+		textBoxFrom->Text, 
+		textBoxTo->Text,
+		textBoxCost->Text,
+		textBoxWeight->Text,
+		textBoxDistance->Text);
+
+	//Закрываем соединение
+	dbConnection->Close();
+
+
 	return System::Void();
 }
 
 System::Void CargoTransportation::MyFormOrder::buttonDelete_Click(System::Object^ sender, System::EventArgs^ e)
 {
+	if (!(textBoxId->Text->Length)) {
+		MessageBox::Show("Невыбрана ни одна строка!", "Внимание!");
+		return;
+	}
+
+	if (dataGridViewOrder->SelectedRows->Count > 1) {
+		MessageBox::Show("Выберите одну строку!", "Внимание!");
+		return;
+	}
+
+	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
+	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
+
+	//выполнить запрос к БД
+	dbConnection->Open(); //открываем соединение
+
+	String^ query = "DELETE FROM order_db WHERE order_id = "+textBoxId->Text+" ;"; //Текст завпрос
+	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+
+	if (dbCommand->ExecuteNonQuery() == 1) {
+		MessageBox::Show("Запись удалена!");
+	}
+	else {
+		MessageBox::Show("Ошибка при удалени элемента из таблицу!", "Внимание!");
+	}
+
+	ClearTextBoxForm(nullptr, nullptr);
+	
+	int index = dataGridViewOrder->SelectedRows[0]->Index;
+	dataGridViewOrder->Rows->RemoveAt(index);
+
+	//Закрываем соединение
+	dbConnection->Close();
+
 	return System::Void();
 }
 
@@ -125,10 +251,19 @@ System::Void CargoTransportation::MyFormOrder::MyFormOrder_Load(System::Object^ 
 
 System::Void CargoTransportation::MyFormOrder::FillingTextBoxForm(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
 {
-	if (e->RowIndex)
+
+	if (dataGridViewOrder->SelectedRows->Count == 0)
 		return;
 
-	auto row = dataGridViewOrder->Rows[e->RowIndex];
+	int index = dataGridViewOrder->SelectedRows[0]->Index;
+
+	if (dataGridViewOrder->Rows->Count - 1 == index) {
+		ClearTextBoxForm(nullptr,nullptr);
+		return;
+	}
+		
+
+	auto row = dataGridViewOrder->Rows[index];
 	auto cells = row->Cells;
 
 	textBoxId->Text = cells[0]->Value->ToString();
@@ -152,6 +287,24 @@ System::Void CargoTransportation::MyFormOrder::ClearTextBoxForm(System::Object^ 
 	textBoxCost->Text = nullptr;
 	textBoxWeight->Text = nullptr;
 	textBoxDistance->Text = nullptr;
+	return System::Void();
+}
+
+System::Void CargoTransportation::MyFormOrder::listBoxSort_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	switch (listBoxSort->SelectedIndex)
+	{
+	case 0 :{
+		dataGridViewOrder->Sort(dataGridViewOrder->Columns[6], System::ComponentModel::ListSortDirection::Ascending);
+		break;
+		}
+	case 1: {
+		dataGridViewOrder->Sort(dataGridViewOrder->Columns[7], System::ComponentModel::ListSortDirection::Ascending);
+		break;
+	}
+	default:
+		break;
+	}
 	return System::Void();
 }
 
