@@ -175,7 +175,7 @@ namespace CargoTransportation
 			this->buttonExit->Font = (gcnew System::Drawing::Font(L"Montserrat SemiBold", 9.749999F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->buttonExit->ForeColor = System::Drawing::Color::Black;
-			this->buttonExit->Location = System::Drawing::Point(796, 0);
+			this->buttonExit->Location = System::Drawing::Point(871, 0);
 			this->buttonExit->Margin = System::Windows::Forms::Padding(0);
 			this->buttonExit->Name = L"buttonExit";
 			this->buttonExit->Size = System::Drawing::Size(29, 28);
@@ -327,6 +327,8 @@ namespace CargoTransportation
 			// 
 			// dataGridViewOrder
 			// 
+			this->dataGridViewOrder->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->dataGridViewOrder->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dataGridViewOrder->BackgroundColor = System::Drawing::Color::White;
 			this->dataGridViewOrder->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->dataGridViewOrder->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::Single;
@@ -337,7 +339,7 @@ namespace CargoTransportation
 			});
 			this->dataGridViewOrder->Location = System::Drawing::Point(417, 41);
 			this->dataGridViewOrder->Name = L"dataGridViewOrder";
-			this->dataGridViewOrder->Size = System::Drawing::Size(396, 350);
+			this->dataGridViewOrder->Size = System::Drawing::Size(471, 350);
 			this->dataGridViewOrder->TabIndex = 3;
 			this->dataGridViewOrder->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormOrder::FillingTextBoxForm);
 			// 
@@ -393,7 +395,7 @@ namespace CargoTransportation
 			this->label1->Font = (gcnew System::Drawing::Font(L"Montserrat SemiBold", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label1->ForeColor = System::Drawing::Color::Black;
-			this->label1->Location = System::Drawing::Point(558, 9);
+			this->label1->Location = System::Drawing::Point(633, 9);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(108, 29);
 			this->label1->TabIndex = 4;
@@ -545,7 +547,7 @@ namespace CargoTransportation
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonAdd->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonAdd->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->buttonAdd->Location = System::Drawing::Point(397, 435);
+			this->buttonAdd->Location = System::Drawing::Point(472, 435);
 			this->buttonAdd->Name = L"buttonAdd";
 			this->buttonAdd->Size = System::Drawing::Size(100, 30);
 			this->buttonAdd->TabIndex = 19;
@@ -561,7 +563,7 @@ namespace CargoTransportation
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonChange->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonChange->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->buttonChange->Location = System::Drawing::Point(545, 435);
+			this->buttonChange->Location = System::Drawing::Point(620, 435);
 			this->buttonChange->Name = L"buttonChange";
 			this->buttonChange->Size = System::Drawing::Size(100, 30);
 			this->buttonChange->TabIndex = 20;
@@ -577,7 +579,7 @@ namespace CargoTransportation
 				static_cast<System::Int32>(static_cast<System::Byte>(42)));
 			this->buttonDelete->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->buttonDelete->ForeColor = System::Drawing::SystemColors::ButtonFace;
-			this->buttonDelete->Location = System::Drawing::Point(693, 435);
+			this->buttonDelete->Location = System::Drawing::Point(768, 435);
 			this->buttonDelete->Name = L"buttonDelete";
 			this->buttonDelete->Size = System::Drawing::Size(100, 30);
 			this->buttonDelete->TabIndex = 21;
@@ -661,7 +663,7 @@ namespace CargoTransportation
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 15);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScrollMargin = System::Drawing::Size(10, 10);
-			this->ClientSize = System::Drawing::Size(825, 600);
+			this->ClientSize = System::Drawing::Size(900, 600);
 			this->Controls->Add(this->listBoxSort);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->textBoxId);

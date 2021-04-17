@@ -166,7 +166,7 @@ System::Void CargoTransportation::MyFormOrder::buttonDelete_Click(System::Object
 		MessageBox::Show("Ошибка при удалени элемента из таблицу!", "Внимание!");
 	}
 
-	ClearTextBoxForm(nullptr, nullptr);
+	ClearTextBoxFormOrder();
 	
 	int index = dataGridViewOrder->SelectedRows[0]->Index;
 	dataGridViewOrder->Rows->RemoveAt(index);
@@ -249,7 +249,7 @@ System::Void CargoTransportation::MyFormOrder::MyFormOrder_Load(System::Object^ 
 	return System::Void();
 }*/
 
-System::Void CargoTransportation::MyFormOrder::FillingTextBoxForm(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+System::Void CargoTransportation::MyFormOrder::FillingTextBoxFormOrder(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
 {
 
 	if (dataGridViewOrder->SelectedRows->Count == 0)
@@ -258,7 +258,7 @@ System::Void CargoTransportation::MyFormOrder::FillingTextBoxForm(System::Object
 	int index = dataGridViewOrder->SelectedRows[0]->Index;
 
 	if (dataGridViewOrder->Rows->Count - 1 == index) {
-		ClearTextBoxForm(nullptr,nullptr);
+		ClearTextBoxFormOrder();
 		return;
 	}
 		
@@ -277,7 +277,7 @@ System::Void CargoTransportation::MyFormOrder::FillingTextBoxForm(System::Object
 	return System::Void();
 }
 
-System::Void CargoTransportation::MyFormOrder::ClearTextBoxForm(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+System::Void CargoTransportation::MyFormOrder::ClearTextBoxFormOrder()
 {
 	textBoxId->Text = nullptr;
 	textBoxCustomer->Text = nullptr;

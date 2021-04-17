@@ -550,17 +550,18 @@ namespace CargoTransportation
 
 		}
 #pragma endregion
-	private: System::Void buttonOrder_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonAuto_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonRoute_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonFinans_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonChange_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonDelete_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonExit_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void MyFormDriver_Load(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void button_MouseHover(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void button_MouseLeave(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonOrder_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonAuto_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonRoute_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonFinans_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonChange_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonDelete_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonExit_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void MyFormDriver_Load(System::Object^ sender, System::EventArgs^ e);
+private: System::Void button_MouseHover(System::Object^ sender, System::EventArgs^ e);
+private: System::Void button_MouseLeave(System::Object^ sender, System::EventArgs^ e);
+
 };
 
 
