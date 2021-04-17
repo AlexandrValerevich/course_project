@@ -341,7 +341,7 @@ namespace CargoTransportation
 			this->dataGridViewOrder->Name = L"dataGridViewOrder";
 			this->dataGridViewOrder->Size = System::Drawing::Size(471, 350);
 			this->dataGridViewOrder->TabIndex = 3;
-			this->dataGridViewOrder->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormOrder::FillingTextBoxForm);
+			this->dataGridViewOrder->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormOrder::FillingTextBoxFormOrder);
 			// 
 			// id_order
 			// 
@@ -395,7 +395,7 @@ namespace CargoTransportation
 			this->label1->Font = (gcnew System::Drawing::Font(L"Montserrat SemiBold", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label1->ForeColor = System::Drawing::Color::Black;
-			this->label1->Location = System::Drawing::Point(633, 9);
+			this->label1->Location = System::Drawing::Point(601, 9);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(108, 29);
 			this->label1->TabIndex = 4;
@@ -705,23 +705,19 @@ namespace CargoTransportation
 
 		}
 #pragma endregion
-	private: System::Void buttonAuto_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonDriver_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonRoute_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonFinans_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonChange_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonDelete_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void buttonExit_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void button_MouseHover(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void button_MouseLeave(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void MyFormOrder_Load(System::Object^ sender, System::EventArgs^ e);
-
-
-/*private: System::Void dataGridViewOrder_RowStateChanged(System::Object^ sender, System::Windows::Forms::DataGridViewRowStateChangedEventArgs^ e);*/
-private: System::Void FillingTextBoxForm(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
-private: System::Void ClearTextBoxForm(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
-
+private: System::Void buttonAuto_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonDriver_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonRoute_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonFinans_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonAdd_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonChange_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonDelete_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void buttonExit_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void button_MouseHover(System::Object^ sender, System::EventArgs^ e);
+private: System::Void button_MouseLeave(System::Object^ sender, System::EventArgs^ e);
+private: System::Void MyFormOrder_Load(System::Object^ sender, System::EventArgs^ e);
+private: System::Void FillingTextBoxFormOrder(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+private: System::Void ClearTextBoxFormOrder();
 private: System::Void listBoxSort_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e);
 
 };

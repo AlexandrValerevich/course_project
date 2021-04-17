@@ -127,9 +127,9 @@ System::Void CargoTransportation::MyFormOrder::buttonChange_Click(System::Object
 		textBoxNameCargo->Text,
 		textBoxFrom->Text, 
 		textBoxTo->Text,
-		textBoxCost->Text,
-		textBoxWeight->Text,
-		textBoxDistance->Text);
+		Convert::ToInt32(textBoxCost->Text),
+		Convert::ToInt32(textBoxWeight->Text),
+		Convert::ToInt32(textBoxDistance->Text));
 
 	//Закрываем соединение
 	dbConnection->Close();
@@ -228,26 +228,6 @@ System::Void CargoTransportation::MyFormOrder::MyFormOrder_Load(System::Object^ 
 	dbConnection->Close();
 	return System::Void();
 }
-
-/*System::Void CargoTransportation::MyFormOrder::dataGridViewOrder_RowStateChanged(System::Object^ sender, System::Windows::Forms::DataGridViewRowStateChangedEventArgs^ e)
-{
-	if (dataGridViewOrder->SelectedRows->Count == 0)
-		return;
-
-	auto row = dataGridViewOrder->SelectedRows[0];
-	auto cells = row->Cells;
-
-	textBoxId->Text        = cells[0]->Value->ToString();
-	textBoxCustomer->Text  = cells[1]->Value->ToString();
-	textBoxNameCargo->Text = cells[2]->Value->ToString();
-	textBoxFrom->Text      = cells[3]->Value->ToString();
-	textBoxTo->Text        = cells[4]->Value->ToString();
-	textBoxCost->Text      = cells[5]->Value->ToString();
-	textBoxWeight->Text    = cells[6]->Value->ToString();
-	textBoxDistance->Text  = cells[7]->Value->ToString();
-	
-	return System::Void();
-}*/
 
 System::Void CargoTransportation::MyFormOrder::FillingTextBoxFormOrder(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
 {
