@@ -153,6 +153,15 @@ namespace CargoTransportation
 			this->buttonRoute = (gcnew System::Windows::Forms::Button());
 			this->buttonAuto = (gcnew System::Windows::Forms::Button());
 			this->dataGridViewDriver = (gcnew System::Windows::Forms::DataGridView());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Name_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Surname_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Patronymic_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->driver_class = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Partner = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->truck_num = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->AutoBase = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Stage = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBoxName = (gcnew System::Windows::Forms::TextBox());
@@ -175,15 +184,6 @@ namespace CargoTransportation
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->textBoxId = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
-			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Name_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Surname_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Patronymic_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->driver_class = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Partner = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->truck_num = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->AutoBase = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Stage = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewDriver))->BeginInit();
 			this->SuspendLayout();
@@ -366,6 +366,59 @@ namespace CargoTransportation
 			this->dataGridViewDriver->TabIndex = 3;
 			this->dataGridViewDriver->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormDriver::FillingTextBoxFormDriver);
 			// 
+			// id
+			// 
+			this->id->HeaderText = L"id";
+			this->id->Name = L"id";
+			this->id->Visible = false;
+			// 
+			// Name_driver
+			// 
+			this->Name_driver->HeaderText = L"Имя";
+			this->Name_driver->Name = L"Name_driver";
+			this->Name_driver->Width = 57;
+			// 
+			// Surname_driver
+			// 
+			this->Surname_driver->HeaderText = L"Фамилия";
+			this->Surname_driver->Name = L"Surname_driver";
+			this->Surname_driver->Width = 87;
+			// 
+			// Patronymic_driver
+			// 
+			this->Patronymic_driver->HeaderText = L"Отчество";
+			this->Patronymic_driver->Name = L"Patronymic_driver";
+			this->Patronymic_driver->Width = 85;
+			// 
+			// driver_class
+			// 
+			this->driver_class->HeaderText = L"Классность";
+			this->driver_class->Name = L"driver_class";
+			this->driver_class->Width = 96;
+			// 
+			// Partner
+			// 
+			this->Partner->HeaderText = L"Партнер";
+			this->Partner->Name = L"Partner";
+			this->Partner->Width = 82;
+			// 
+			// truck_num
+			// 
+			this->truck_num->HeaderText = L"Номер авто";
+			this->truck_num->Name = L"truck_num";
+			// 
+			// AutoBase
+			// 
+			this->AutoBase->HeaderText = L"Автобаза";
+			this->AutoBase->Name = L"AutoBase";
+			this->AutoBase->Width = 84;
+			// 
+			// Stage
+			// 
+			this->Stage->HeaderText = L"Стаж";
+			this->Stage->Name = L"Stage";
+			this->Stage->Width = 60;
+			// 
 			// label1
 			// 
 			this->label1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
@@ -399,7 +452,7 @@ namespace CargoTransportation
 			this->textBoxName->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxName->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxName->Location = System::Drawing::Point(268, 85);
+			this->textBoxName->Location = System::Drawing::Point(274, 85);
 			this->textBoxName->Name = L"textBoxName";
 			this->textBoxName->Size = System::Drawing::Size(112, 21);
 			this->textBoxName->TabIndex = 6;
@@ -409,7 +462,7 @@ namespace CargoTransportation
 			this->textBoxSurname->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxSurname->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxSurname->Location = System::Drawing::Point(268, 112);
+			this->textBoxSurname->Location = System::Drawing::Point(274, 112);
 			this->textBoxSurname->Name = L"textBoxSurname";
 			this->textBoxSurname->Size = System::Drawing::Size(112, 21);
 			this->textBoxSurname->TabIndex = 8;
@@ -432,7 +485,7 @@ namespace CargoTransportation
 			this->textBoxDriverClass->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxDriverClass->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxDriverClass->Location = System::Drawing::Point(268, 194);
+			this->textBoxDriverClass->Location = System::Drawing::Point(274, 194);
 			this->textBoxDriverClass->Name = L"textBoxDriverClass";
 			this->textBoxDriverClass->Size = System::Drawing::Size(112, 21);
 			this->textBoxDriverClass->TabIndex = 10;
@@ -455,7 +508,7 @@ namespace CargoTransportation
 			this->textBoxAuto->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxAuto->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxAuto->Location = System::Drawing::Point(268, 221);
+			this->textBoxAuto->Location = System::Drawing::Point(274, 221);
 			this->textBoxAuto->Name = L"textBoxAuto";
 			this->textBoxAuto->Size = System::Drawing::Size(112, 21);
 			this->textBoxAuto->TabIndex = 14;
@@ -527,7 +580,7 @@ namespace CargoTransportation
 			this->textBoxPatronymic->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxPatronymic->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxPatronymic->Location = System::Drawing::Point(268, 139);
+			this->textBoxPatronymic->Location = System::Drawing::Point(274, 139);
 			this->textBoxPatronymic->Name = L"textBoxPatronymic";
 			this->textBoxPatronymic->Size = System::Drawing::Size(112, 21);
 			this->textBoxPatronymic->TabIndex = 23;
@@ -550,7 +603,7 @@ namespace CargoTransportation
 			this->textBoxStage->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxStage->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxStage->Location = System::Drawing::Point(268, 247);
+			this->textBoxStage->Location = System::Drawing::Point(274, 247);
 			this->textBoxStage->Name = L"textBoxStage";
 			this->textBoxStage->Size = System::Drawing::Size(112, 21);
 			this->textBoxStage->TabIndex = 33;
@@ -574,7 +627,7 @@ namespace CargoTransportation
 			this->textBoxPartner->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxPartner->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxPartner->Location = System::Drawing::Point(268, 292);
+			this->textBoxPartner->Location = System::Drawing::Point(274, 292);
 			this->textBoxPartner->Name = L"textBoxPartner";
 			this->textBoxPartner->Size = System::Drawing::Size(112, 21);
 			this->textBoxPartner->TabIndex = 35;
@@ -598,7 +651,7 @@ namespace CargoTransportation
 			this->textBoxAutoBase->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxAutoBase->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxAutoBase->Location = System::Drawing::Point(268, 319);
+			this->textBoxAutoBase->Location = System::Drawing::Point(274, 319);
 			this->textBoxAutoBase->Name = L"textBoxAutoBase";
 			this->textBoxAutoBase->Size = System::Drawing::Size(112, 21);
 			this->textBoxAutoBase->TabIndex = 37;
@@ -622,7 +675,7 @@ namespace CargoTransportation
 			this->textBoxId->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxId->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxId->Location = System::Drawing::Point(268, 41);
+			this->textBoxId->Location = System::Drawing::Point(274, 41);
 			this->textBoxId->Name = L"textBoxId";
 			this->textBoxId->ReadOnly = true;
 			this->textBoxId->Size = System::Drawing::Size(112, 21);
@@ -640,60 +693,6 @@ namespace CargoTransportation
 			this->label8->Size = System::Drawing::Size(24, 18);
 			this->label8->TabIndex = 38;
 			this->label8->Text = L"id:";
-			// 
-			// id
-			// 
-			this->id->HeaderText = L"id";
-			this->id->Name = L"id";
-			this->id->Visible = false;
-			// 
-			// Name_driver
-			// 
-			this->Name_driver->HeaderText = L"Имя";
-			this->Name_driver->Name = L"Name_driver";
-			this->Name_driver->Width = 57;
-			// 
-			// Surname_driver
-			// 
-			this->Surname_driver->HeaderText = L"Фамилия";
-			this->Surname_driver->Name = L"Surname_driver";
-			this->Surname_driver->Width = 87;
-			// 
-			// Patronymic_driver
-			// 
-			this->Patronymic_driver->HeaderText = L"Отчество";
-			this->Patronymic_driver->Name = L"Patronymic_driver";
-			this->Patronymic_driver->Width = 85;
-			// 
-			// driver_class
-			// 
-			this->driver_class->HeaderText = L"Классность";
-			this->driver_class->Name = L"driver_class";
-			this->driver_class->Width = 96;
-			// 
-			// Partner
-			// 
-			this->Partner->HeaderText = L"Партнер";
-			this->Partner->Name = L"Partner";
-			this->Partner->Width = 82;
-			// 
-			// truck_num
-			// 
-			this->truck_num->HeaderText = L"Номер авто";
-			this->truck_num->Name = L"truck_num";
-			this->truck_num->Width = 92;
-			// 
-			// AutoBase
-			// 
-			this->AutoBase->HeaderText = L"Автобаза";
-			this->AutoBase->Name = L"AutoBase";
-			this->AutoBase->Width = 84;
-			// 
-			// Stage
-			// 
-			this->Stage->HeaderText = L"Стаж";
-			this->Stage->Name = L"Stage";
-			this->Stage->Width = 60;
 			// 
 			// MyFormDriver
 			// 

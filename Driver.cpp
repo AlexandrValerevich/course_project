@@ -40,6 +40,157 @@ System::Void CargoTransportation::MyFormDriver::buttonFinans_Click(System::Objec
 
 System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ sender, System::EventArgs^ e)
 {
+	if (!(textBoxName->Text->Length && textBoxSurname->Text->Length &&
+		textBoxPatronymic->Text->Length && textBoxDriverClass->Text->Length &&
+		textBoxAuto->Text->Length && textBoxStage->Text->Length &&
+		textBoxAutoBase->Text->Length)) {
+		MessageBox::Show("Введены не все данные!", "Внимание!");
+		return;
+	}
+	/*Строки с id табилц*/
+	String^ person_id;
+	String^ partner_id;
+	String^ truck_id;
+
+	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
+	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
+
+	//выполнить запрос к БД
+	dbConnection->Open(); //открываем соединение
+
+	/*Запрос на проверку есть ли у нас такой водитель?*/
+	String^ query = "SELECT person_id FROM person WHERE person_name LIKE '"+textBoxName->Text+"' AND "+
+		"person_surname LIKE '"+textBoxSurname->Text+"' AND person_middle_name LIKE '"+textBoxPatronymic->Text+"';"; //Текст завпрос
+	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+
+	auto dbReaderPerson= dbCommand->ExecuteReader();
+	
+	/*Проверяем есть ли такой водиетель*/
+	if (!dbReaderPerson->HasRows) {
+		/*Если нет, делаем запрос на вставку*/
+		dbCommand->CommandText = "INSERT INTO person (person_name, person_surname, person_middle_name)" +
+			"VALUES ('" + textBoxName->Text + "', '" + textBoxSurname->Text + "', '" + textBoxPatronymic->Text + "');";
+		
+		/*Если строка не добавилась выводим сообщение об ошибке*/
+		if (dbCommand->ExecuteNonQuery() != 1) {
+			MessageBox::Show("Ошибка в момент вставки!", "Внимание!");
+		}
+
+		/*Выбираем id добавленного в person*/
+		dbCommand->CommandText = "SELECT MAX(person_id) FROM person;";
+		
+		/*Закрываем соединение и создаем новое*/
+		dbReaderPerson->Close();
+		dbReaderPerson = dbCommand->ExecuteReader();
+
+		/*Считываем id*/
+		dbReaderPerson->Read();
+		person_id = dbReaderPerson[0]->ToString();
+	}
+	else {
+		/*Если такая строка есть то записываем её id*/
+		dbReaderPerson->Read();
+		person_id = dbReaderPerson[0]->ToString();
+	}
+	/*Закрываем соединение*/
+	dbReaderPerson->Close();
+
+	/*Партнер*/
+	if (textBoxPartner->Text->Length) {
+		/*Если мы хотим добавить партнера, необходимо проверить его наличие*/
+		dbCommand->CommandText = "SELECT TOP 1 person_id FROM person WHERE person_surname LIKE '"+textBoxPartner->Text+"';";
+		auto dbReaderPartner = dbCommand->ExecuteReader();
+		
+		/*Проверяем имеется ли такой человек*/
+		if (dbReaderPartner->HasRows) {
+			/*Если да, то считываем его id*/
+			dbReaderPartner->Read();
+			String^ person_partner_id = dbReaderPartner[0]->ToString();
+			
+			/*Составляем запрос на наличие его в таблице partner*/
+			dbCommand->CommandText = "SELECT TOP 1 partner_id FROM partner WHERE person_id = " + person_partner_id + ";";
+			
+			/*Закрываем соединение*/
+			dbReaderPartner->Close();
+
+			dbReaderPartner = dbCommand->ExecuteReader();
+
+			if (dbReaderPartner->HasRows) {
+				/*Если он есть то считываем его в стоку*/
+				dbReaderPartner->Read();
+				partner_id = dbReaderPartner[0]->ToString();
+			}
+			else {
+				/*Если нет, то заносим его в таблицу partner и считываем его id*/
+				dbCommand->CommandText = "INSER INTO partner(person_id) VALUES (" + person_partner_id + ");";
+				
+				/*Проверка на успешное выполение запроса*/
+				if (dbCommand->ExecuteNonQuery() != 1) {
+					MessageBox::Show("Ошибка в момет записи элемента!","Внимание!");
+				}
+
+				/*Выбираем id добавленного элемента*/
+				dbCommand->CommandText = "SELECT MAX(partner_id) FROM partner";
+
+				/*Закрываем соединение*/
+				dbReaderPartner->Close();
+
+				dbReaderPartner = dbCommand->ExecuteReader();
+				dbReaderPartner->Read();
+				partner_id = dbReaderPartner[0]->ToString();
+			}
+
+		}
+		else {
+			partner_id = "";
+		}
+
+		/*Закрываем соединение*/
+		dbReaderPartner->Close();
+	}
+	else{
+		partner_id = "";
+	}
+
+	/*Выбираем id автомобиля по номерному знаку*/
+	dbCommand->CommandText = "SELECT TOP 1 truck_id FROM truck WHERE license_plate LIKE '"+textBoxAuto->Text+"' ;";
+	
+	auto dbReaderAuto = dbCommand->ExecuteReader();
+
+	if (dbReaderAuto->HasRows) {
+		dbReaderAuto->Read();
+		truck_id = dbReaderAuto[0]->ToString();
+	}
+	else {
+		MessageBox::Show("Автомобиля с таким номером нет!", "Внимание!");
+		return;
+	}
+	/*Закрываем Reader*/
+	dbReaderAuto->Close();
+
+	/*Вставляем нового водителя*/
+	dbCommand->CommandText = "INSERT INTO driver(person_id, partner_id, truck_id, job_stage, driver_class, autobase)" +
+		"VALUES (" + person_id + "," + partner_id + ", " + truck_id + "," + textBoxStage->Text + ", " + textBoxDriverClass->Text + ", '"+textBoxAutoBase->Text+"');";
+	
+	if (dbCommand->ExecuteNonQuery() != 1) {
+		MessageBox::Show("Ошибка при вставке элемента!", "Внимание!");
+	}
+	else {
+		MessageBox::Show("Водитель добавлен!");
+	}
+	
+	/*Добавляем созданный элемент в таблицу*/
+	dbCommand->CommandText = "SELECT  driver_id, person_name, person_surname, person_middle_name, driver_class, partner_surname, license_plate, autobase, job_stage " +
+		"FROM((SELECT driver_id, person_name, person_surname, person_middle_name, driver_class, partner_id, truck_id, autobase, job_stage FROM  driver INNER JOIN person ON(person.person_id = driver.person_id)) AS qdp " +
+		"INNER JOIN(SELECT person_surname AS partner_surname, partner_id FROM partner INNER JOIN person ON person.person_id = partner.person_id) AS qpp ON(qpp.partner_id = qdp.partner_id))" +
+		"INNER JOIN truck ON truck.truck_id = qdp.truck_id WHERE driver_id IN((SELECT MAX(driver_id) FROM driver));";
+
+	auto dbReader = dbCommand->ExecuteReader();
+	while (dbReader->Read()) {
+		dataGridViewDriver->Rows->Add(dbReader[0], dbReader[1], dbReader[2], dbReader[3], dbReader[4], dbReader[5], dbReader[6], dbReader[7], dbReader[8]);
+	}
+	//Закрываем соединение*/
+	dbConnection->Close();
 	return System::Void();
 }
 
@@ -68,9 +219,10 @@ System::Void CargoTransportation::MyFormDriver::MyFormDriver_Load(System::Object
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query = "SELECT driver_id, person_name, person_surname, person_middle_name, driver_class, partner_surname, truck_id, autobase, job_stage "+
-		"FROM(SELECT driver_id, person_name, person_surname, person_middle_name, driver_class, partner_id, truck_id, autobase, job_stage FROM  driver INNER JOIN person ON(person.person_id = driver.person_id)) AS qdp "+
-		"INNER JOIN(SELECT person_surname AS partner_surname, partner_id FROM partner INNER JOIN person ON person.person_id = partner.person_id) AS qpp ON(qpp.partner_id = qdp.partner_id);"; //Текст завпрос
+	String^ query = "SELECT driver_id, person_name, person_surname, person_middle_name, driver_class, partner_surname, license_plate, autobase, job_stage "+
+		"FROM((SELECT driver_id, person_name, person_surname, person_middle_name, driver_class, partner_id, truck_id, autobase, job_stage FROM  driver INNER JOIN person ON(person.person_id = driver.person_id)) AS qdp "+
+		"INNER JOIN(SELECT person_surname AS partner_surname, partner_id FROM partner INNER JOIN person ON person.person_id = partner.person_id) AS qpp ON(qpp.partner_id = qdp.partner_id))"+
+		"INNER JOIN truck ON truck.truck_id = qdp.truck_id;"; //Текст завпрос
 	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
 	OleDbDataReader^ dbReader = dbCommand->ExecuteReader(); //считываем данные
 
