@@ -68,6 +68,9 @@ System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ 
 	/*Проверяем есть ли такой водиетель*/
 	if (!dbReaderPerson->HasRows) {
 		/*Если нет, делаем запрос на вставку*/
+		/*Закрываем соединение и создаем новое*/
+		dbReaderPerson->Close();
+
 		dbCommand->CommandText = "INSERT INTO person (person_name, person_surname, person_middle_name)" +
 			"VALUES ('" + textBoxName->Text + "', '" + textBoxSurname->Text + "', '" + textBoxPatronymic->Text + "');";
 		
@@ -78,9 +81,6 @@ System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ 
 
 		/*Выбираем id добавленного в person*/
 		dbCommand->CommandText = "SELECT MAX(person_id) FROM person;";
-		
-		/*Закрываем соединение и создаем новое*/
-		dbReaderPerson->Close();
 		dbReaderPerson = dbCommand->ExecuteReader();
 
 		/*Считываем id*/
@@ -196,11 +196,197 @@ System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ 
 
 System::Void CargoTransportation::MyFormDriver::buttonChange_Click(System::Object^ sender, System::EventArgs^ e)
 {
+	if (!(textBoxId->Text->Length)) {
+		MessageBox::Show("Выберете строку!", "Внимание!");
+		return;
+	}
+
+	if (dataGridViewDriver->SelectedRows->Count > 1) {
+		MessageBox::Show("Выберите одну строку!", "Внимание!");
+		return;
+	}
+
+	if (!(textBoxName->Text->Length && textBoxSurname->Text->Length &&
+		textBoxPatronymic->Text->Length && textBoxDriverClass->Text->Length &&
+		textBoxAuto->Text->Length && textBoxStage->Text->Length &&
+		textBoxAutoBase->Text->Length)) {
+		MessageBox::Show("Введены не все данные!", "Внимание!");
+		return;
+	}
+
+	String^ driver_id = textBoxId->Text;
+	String^ person_id;
+	String^ truck_id;
+	String^ partner_id;
+	
+
+	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
+	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
+
+	//выполнить запрос к БД
+	dbConnection->Open(); //открываем соединение
+
+	/*Считываем id_person, id_truck, id_partner*/
+	String^ query = "SELECT * FROM driver WHERE driver_id = "+driver_id+";";//Текст завпрос
+	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+
+	auto dbReaderDriver = dbCommand->ExecuteReader();
+
+	dbReaderDriver->Read();
+	person_id  = dbReaderDriver["person_id"]->ToString();
+	truck_id   = dbReaderDriver["truck_id"]->ToString();
+	partner_id = dbReaderDriver["partner_id"]->ToString();
+	
+	/*Закрываем соединение*/
+	dbReaderDriver->Close();
+
+	dbCommand->CommandText = "UPDATE person SET person_name = '"+textBoxName->Text+"', person_surname = '"+textBoxSurname->Text+"',"+
+		"person_middle_name = '"+textBoxPatronymic->Text+"' WHERE person_id = "+person_id+";";
+
+	if (dbCommand->ExecuteNonQuery() != 1) {
+		MessageBox::Show("Ошибка при обнавлении элемента таблицы!", "Внимание!");
+	}
+
+	/*Партнер*/
+	if (textBoxPartner->Text->Length) {
+		/*Если мы хотим добавить партнера, необходимо проверить его наличие*/
+		dbCommand->CommandText = "SELECT TOP 1 person_id FROM person WHERE person_surname LIKE '" + textBoxPartner->Text + "';";
+		auto dbReaderPartner = dbCommand->ExecuteReader();
+
+		/*Проверяем имеется ли такой человек*/
+		if (dbReaderPartner->HasRows) {
+			/*Если да, то считываем его id*/
+			dbReaderPartner->Read();
+			String^ person_partner_id = dbReaderPartner[0]->ToString();
+
+			/*Составляем запрос на наличие его в таблице partner*/
+			dbCommand->CommandText = "SELECT TOP 1 partner_id FROM partner WHERE person_id = " + person_partner_id + ";";
+
+			/*Закрываем соединение*/
+			dbReaderPartner->Close();
+
+			dbReaderPartner = dbCommand->ExecuteReader();
+
+			if (dbReaderPartner->HasRows) {
+				/*Если он есть то считываем его в стоку*/
+				dbReaderPartner->Read();
+				partner_id = dbReaderPartner[0]->ToString();
+			}
+			else {
+				/*Если нет, то заносим его в таблицу partner и считываем его id*/
+				dbCommand->CommandText = "INSER INTO partner(person_id) VALUES (" + person_partner_id + ");";
+
+				/*Проверка на успешное выполение запроса*/
+				if (dbCommand->ExecuteNonQuery() != 1) {
+					MessageBox::Show("Ошибка в момет записи элемента!", "Внимание!");
+				}
+
+				/*Выбираем id добавленного элемента*/
+				dbCommand->CommandText = "SELECT MAX(partner_id) FROM partner";
+
+				/*Закрываем соединение*/
+				dbReaderPartner->Close();
+
+				dbReaderPartner = dbCommand->ExecuteReader();
+				dbReaderPartner->Read();
+				partner_id = dbReaderPartner[0]->ToString();
+			}
+
+		}
+		else {
+			MessageBox::Show("Партнера с такой Фамилией нет!", "Внимание!");
+			partner_id = "";
+		}
+
+		/*Закрываем соединение*/
+		dbReaderPartner->Close();
+	}
+	else {
+		partner_id = "";
+	}
+
+
+	/*Выбираем id автомобиля по номерному знаку*/
+	dbCommand->CommandText = "SELECT TOP 1 truck_id FROM truck WHERE license_plate LIKE '" + textBoxAuto->Text + "' ;";
+
+	auto dbReaderAuto = dbCommand->ExecuteReader();
+
+	if (dbReaderAuto->HasRows) {
+		dbReaderAuto->Read();
+		truck_id = dbReaderAuto[0]->ToString();
+	}
+	else {
+		MessageBox::Show("Автомобиля с таким номером нет!", "Внимание!");
+		return;
+	}
+	/*Закрываем Reader*/
+	dbReaderAuto->Close();
+
+	dbCommand->CommandText = "UPDATE driver SET person_id = " + person_id + ", truck_id = " + truck_id + ", partner_id = " + (partner_id == "" ? "0" : partner_id) + "," +
+		"job_stage = " + textBoxStage->Text + ", driver_class = " + textBoxDriverClass->Text + "," +
+		" autobase = '" + textBoxAutoBase->Text + "' WHERE driver_id = " + driver_id + ";";
+
+	if (dbCommand->ExecuteNonQuery() == 1) {
+		MessageBox::Show("Запрос успешно выполнен!");
+	}
+	else {
+		MessageBox::Show("Ошибка во время обновления запроса!","Внимание!");
+	}
+
+	int index = dataGridViewDriver->SelectedRows[0]->Index;
+	auto row = dataGridViewDriver->Rows[index];
+
+	row->SetValues(textBoxId->Text,
+		textBoxName->Text,
+		textBoxSurname->Text,
+		textBoxPatronymic->Text,
+		Convert::ToInt32(textBoxDriverClass->Text->Replace('.', ',')),
+		(partner_id == "" ? "" : textBoxPartner->Text),
+		textBoxAuto->Text,
+		textBoxAutoBase->Text,
+		Convert::ToInt32(textBoxStage->Text->Replace('.', ',')));
+
+	//Закрываем соединение
+	dbConnection->Close();
+	return System::Void();
 	return System::Void();
 }
 
 System::Void CargoTransportation::MyFormDriver::buttonDelete_Click(System::Object^ sender, System::EventArgs^ e)
 {
+	if (!(textBoxId->Text->Length)) {
+		MessageBox::Show("Невыбрана ни одна строка!", "Внимание!");
+		return;
+	}
+
+	if (dataGridViewDriver->SelectedRows->Count > 1) {
+		MessageBox::Show("Выберите одну строку!", "Внимание!");
+		return;
+	}
+
+	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
+	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
+
+	//выполнить запрос к БД
+	dbConnection->Open(); //открываем соединение
+
+	String^ query = "DELETE FROM driver WHERE driver_id = " + textBoxId->Text + " ;"; //Текст завпрос
+	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+
+	if (dbCommand->ExecuteNonQuery() == 1) {
+		MessageBox::Show("Запись удалена!");
+	}
+	else {
+		MessageBox::Show("Ошибка при удалени элемента из таблицу!", "Внимание!");
+	}
+
+	ClearTextBoxFormAuto();
+
+	int index = dataGridViewDriver->SelectedRows[0]->Index;
+	dataGridViewDriver->Rows->RemoveAt(index);
+
+	//Закрываем соединение
+	dbConnection->Close();
 	return System::Void();
 }
 

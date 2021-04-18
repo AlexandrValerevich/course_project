@@ -71,7 +71,12 @@ System::Void CargoTransportation::MyFormAuto::buttonAdd_Click(System::Object^ se
 	auto dbReader = dbCommand->ExecuteReader();
 
 	while (dbReader->Read()) {
-		dataGridViewAuto->Rows->Add(dbReader[0], dbReader[1], dbReader[2], dbReader[3], dbReader[4], dbReader[5]);
+		dataGridViewAuto->Rows->Add(dbReader[0],
+			dbReader[1],
+			dbReader[2],
+			Convert::ToDouble(dbReader[3]),
+			Convert::ToDouble(dbReader[4]),
+			Convert::ToDouble(dbReader[5]));
 	}
 
 	//Закрываем соединение
@@ -207,7 +212,12 @@ System::Void CargoTransportation::MyFormAuto::MyFormAuto_Load(System::Object^ se
 	else {
 		//Заполняем данные в таблицу
 		while (dbReader->Read()) {
-			dataGridViewAuto->Rows->Add(dbReader[0], dbReader[1], dbReader[2], dbReader[3], dbReader[4], dbReader[5]);
+			dataGridViewAuto->Rows->Add(dbReader[0], 
+				dbReader[1],
+				dbReader[2],
+				Convert::ToDouble(dbReader[3]),
+				Convert::ToDouble(dbReader[4]),
+				Convert::ToDouble(dbReader[5]));
 		}
 	}
 

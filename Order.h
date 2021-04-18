@@ -65,6 +65,21 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Button^ buttonChange;
 	private: System::Windows::Forms::Button^ buttonDelete;
 	private: System::Windows::Forms::Label^ label9;
+
+
+
+
+
+
+
+
+	private: System::Windows::Forms::TextBox^ textBoxDistance;
+
+	private: System::Windows::Forms::Label^ distance;
+	private: System::Windows::Forms::TextBox^ textBoxId;
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::ListBox^ listBoxSort;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id_order;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ owner;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ cargo;
@@ -73,13 +88,6 @@ namespace CargoTransportation
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ price;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ weight;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ lenght;
-	private: System::Windows::Forms::TextBox^ textBoxDistance;
-
-	private: System::Windows::Forms::Label^ distance;
-	private: System::Windows::Forms::TextBox^ textBoxId;
-	private: System::Windows::Forms::Label^ label8;
-	private: System::Windows::Forms::Label^ label10;
-	private: System::Windows::Forms::ListBox^ listBoxSort;
 
 
 
@@ -130,14 +138,6 @@ namespace CargoTransportation
 			this->buttonAuto = (gcnew System::Windows::Forms::Button());
 			this->buttonOrder = (gcnew System::Windows::Forms::Button());
 			this->dataGridViewOrder = (gcnew System::Windows::Forms::DataGridView());
-			this->id_order = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->owner = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->cargo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->departure = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Arrival = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->weight = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->lenght = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBoxCustomer = (gcnew System::Windows::Forms::TextBox());
@@ -160,6 +160,14 @@ namespace CargoTransportation
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->listBoxSort = (gcnew System::Windows::Forms::ListBox());
+			this->id_order = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->owner = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->cargo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->departure = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Arrival = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->weight = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->lenght = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewOrder))->BeginInit();
 			this->SuspendLayout();
@@ -342,49 +350,6 @@ namespace CargoTransportation
 			this->dataGridViewOrder->Size = System::Drawing::Size(471, 350);
 			this->dataGridViewOrder->TabIndex = 3;
 			this->dataGridViewOrder->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormOrder::FillingTextBoxFormOrder);
-			// 
-			// id_order
-			// 
-			this->id_order->HeaderText = L"id";
-			this->id_order->Name = L"id_order";
-			this->id_order->Visible = false;
-			// 
-			// owner
-			// 
-			this->owner->HeaderText = L"Заказчик";
-			this->owner->Name = L"owner";
-			// 
-			// cargo
-			// 
-			this->cargo->HeaderText = L"Груз";
-			this->cargo->Name = L"cargo";
-			// 
-			// departure
-			// 
-			this->departure->HeaderText = L"Пункт_отправления";
-			this->departure->Name = L"departure";
-			// 
-			// Arrival
-			// 
-			this->Arrival->HeaderText = L"Пункт_назначения";
-			this->Arrival->Name = L"Arrival";
-			// 
-			// price
-			// 
-			this->price->HeaderText = L"Стоимость";
-			this->price->Name = L"price";
-			// 
-			// weight
-			// 
-			this->weight->HeaderText = L"Вес";
-			this->weight->Name = L"weight";
-			this->weight->Resizable = System::Windows::Forms::DataGridViewTriState::True;
-			this->weight->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
-			// 
-			// lenght
-			// 
-			this->lenght->HeaderText = L"Расстояние";
-			this->lenght->Name = L"lenght";
 			// 
 			// label1
 			// 
@@ -657,6 +622,48 @@ namespace CargoTransportation
 			this->listBoxSort->Size = System::Drawing::Size(112, 34);
 			this->listBoxSort->TabIndex = 28;
 			this->listBoxSort->SelectedIndexChanged += gcnew System::EventHandler(this, &MyFormOrder::listBoxSort_SelectedIndexChanged);
+			// 
+			// id_order
+			// 
+			this->id_order->HeaderText = L"id";
+			this->id_order->Name = L"id_order";
+			this->id_order->Visible = false;
+			// 
+			// owner
+			// 
+			this->owner->HeaderText = L"Заказчик";
+			this->owner->Name = L"owner";
+			// 
+			// cargo
+			// 
+			this->cargo->HeaderText = L"Груз";
+			this->cargo->Name = L"cargo";
+			// 
+			// departure
+			// 
+			this->departure->HeaderText = L"Пункт_отправления";
+			this->departure->Name = L"departure";
+			// 
+			// Arrival
+			// 
+			this->Arrival->HeaderText = L"Пункт_назначения";
+			this->Arrival->Name = L"Arrival";
+			// 
+			// price
+			// 
+			this->price->HeaderText = L"Стоимость";
+			this->price->Name = L"price";
+			// 
+			// weight
+			// 
+			this->weight->HeaderText = L"Вес";
+			this->weight->Name = L"weight";
+			this->weight->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+			// 
+			// lenght
+			// 
+			this->lenght->HeaderText = L"Расстояние";
+			this->lenght->Name = L"lenght";
 			// 
 			// MyFormOrder
 			// 
