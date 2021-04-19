@@ -302,6 +302,7 @@ namespace CargoTransportation
 			});
 			this->dataGridViewAuto->Location = System::Drawing::Point(417, 41);
 			this->dataGridViewAuto->Name = L"dataGridViewAuto";
+			this->dataGridViewAuto->ReadOnly = true;
 			this->dataGridViewAuto->Size = System::Drawing::Size(471, 350);
 			this->dataGridViewAuto->TabIndex = 3;
 			this->dataGridViewAuto->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormAuto::FillingTextBoxFormAuto);
@@ -310,32 +311,38 @@ namespace CargoTransportation
 			// 
 			this->id->HeaderText = L"id";
 			this->id->Name = L"id";
+			this->id->ReadOnly = true;
 			this->id->Visible = false;
 			// 
 			// truck_name
 			// 
 			this->truck_name->HeaderText = L"Марка";
 			this->truck_name->Name = L"truck_name";
+			this->truck_name->ReadOnly = true;
 			// 
 			// license_num
 			// 
 			this->license_num->HeaderText = L"Номер";
 			this->license_num->Name = L"license_num";
+			this->license_num->ReadOnly = true;
 			// 
 			// load_copacity
 			// 
 			this->load_copacity->HeaderText = L"Грузоподъемность";
 			this->load_copacity->Name = L"load_copacity";
+			this->load_copacity->ReadOnly = true;
 			// 
 			// fuel_consumption
 			// 
 			this->fuel_consumption->HeaderText = L"Расход (руб/км)";
 			this->fuel_consumption->Name = L"fuel_consumption";
+			this->fuel_consumption->ReadOnly = true;
 			// 
 			// trailer_length
 			// 
 			this->trailer_length->HeaderText = L"Длина";
 			this->trailer_length->Name = L"trailer_length";
+			this->trailer_length->ReadOnly = true;
 			// 
 			// label1
 			// 

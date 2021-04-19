@@ -63,6 +63,27 @@ namespace CargoTransportation
 	private: System::Windows::Forms::TextBox^ textBoxId;
 	private: System::Windows::Forms::Label^ label8;
 
+
+
+
+
+
+
+	private: System::Windows::Forms::CheckBox^ checkBoxPartner;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Depature;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Arrival;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Distance;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Driver;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Auto;
+	private: System::Windows::Forms::DataGridViewCheckBoxColumn^ HavePartner;
+
+
+
+
+
+
+
 	protected:
 
 	private:
@@ -87,6 +108,13 @@ namespace CargoTransportation
 			this->buttonAuto = (gcnew System::Windows::Forms::Button());
 			this->buttonDriver = (gcnew System::Windows::Forms::Button());
 			this->dataGridViewRoute = (gcnew System::Windows::Forms::DataGridView());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Depature = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Arrival = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Distance = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Auto = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->HavePartner = (gcnew System::Windows::Forms::DataGridViewCheckBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBoxCity_1 = (gcnew System::Windows::Forms::TextBox());
@@ -103,6 +131,7 @@ namespace CargoTransportation
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->textBoxId = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->checkBoxPartner = (gcnew System::Windows::Forms::CheckBox());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewRoute))->BeginInit();
 			this->SuspendLayout();
@@ -269,14 +298,63 @@ namespace CargoTransportation
 			// 
 			// dataGridViewRoute
 			// 
+			this->dataGridViewRoute->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dataGridViewRoute->BackgroundColor = System::Drawing::Color::White;
 			this->dataGridViewRoute->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->dataGridViewRoute->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridViewRoute->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
+				this->id,
+					this->Depature, this->Arrival, this->Distance, this->Driver, this->Auto, this->HavePartner
+			});
 			this->dataGridViewRoute->Location = System::Drawing::Point(417, 41);
 			this->dataGridViewRoute->Name = L"dataGridViewRoute";
+			this->dataGridViewRoute->ReadOnly = true;
 			this->dataGridViewRoute->Size = System::Drawing::Size(471, 350);
 			this->dataGridViewRoute->TabIndex = 3;
 			this->dataGridViewRoute->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormRoute::FillingTextBoxFormRoute);
+			// 
+			// id
+			// 
+			this->id->HeaderText = L"id";
+			this->id->Name = L"id";
+			this->id->ReadOnly = true;
+			this->id->Visible = false;
+			// 
+			// Depature
+			// 
+			this->Depature->HeaderText = L"г. Отправления";
+			this->Depature->Name = L"Depature";
+			this->Depature->ReadOnly = true;
+			// 
+			// Arrival
+			// 
+			this->Arrival->HeaderText = L"г. Прибытия";
+			this->Arrival->Name = L"Arrival";
+			this->Arrival->ReadOnly = true;
+			// 
+			// Distance
+			// 
+			this->Distance->HeaderText = L"Расстояние";
+			this->Distance->Name = L"Distance";
+			this->Distance->ReadOnly = true;
+			// 
+			// Driver
+			// 
+			this->Driver->HeaderText = L"Водитель";
+			this->Driver->Name = L"Driver";
+			this->Driver->ReadOnly = true;
+			// 
+			// Auto
+			// 
+			this->Auto->HeaderText = L"Авто";
+			this->Auto->Name = L"Auto";
+			this->Auto->ReadOnly = true;
+			// 
+			// HavePartner
+			// 
+			this->HavePartner->HeaderText = L"Партнер";
+			this->HavePartner->Name = L"HavePartner";
+			this->HavePartner->ReadOnly = true;
 			// 
 			// label1
 			// 
@@ -313,6 +391,7 @@ namespace CargoTransportation
 			this->textBoxCity_1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->textBoxCity_1->Location = System::Drawing::Point(278, 104);
 			this->textBoxCity_1->Name = L"textBoxCity_1";
+			this->textBoxCity_1->ReadOnly = true;
 			this->textBoxCity_1->Size = System::Drawing::Size(112, 21);
 			this->textBoxCity_1->TabIndex = 6;
 			// 
@@ -323,6 +402,7 @@ namespace CargoTransportation
 			this->textBoxCity_2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->textBoxCity_2->Location = System::Drawing::Point(278, 131);
 			this->textBoxCity_2->Name = L"textBoxCity_2";
+			this->textBoxCity_2->ReadOnly = true;
 			this->textBoxCity_2->Size = System::Drawing::Size(112, 21);
 			this->textBoxCity_2->TabIndex = 8;
 			// 
@@ -346,6 +426,7 @@ namespace CargoTransportation
 			this->textBoxDistance->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->textBoxDistance->Location = System::Drawing::Point(278, 213);
 			this->textBoxDistance->Name = L"textBoxDistance";
+			this->textBoxDistance->ReadOnly = true;
 			this->textBoxDistance->Size = System::Drawing::Size(112, 21);
 			this->textBoxDistance->TabIndex = 10;
 			// 
@@ -376,6 +457,7 @@ namespace CargoTransportation
 			this->buttonAdd->TabIndex = 19;
 			this->buttonAdd->Text = L"Добавить";
 			this->buttonAdd->UseVisualStyleBackColor = false;
+			this->buttonAdd->Visible = false;
 			this->buttonAdd->Click += gcnew System::EventHandler(this, &MyFormRoute::buttonAdd_Click);
 			// 
 			// buttonChange
@@ -408,6 +490,7 @@ namespace CargoTransportation
 			this->buttonDelete->TabIndex = 21;
 			this->buttonDelete->Text = L"Удалить";
 			this->buttonDelete->UseVisualStyleBackColor = false;
+			this->buttonDelete->Visible = false;
 			this->buttonDelete->Click += gcnew System::EventHandler(this, &MyFormRoute::buttonDelete_Click);
 			// 
 			// textBoxAuto
@@ -415,8 +498,9 @@ namespace CargoTransportation
 			this->textBoxAuto->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxAuto->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxAuto->Location = System::Drawing::Point(278, 296);
+			this->textBoxAuto->Location = System::Drawing::Point(278, 302);
 			this->textBoxAuto->Name = L"textBoxAuto";
+			this->textBoxAuto->ReadOnly = true;
 			this->textBoxAuto->Size = System::Drawing::Size(112, 21);
 			this->textBoxAuto->TabIndex = 25;
 			// 
@@ -427,7 +511,7 @@ namespace CargoTransportation
 			this->label5->AutoSize = true;
 			this->label5->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label5->Location = System::Drawing::Point(187, 299);
+			this->label5->Location = System::Drawing::Point(187, 305);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(43, 18);
 			this->label5->TabIndex = 24;
@@ -438,7 +522,7 @@ namespace CargoTransportation
 			this->textBoxDriver->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxDriver->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxDriver->Location = System::Drawing::Point(278, 269);
+			this->textBoxDriver->Location = System::Drawing::Point(278, 275);
 			this->textBoxDriver->Name = L"textBoxDriver";
 			this->textBoxDriver->Size = System::Drawing::Size(112, 21);
 			this->textBoxDriver->TabIndex = 23;
@@ -450,7 +534,7 @@ namespace CargoTransportation
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label6->Location = System::Drawing::Point(187, 272);
+			this->label6->Location = System::Drawing::Point(187, 278);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(75, 18);
 			this->label6->TabIndex = 22;
@@ -480,12 +564,29 @@ namespace CargoTransportation
 			this->label8->TabIndex = 28;
 			this->label8->Text = L"id:";
 			// 
+			// checkBoxPartner
+			// 
+			this->checkBoxPartner->AutoSize = true;
+			this->checkBoxPartner->CheckAlign = System::Drawing::ContentAlignment::MiddleRight;
+			this->checkBoxPartner->FlatAppearance->BorderSize = 0;
+			this->checkBoxPartner->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			this->checkBoxPartner->Font = (gcnew System::Drawing::Font(L"Montserrat", 8.999999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->checkBoxPartner->Location = System::Drawing::Point(190, 329);
+			this->checkBoxPartner->MinimumSize = System::Drawing::Size(150, 0);
+			this->checkBoxPartner->Name = L"checkBoxPartner";
+			this->checkBoxPartner->Size = System::Drawing::Size(150, 21);
+			this->checkBoxPartner->TabIndex = 30;
+			this->checkBoxPartner->Text = L"Партнер";
+			this->checkBoxPartner->UseVisualStyleBackColor = true;
+			// 
 			// MyFormRoute
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 15);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScrollMargin = System::Drawing::Size(10, 10);
 			this->ClientSize = System::Drawing::Size(900, 600);
+			this->Controls->Add(this->checkBoxPartner);
 			this->Controls->Add(this->textBoxId);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->textBoxAuto);

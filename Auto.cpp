@@ -207,7 +207,7 @@ System::Void CargoTransportation::MyFormAuto::MyFormAuto_Load(System::Object^ se
 
 	//Проверяем данные
 	if (!dbReader->HasRows) {
-		MessageBox::Show("Ошибка");
+		MessageBox::Show("Ошибка!");
 	}
 	else {
 		//Заполняем данные в таблицу
@@ -216,7 +216,7 @@ System::Void CargoTransportation::MyFormAuto::MyFormAuto_Load(System::Object^ se
 				dbReader[1],
 				dbReader[2],
 				Convert::ToDouble(dbReader[3]),
-				Convert::ToDouble(dbReader[4]),
+				Math::Round(Convert::ToDouble(dbReader[4]),3),
 				Convert::ToDouble(dbReader[5]));
 		}
 	}

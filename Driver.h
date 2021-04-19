@@ -362,6 +362,7 @@ namespace CargoTransportation
 			});
 			this->dataGridViewDriver->Location = System::Drawing::Point(417, 41);
 			this->dataGridViewDriver->Name = L"dataGridViewDriver";
+			this->dataGridViewDriver->ReadOnly = true;
 			this->dataGridViewDriver->Size = System::Drawing::Size(471, 350);
 			this->dataGridViewDriver->TabIndex = 3;
 			this->dataGridViewDriver->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormDriver::FillingTextBoxFormDriver);
@@ -370,53 +371,62 @@ namespace CargoTransportation
 			// 
 			this->id->HeaderText = L"id";
 			this->id->Name = L"id";
+			this->id->ReadOnly = true;
 			this->id->Visible = false;
 			// 
 			// Name_driver
 			// 
 			this->Name_driver->HeaderText = L"Имя";
 			this->Name_driver->Name = L"Name_driver";
+			this->Name_driver->ReadOnly = true;
 			this->Name_driver->Width = 57;
 			// 
 			// Surname_driver
 			// 
 			this->Surname_driver->HeaderText = L"Фамилия";
 			this->Surname_driver->Name = L"Surname_driver";
+			this->Surname_driver->ReadOnly = true;
 			this->Surname_driver->Width = 87;
 			// 
 			// Patronymic_driver
 			// 
 			this->Patronymic_driver->HeaderText = L"Отчество";
 			this->Patronymic_driver->Name = L"Patronymic_driver";
+			this->Patronymic_driver->ReadOnly = true;
 			this->Patronymic_driver->Width = 85;
 			// 
 			// driver_class
 			// 
 			this->driver_class->HeaderText = L"Классность";
 			this->driver_class->Name = L"driver_class";
+			this->driver_class->ReadOnly = true;
 			this->driver_class->Width = 96;
 			// 
 			// Partner
 			// 
 			this->Partner->HeaderText = L"Партнер";
 			this->Partner->Name = L"Partner";
+			this->Partner->ReadOnly = true;
 			this->Partner->Width = 82;
 			// 
 			// truck_num
 			// 
 			this->truck_num->HeaderText = L"Номер авто";
 			this->truck_num->Name = L"truck_num";
+			this->truck_num->ReadOnly = true;
 			// 
 			// AutoBase
 			// 
 			this->AutoBase->HeaderText = L"Автобаза";
 			this->AutoBase->Name = L"AutoBase";
+			this->AutoBase->ReadOnly = true;
 			this->AutoBase->Width = 84;
 			// 
 			// Stage
 			// 
 			this->Stage->HeaderText = L"Стаж";
 			this->Stage->Name = L"Stage";
+			this->Stage->ReadOnly = true;
 			this->Stage->Width = 60;
 			// 
 			// label1
