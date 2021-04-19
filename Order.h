@@ -344,7 +344,7 @@ namespace CargoTransportation
 			// dataGridViewOrder
 			// 
 			this->dataGridViewOrder->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->dataGridViewOrder->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
+			this->dataGridViewOrder->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::DisplayedCells;
 			this->dataGridViewOrder->BackgroundColor = System::Drawing::Color::White;
 			this->dataGridViewOrder->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->dataGridViewOrder->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::Single;
@@ -372,30 +372,35 @@ namespace CargoTransportation
 			this->owner->HeaderText = L"Заказчик";
 			this->owner->Name = L"owner";
 			this->owner->ReadOnly = true;
+			this->owner->Width = 84;
 			// 
 			// cargo
 			// 
 			this->cargo->HeaderText = L"Груз";
 			this->cargo->Name = L"cargo";
 			this->cargo->ReadOnly = true;
+			this->cargo->Width = 57;
 			// 
 			// departure
 			// 
 			this->departure->HeaderText = L"г. Отправления";
 			this->departure->Name = L"departure";
 			this->departure->ReadOnly = true;
+			this->departure->Width = 110;
 			// 
 			// Arrival
 			// 
 			this->Arrival->HeaderText = L"г. Назначения";
 			this->Arrival->Name = L"Arrival";
 			this->Arrival->ReadOnly = true;
+			this->Arrival->Width = 103;
 			// 
 			// price
 			// 
 			this->price->HeaderText = L"Стоимость";
 			this->price->Name = L"price";
 			this->price->ReadOnly = true;
+			this->price->Width = 93;
 			// 
 			// weight
 			// 
@@ -403,12 +408,14 @@ namespace CargoTransportation
 			this->weight->Name = L"weight";
 			this->weight->ReadOnly = true;
 			this->weight->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+			this->weight->Width = 53;
 			// 
 			// lenght
 			// 
 			this->lenght->HeaderText = L"Расстояние";
 			this->lenght->Name = L"lenght";
 			this->lenght->ReadOnly = true;
+			this->lenght->Width = 99;
 			// 
 			// label1
 			// 

@@ -200,7 +200,32 @@ System::Void CargoTransportation::MyFormAuto::MyFormAuto_Load(System::Object^ se
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query = "SELECT * FROM truck;"; //Текст завпрос
+	String^ query = "SELECT "+
+		"truck.truck_id, "+
+		"truck.truck_name, "+
+		"truck.license_plate, "+
+		"truck.load_capacity, "+
+		"truck.fuel_consumption, "+
+ 		"truck.trailer_length, "+
+		"COUNT(order_id) "+
+		"FROM "+
+		"( "+
+			"SELECT "+
+			"driver.driver_id, "+
+			"order_id, "+
+			"truck_id "+
+			"FROM "+
+			"driver "+
+			"INNER JOIN order_db ON driver.driver_id = order_db.driver_id "+
+		") AS q "+
+		"INNER JOIN truck ON truck.truck_id = q.truck_id "+
+		"GROUP BY "+
+		"truck.truck_id, "+
+		"truck.truck_name, "+
+		"truck.license_plate, "+
+		"truck.load_capacity, "+
+ 		"truck.fuel_consumption, "+
+		"truck.trailer_length;"; //Текст завпрос
 	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
 	OleDbDataReader^ dbReader = dbCommand->ExecuteReader(); //считываем данные
 
@@ -217,7 +242,8 @@ System::Void CargoTransportation::MyFormAuto::MyFormAuto_Load(System::Object^ se
 				dbReader[2],
 				Convert::ToDouble(dbReader[3]),
 				Math::Round(Convert::ToDouble(dbReader[4]),3),
-				Convert::ToDouble(dbReader[5]));
+				Convert::ToDouble(dbReader[5]),
+				dbReader[6]);
 		}
 	}
 

@@ -46,14 +46,16 @@ System::Void CargoTransportation::MyFormOrder::buttonAdd_Click(System::Object^ s
 		return;
 	}
 
+	bool HavePartner = Convert::ToInt32(textBoxDistance->Text) > 500 ? true : false;
+
 	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
 	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
 
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query = "INSERT INTO order_db (order_owner, order_departure, order_arrival, lenght, price, order_cargo, weight )"+
-" VALUES ('"+ textBoxCustomer->Text +"', '"+textBoxFrom->Text+"', '" + textBoxTo->Text + "', " + textBoxDistance->Text + ", " + textBoxCost->Text + ", '" + textBoxNameCargo->Text + "', " + textBoxWeight->Text + ") ;"; //Текст завпрос
+	String^ query = "INSERT INTO order_db (order_owner, order_departure, order_arrival, lenght, price, order_cargo, weight, HavePartner)"+
+" VALUES ('"+ textBoxCustomer->Text +"', '"+textBoxFrom->Text+"', '" + textBoxTo->Text + "', " + textBoxDistance->Text + ", " + textBoxCost->Text + ", '" + textBoxNameCargo->Text + "', " + textBoxWeight->Text + ", "+HavePartner+") ;"; //Текст завпрос
 	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
 
 	if (dbCommand->ExecuteNonQuery() == 1) {
@@ -99,6 +101,8 @@ System::Void CargoTransportation::MyFormOrder::buttonChange_Click(System::Object
 		return;
 	}
 
+	bool HavePartner = Convert::ToInt32(textBoxDistance->Text) > 500 ? true : false;
+
 	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
 	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
 
@@ -107,7 +111,7 @@ System::Void CargoTransportation::MyFormOrder::buttonChange_Click(System::Object
 
 	String^ query = "UPDATE order_db SET  order_owner = '" + textBoxCustomer->Text + "',order_cargo ='"+textBoxNameCargo->Text+"',"+
 		" order_departure = '"+textBoxFrom->Text+"' ,order_arrival = '"+textBoxTo->Text+"', price = "+textBoxCost->Text+","+
-		" weight = "+textBoxWeight->Text+", lenght = "+ textBoxDistance->Text + " "
+		" weight = "+textBoxWeight->Text+", lenght = "+ textBoxDistance->Text + ", HavePartner = "+HavePartner+""+
 		"WHERE order_id = " + textBoxId->Text + ";";//Текст завпрос
 	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
 
@@ -219,7 +223,15 @@ System::Void CargoTransportation::MyFormOrder::MyFormOrder_Load(System::Object^ 
 	else {
 		//Заполняем данные в таблицу
 		while (dbReader->Read()) {
-			dataGridViewOrder->Rows->Add(dbReader[0], dbReader[1], dbReader[2], dbReader[3], dbReader[4], dbReader[5], dbReader[6], dbReader[7]);
+			dataGridViewOrder->Rows->Add(
+				dbReader[0],
+				dbReader[1],
+				dbReader[2],
+				dbReader[3],
+				dbReader[4],
+				dbReader[5],
+				dbReader[6],
+				dbReader[7]);
 		}
 	}
 

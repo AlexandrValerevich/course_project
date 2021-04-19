@@ -47,6 +47,23 @@ System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ 
 		MessageBox::Show("Введены не все данные!", "Внимание!");
 		return;
 	}
+
+	for (int i = 0; i < dataGridViewDriver->RowCount-1; i++) {
+		auto row = dataGridViewDriver->Rows[i];
+		auto cells = row->Cells;
+		
+		if (textBoxName->Text == cells[1]->Value->ToString() &&
+			textBoxSurname->Text == cells[2]->Value->ToString() &&
+			textBoxPatronymic->Text == cells[3]->Value->ToString() &&
+			textBoxAuto->Text == cells[6]->Value->ToString() &&
+			textBoxAutoBase->Text == cells[7]->Value->ToString() 
+			) 
+		{
+			MessageBox::Show("Такой водитель уже есть!", "Внимание!");
+			return;
+		}
+	}
+
 	/*Строки с id табилц*/
 	String^ person_id;
 	String^ partner_id;
@@ -105,44 +122,27 @@ System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ 
 		if (dbReaderPartner->HasRows) {
 			/*Если да, то считываем его id*/
 			dbReaderPartner->Read();
-			String^ person_partner_id = dbReaderPartner[0]->ToString();
-			
-			/*Составляем запрос на наличие его в таблице partner*/
-			dbCommand->CommandText = "SELECT TOP 1 partner_id FROM partner WHERE person_id = " + person_partner_id + ";";
-			
-			/*Закрываем соединение*/
+			partner_id = dbReaderPartner[0]->ToString();
+
+			/*Закрываем соединение и выбираем id_driver по id_person
+			для этого составляем запрос
 			dbReaderPartner->Close();
 
+			dbCommand->CommandText = "SELECT driver_id FROM driver WHERE person_id = " + partner_id + ";";
 			dbReaderPartner = dbCommand->ExecuteReader();
 
 			if (dbReaderPartner->HasRows) {
-				/*Если он есть то считываем его в стоку*/
 				dbReaderPartner->Read();
 				partner_id = dbReaderPartner[0]->ToString();
 			}
 			else {
-				/*Если нет, то заносим его в таблицу partner и считываем его id*/
-				dbCommand->CommandText = "INSER INTO partner(person_id) VALUES (" + person_partner_id + ");";
-				
-				/*Проверка на успешное выполение запроса*/
-				if (dbCommand->ExecuteNonQuery() != 1) {
-					MessageBox::Show("Ошибка в момет записи элемента!","Внимание!");
-				}
-
-				/*Выбираем id добавленного элемента*/
-				dbCommand->CommandText = "SELECT MAX(partner_id) FROM partner";
-
-				/*Закрываем соединение*/
-				dbReaderPartner->Close();
-
-				dbReaderPartner = dbCommand->ExecuteReader();
-				dbReaderPartner->Read();
-				partner_id = dbReaderPartner[0]->ToString();
-			}
+				partner_id = "";
+			}*/
 
 		}
 		else {
 			partner_id = "";
+			MessageBox::Show("Водителя партнера с такой Фамилией нет!", "Внимание!");
 		}
 
 		/*Закрываем соединение*/
@@ -153,7 +153,7 @@ System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ 
 	}
 
 	/*Выбираем id автомобиля по номерному знаку*/
-	dbCommand->CommandText = "SELECT TOP 1 truck_id FROM truck WHERE license_plate LIKE '"+textBoxAuto->Text+"' ;";
+	dbCommand->CommandText = "SELECT TOP 1 truck_id FROM truck WHERE license_plate LIKE '"+textBoxAuto->Text+"';";
 	
 	auto dbReaderAuto = dbCommand->ExecuteReader();
 
@@ -179,7 +179,10 @@ System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ 
 		MessageBox::Show("Водитель добавлен!");
 	}
 	
-	/*Добавляем созданный элемент в таблицу*/
+	dataGridViewDriver->Rows->Clear();
+	MyFormDriver_Load(nullptr, nullptr);
+
+	/*Добавляем созданный элемент в таблицу
 	dbCommand->CommandText = "SELECT  driver_id, person_name, person_surname, person_middle_name, driver_class, partner_surname, license_plate, autobase, job_stage " +
 		"FROM((SELECT driver_id, person_name, person_surname, person_middle_name, driver_class, partner_id, truck_id, autobase, job_stage FROM  driver INNER JOIN person ON(person.person_id = driver.person_id)) AS qdp " +
 		"INNER JOIN(SELECT person_surname AS partner_surname, partner_id FROM partner INNER JOIN person ON person.person_id = partner.person_id) AS qpp ON(qpp.partner_id = qdp.partner_id))" +
@@ -188,7 +191,7 @@ System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ 
 	auto dbReader = dbCommand->ExecuteReader();
 	while (dbReader->Read()) {
 		dataGridViewDriver->Rows->Add(dbReader[0], dbReader[1], dbReader[2], dbReader[3], dbReader[4], dbReader[5], dbReader[6], dbReader[7], dbReader[8]);
-	}
+	}*/
 	//Закрываем соединение*/
 	dbConnection->Close();
 	return System::Void();
@@ -257,41 +260,7 @@ System::Void CargoTransportation::MyFormDriver::buttonChange_Click(System::Objec
 		if (dbReaderPartner->HasRows) {
 			/*Если да, то считываем его id*/
 			dbReaderPartner->Read();
-			String^ person_partner_id = dbReaderPartner[0]->ToString();
-
-			/*Составляем запрос на наличие его в таблице partner*/
-			dbCommand->CommandText = "SELECT TOP 1 partner_id FROM partner WHERE person_id = " + person_partner_id + ";";
-
-			/*Закрываем соединение*/
-			dbReaderPartner->Close();
-
-			dbReaderPartner = dbCommand->ExecuteReader();
-
-			if (dbReaderPartner->HasRows) {
-				/*Если он есть то считываем его в стоку*/
-				dbReaderPartner->Read();
-				partner_id = dbReaderPartner[0]->ToString();
-			}
-			else {
-				/*Если нет, то заносим его в таблицу partner и считываем его id*/
-				dbCommand->CommandText = "INSER INTO partner(person_id) VALUES (" + person_partner_id + ");";
-
-				/*Проверка на успешное выполение запроса*/
-				if (dbCommand->ExecuteNonQuery() != 1) {
-					MessageBox::Show("Ошибка в момет записи элемента!", "Внимание!");
-				}
-
-				/*Выбираем id добавленного элемента*/
-				dbCommand->CommandText = "SELECT MAX(partner_id) FROM partner";
-
-				/*Закрываем соединение*/
-				dbReaderPartner->Close();
-
-				dbReaderPartner = dbCommand->ExecuteReader();
-				dbReaderPartner->Read();
-				partner_id = dbReaderPartner[0]->ToString();
-			}
-
+			partner_id = dbReaderPartner[0]->ToString();
 		}
 		else {
 			MessageBox::Show("Партнера с такой Фамилией нет!", "Внимание!");
@@ -333,6 +302,10 @@ System::Void CargoTransportation::MyFormDriver::buttonChange_Click(System::Objec
 		MessageBox::Show("Ошибка во время обновления запроса!","Внимание!");
 	}
 
+	dataGridViewDriver->Rows->Clear();
+	MyFormDriver_Load(nullptr, nullptr);
+
+	/*
 	int index = dataGridViewDriver->SelectedRows[0]->Index;
 	auto row = dataGridViewDriver->Rows[index];
 
@@ -345,7 +318,7 @@ System::Void CargoTransportation::MyFormDriver::buttonChange_Click(System::Objec
 		textBoxAuto->Text,
 		textBoxAutoBase->Text,
 		Convert::ToInt32(textBoxStage->Text->Replace('.', ',')));
-
+		*/
 	//Закрываем соединение
 	dbConnection->Close();
 	return System::Void();
@@ -405,10 +378,47 @@ System::Void CargoTransportation::MyFormDriver::MyFormDriver_Load(System::Object
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query = "SELECT driver_id, person_name, person_surname, person_middle_name, driver_class, partner_surname, license_plate, autobase, job_stage "+
-		"FROM((SELECT driver_id, person_name, person_surname, person_middle_name, driver_class, partner_id, truck_id, autobase, job_stage FROM  driver INNER JOIN person ON(person.person_id = driver.person_id)) AS qdp "+
-		"INNER JOIN(SELECT person_surname AS partner_surname, partner_id FROM partner INNER JOIN person ON person.person_id = partner.person_id) AS qpp ON(qpp.partner_id = qdp.partner_id))"+
-		"INNER JOIN truck ON truck.truck_id = qdp.truck_id;"; //Текст завпрос
+	String^ query = 
+		"SELECT "+
+		"driver.driver_id, "+
+		"person_name, "+
+		"person_surname, "+
+		"person_middle_name, "+
+		"driver_class, "+
+		"partner_surname, "+
+		"license_plate, "+
+		"autobase, "+
+		"job_stage, "+
+		"COUNT(order_id) "+
+		"FROM "+
+		"( "+
+			"( "+
+				"( "+
+					"( "+
+						"SELECT "+ 
+						"driver_id, "+
+						"person_surname AS partner_surname "+
+						"FROM "+
+						"driver "+
+						"INNER JOIN person ON person.person_id = driver.partner_id "+
+						") AS qpartner "+
+					"RIGHT JOIN driver ON driver.driver_id = qpartner.driver_id "+
+					") "+
+				"INNER JOIN person ON person.person_id = driver.person_id "+
+				") "+
+			"LEFT JOIN order_db ON order_db.driver_id = driver.driver_id "+
+		") "+
+		"INNER JOIN truck ON truck.truck_id = driver.truck_id "+
+ 		"GROUP BY "+
+		"driver.driver_id, "+
+		"person_name, "+
+		"person_surname, "+
+		"person_middle_name, "+
+		"driver_class, "+
+		"partner_surname, "+
+		"license_plate, "+
+		"autobase, "+
+		"job_stage "; //Текст завпрос
 	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
 	OleDbDataReader^ dbReader = dbCommand->ExecuteReader(); //считываем данные
 
@@ -420,7 +430,17 @@ System::Void CargoTransportation::MyFormDriver::MyFormDriver_Load(System::Object
 	else {
 		//Заполняем данные в таблицу
 		while (dbReader->Read()) {
-			dataGridViewDriver->Rows->Add(dbReader[0], dbReader[1], dbReader[2], dbReader[3], dbReader[4], dbReader[5], dbReader[6], dbReader[7], dbReader[8]);
+			dataGridViewDriver->Rows->Add(
+				dbReader[0],
+				dbReader[1],
+				dbReader[2],
+				dbReader[3],
+				dbReader[4],
+				dbReader[5],
+				dbReader[6],
+				dbReader[7],
+				dbReader[8],
+				dbReader[9]);
 		}
 	}
 

@@ -298,7 +298,7 @@ namespace CargoTransportation
 			// 
 			// dataGridViewRoute
 			// 
-			this->dataGridViewRoute->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
+			this->dataGridViewRoute->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::DisplayedCells;
 			this->dataGridViewRoute->BackgroundColor = System::Drawing::Color::White;
 			this->dataGridViewRoute->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->dataGridViewRoute->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
@@ -325,36 +325,42 @@ namespace CargoTransportation
 			this->Depature->HeaderText = L"г. Отправления";
 			this->Depature->Name = L"Depature";
 			this->Depature->ReadOnly = true;
+			this->Depature->Width = 110;
 			// 
 			// Arrival
 			// 
 			this->Arrival->HeaderText = L"г. Прибытия";
 			this->Arrival->Name = L"Arrival";
 			this->Arrival->ReadOnly = true;
+			this->Arrival->Width = 95;
 			// 
 			// Distance
 			// 
 			this->Distance->HeaderText = L"Расстояние";
 			this->Distance->Name = L"Distance";
 			this->Distance->ReadOnly = true;
+			this->Distance->Width = 99;
 			// 
 			// Driver
 			// 
 			this->Driver->HeaderText = L"Водитель";
 			this->Driver->Name = L"Driver";
 			this->Driver->ReadOnly = true;
+			this->Driver->Width = 87;
 			// 
 			// Auto
 			// 
 			this->Auto->HeaderText = L"Авто";
 			this->Auto->Name = L"Auto";
 			this->Auto->ReadOnly = true;
+			this->Auto->Width = 59;
 			// 
 			// HavePartner
 			// 
 			this->HavePartner->HeaderText = L"Партнер";
 			this->HavePartner->Name = L"HavePartner";
 			this->HavePartner->ReadOnly = true;
+			this->HavePartner->Width = 63;
 			// 
 			// label1
 			// 

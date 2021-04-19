@@ -126,6 +126,7 @@
     <ClCompile Include="CargoTransportation.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Finans.cpp" />
+    <ClCompile Include="loadPage.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="Route.cpp" />
   </ItemGroup>
@@ -137,6 +138,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Finans.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="loadPage.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Route.h">

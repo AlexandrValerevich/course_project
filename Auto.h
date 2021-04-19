@@ -77,6 +77,13 @@ namespace CargoTransportation
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ load_copacity;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ fuel_consumption;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ trailer_length;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ completed_order;
+
+
+
+
+
+
 
 
 	protected:
@@ -103,12 +110,6 @@ namespace CargoTransportation
 			this->buttonRoute = (gcnew System::Windows::Forms::Button());
 			this->buttonDriver = (gcnew System::Windows::Forms::Button());
 			this->dataGridViewAuto = (gcnew System::Windows::Forms::DataGridView());
-			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->truck_name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->license_num = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->load_copacity = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->fuel_consumption = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->trailer_length = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBoxMark = (gcnew System::Windows::Forms::TextBox());
@@ -125,6 +126,13 @@ namespace CargoTransportation
 			this->buttonDelete = (gcnew System::Windows::Forms::Button());
 			this->textBoxId = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->truck_name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->license_num = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->load_copacity = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->fuel_consumption = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->trailer_length = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->completed_order = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewAuto))->BeginInit();
 			this->SuspendLayout();
@@ -296,9 +304,9 @@ namespace CargoTransportation
 			this->dataGridViewAuto->BackgroundColor = System::Drawing::Color::White;
 			this->dataGridViewAuto->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->dataGridViewAuto->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridViewAuto->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
+			this->dataGridViewAuto->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
 				this->id,
-					this->truck_name, this->license_num, this->load_copacity, this->fuel_consumption, this->trailer_length
+					this->truck_name, this->license_num, this->load_copacity, this->fuel_consumption, this->trailer_length, this->completed_order
 			});
 			this->dataGridViewAuto->Location = System::Drawing::Point(417, 41);
 			this->dataGridViewAuto->Name = L"dataGridViewAuto";
@@ -306,43 +314,6 @@ namespace CargoTransportation
 			this->dataGridViewAuto->Size = System::Drawing::Size(471, 350);
 			this->dataGridViewAuto->TabIndex = 3;
 			this->dataGridViewAuto->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormAuto::FillingTextBoxFormAuto);
-			// 
-			// id
-			// 
-			this->id->HeaderText = L"id";
-			this->id->Name = L"id";
-			this->id->ReadOnly = true;
-			this->id->Visible = false;
-			// 
-			// truck_name
-			// 
-			this->truck_name->HeaderText = L"Марка";
-			this->truck_name->Name = L"truck_name";
-			this->truck_name->ReadOnly = true;
-			// 
-			// license_num
-			// 
-			this->license_num->HeaderText = L"Номер";
-			this->license_num->Name = L"license_num";
-			this->license_num->ReadOnly = true;
-			// 
-			// load_copacity
-			// 
-			this->load_copacity->HeaderText = L"Грузоподъемность";
-			this->load_copacity->Name = L"load_copacity";
-			this->load_copacity->ReadOnly = true;
-			// 
-			// fuel_consumption
-			// 
-			this->fuel_consumption->HeaderText = L"Расход (руб/км)";
-			this->fuel_consumption->Name = L"fuel_consumption";
-			this->fuel_consumption->ReadOnly = true;
-			// 
-			// trailer_length
-			// 
-			this->trailer_length->HeaderText = L"Длина";
-			this->trailer_length->Name = L"trailer_length";
-			this->trailer_length->ReadOnly = true;
 			// 
 			// label1
 			// 
@@ -545,6 +516,49 @@ namespace CargoTransportation
 			this->label8->Size = System::Drawing::Size(24, 18);
 			this->label8->TabIndex = 26;
 			this->label8->Text = L"id:";
+			// 
+			// id
+			// 
+			this->id->HeaderText = L"id";
+			this->id->Name = L"id";
+			this->id->ReadOnly = true;
+			this->id->Visible = false;
+			// 
+			// truck_name
+			// 
+			this->truck_name->HeaderText = L"Марка";
+			this->truck_name->Name = L"truck_name";
+			this->truck_name->ReadOnly = true;
+			// 
+			// license_num
+			// 
+			this->license_num->HeaderText = L"Номер";
+			this->license_num->Name = L"license_num";
+			this->license_num->ReadOnly = true;
+			// 
+			// load_copacity
+			// 
+			this->load_copacity->HeaderText = L"Грузоподъемность";
+			this->load_copacity->Name = L"load_copacity";
+			this->load_copacity->ReadOnly = true;
+			// 
+			// fuel_consumption
+			// 
+			this->fuel_consumption->HeaderText = L"Расход (руб/км)";
+			this->fuel_consumption->Name = L"fuel_consumption";
+			this->fuel_consumption->ReadOnly = true;
+			// 
+			// trailer_length
+			// 
+			this->trailer_length->HeaderText = L"Длина";
+			this->trailer_length->Name = L"trailer_length";
+			this->trailer_length->ReadOnly = true;
+			// 
+			// completed_order
+			// 
+			this->completed_order->HeaderText = L"Заказов";
+			this->completed_order->Name = L"completed_order";
+			this->completed_order->ReadOnly = true;
 			// 
 			// MyFormAuto
 			// 

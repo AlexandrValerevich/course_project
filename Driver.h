@@ -104,6 +104,16 @@ namespace CargoTransportation
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ truck_num;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ AutoBase;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Stage;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ completed_order;
+
+
+
+
+
+
+
+
+
 
 
 
@@ -153,15 +163,6 @@ namespace CargoTransportation
 			this->buttonRoute = (gcnew System::Windows::Forms::Button());
 			this->buttonAuto = (gcnew System::Windows::Forms::Button());
 			this->dataGridViewDriver = (gcnew System::Windows::Forms::DataGridView());
-			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Name_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Surname_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Patronymic_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->driver_class = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Partner = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->truck_num = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->AutoBase = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Stage = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBoxName = (gcnew System::Windows::Forms::TextBox());
@@ -184,6 +185,16 @@ namespace CargoTransportation
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->textBoxId = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Name_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Surname_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Patronymic_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->driver_class = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Partner = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->truck_num = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->AutoBase = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Stage = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->completed_order = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewDriver))->BeginInit();
 			this->SuspendLayout();
@@ -351,14 +362,14 @@ namespace CargoTransportation
 			// dataGridViewDriver
 			// 
 			this->dataGridViewDriver->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->dataGridViewDriver->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::ColumnHeader;
+			this->dataGridViewDriver->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::DisplayedCells;
 			this->dataGridViewDriver->BackgroundColor = System::Drawing::Color::White;
 			this->dataGridViewDriver->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
 			this->dataGridViewDriver->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridViewDriver->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
+			this->dataGridViewDriver->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(10) {
 				this->id,
 					this->Name_driver, this->Surname_driver, this->Patronymic_driver, this->driver_class, this->Partner, this->truck_num, this->AutoBase,
-					this->Stage
+					this->Stage, this->completed_order
 			});
 			this->dataGridViewDriver->Location = System::Drawing::Point(417, 41);
 			this->dataGridViewDriver->Name = L"dataGridViewDriver";
@@ -366,68 +377,6 @@ namespace CargoTransportation
 			this->dataGridViewDriver->Size = System::Drawing::Size(471, 350);
 			this->dataGridViewDriver->TabIndex = 3;
 			this->dataGridViewDriver->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormDriver::FillingTextBoxFormDriver);
-			// 
-			// id
-			// 
-			this->id->HeaderText = L"id";
-			this->id->Name = L"id";
-			this->id->ReadOnly = true;
-			this->id->Visible = false;
-			// 
-			// Name_driver
-			// 
-			this->Name_driver->HeaderText = L"Имя";
-			this->Name_driver->Name = L"Name_driver";
-			this->Name_driver->ReadOnly = true;
-			this->Name_driver->Width = 57;
-			// 
-			// Surname_driver
-			// 
-			this->Surname_driver->HeaderText = L"Фамилия";
-			this->Surname_driver->Name = L"Surname_driver";
-			this->Surname_driver->ReadOnly = true;
-			this->Surname_driver->Width = 87;
-			// 
-			// Patronymic_driver
-			// 
-			this->Patronymic_driver->HeaderText = L"Отчество";
-			this->Patronymic_driver->Name = L"Patronymic_driver";
-			this->Patronymic_driver->ReadOnly = true;
-			this->Patronymic_driver->Width = 85;
-			// 
-			// driver_class
-			// 
-			this->driver_class->HeaderText = L"Классность";
-			this->driver_class->Name = L"driver_class";
-			this->driver_class->ReadOnly = true;
-			this->driver_class->Width = 96;
-			// 
-			// Partner
-			// 
-			this->Partner->HeaderText = L"Партнер";
-			this->Partner->Name = L"Partner";
-			this->Partner->ReadOnly = true;
-			this->Partner->Width = 82;
-			// 
-			// truck_num
-			// 
-			this->truck_num->HeaderText = L"Номер авто";
-			this->truck_num->Name = L"truck_num";
-			this->truck_num->ReadOnly = true;
-			// 
-			// AutoBase
-			// 
-			this->AutoBase->HeaderText = L"Автобаза";
-			this->AutoBase->Name = L"AutoBase";
-			this->AutoBase->ReadOnly = true;
-			this->AutoBase->Width = 84;
-			// 
-			// Stage
-			// 
-			this->Stage->HeaderText = L"Стаж";
-			this->Stage->Name = L"Stage";
-			this->Stage->ReadOnly = true;
-			this->Stage->Width = 60;
 			// 
 			// label1
 			// 
@@ -703,6 +652,76 @@ namespace CargoTransportation
 			this->label8->Size = System::Drawing::Size(24, 18);
 			this->label8->TabIndex = 38;
 			this->label8->Text = L"id:";
+			// 
+			// id
+			// 
+			this->id->HeaderText = L"id";
+			this->id->Name = L"id";
+			this->id->ReadOnly = true;
+			this->id->Visible = false;
+			this->id->Width = 42;
+			// 
+			// Name_driver
+			// 
+			this->Name_driver->HeaderText = L"Имя";
+			this->Name_driver->Name = L"Name_driver";
+			this->Name_driver->ReadOnly = true;
+			this->Name_driver->Width = 57;
+			// 
+			// Surname_driver
+			// 
+			this->Surname_driver->HeaderText = L"Фамилия";
+			this->Surname_driver->Name = L"Surname_driver";
+			this->Surname_driver->ReadOnly = true;
+			this->Surname_driver->Width = 87;
+			// 
+			// Patronymic_driver
+			// 
+			this->Patronymic_driver->HeaderText = L"Отчество";
+			this->Patronymic_driver->Name = L"Patronymic_driver";
+			this->Patronymic_driver->ReadOnly = true;
+			this->Patronymic_driver->Width = 85;
+			// 
+			// driver_class
+			// 
+			this->driver_class->HeaderText = L"Классность";
+			this->driver_class->Name = L"driver_class";
+			this->driver_class->ReadOnly = true;
+			this->driver_class->Width = 96;
+			// 
+			// Partner
+			// 
+			this->Partner->HeaderText = L"Партнер";
+			this->Partner->Name = L"Partner";
+			this->Partner->ReadOnly = true;
+			this->Partner->Width = 82;
+			// 
+			// truck_num
+			// 
+			this->truck_num->HeaderText = L"Номер авто";
+			this->truck_num->Name = L"truck_num";
+			this->truck_num->ReadOnly = true;
+			// 
+			// AutoBase
+			// 
+			this->AutoBase->HeaderText = L"Автобаза";
+			this->AutoBase->Name = L"AutoBase";
+			this->AutoBase->ReadOnly = true;
+			this->AutoBase->Width = 84;
+			// 
+			// Stage
+			// 
+			this->Stage->HeaderText = L"Стаж";
+			this->Stage->Name = L"Stage";
+			this->Stage->ReadOnly = true;
+			this->Stage->Width = 60;
+			// 
+			// completed_order
+			// 
+			this->completed_order->HeaderText = L"Заказов";
+			this->completed_order->Name = L"completed_order";
+			this->completed_order->ReadOnly = true;
+			this->completed_order->Width = 77;
 			// 
 			// MyFormDriver
 			// 
