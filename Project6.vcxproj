@@ -124,6 +124,7 @@
   <ItemGroup>
     <ClCompile Include="Auto.cpp" />
     <ClCompile Include="CargoTransportation.cpp" />
+    <ClCompile Include="dbQuery.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Finans.cpp" />
     <ClCompile Include="Order.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="Auto.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="dbQuery.h" />
     <ClInclude Include="Driver.h">
       <FileType>CppForm</FileType>
     </ClInclude>

@@ -751,6 +751,7 @@ private: System::Void FillingTextBoxFormOrder(System::Object^ sender, System::Wi
 private: System::Void ClearTextBoxFormOrder();
 private: System::Void listBoxSort_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e);
 
+
 };
 
 

@@ -3,6 +3,8 @@
 #include "Route.h"
 #include "Driver.h"
 #include "Finans.h"
+#include "dbQuery.h"
+/*-------------------------------------КНОПКИ ПЕРЕКЛЮЧЕНИЯ МЕЖДУ ФОРМАМИ И ВЫХОД-----------------------------------------------*/
 
 System::Void CargoTransportation::MyFormOrder::buttonAuto_Click(System::Object^ sender, System::EventArgs^ e)
 {	
@@ -36,11 +38,22 @@ System::Void CargoTransportation::MyFormOrder::buttonFinans_Click(System::Object
 	return System::Void();
 }
 
+System::Void CargoTransportation::MyFormOrder::buttonExit_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	Application::Exit();
+	return System::Void();
+}
+
+/*-------------------------------------КНОПКИ ADD, CHANCGE, DELETE-----------------------------------------------*/
+
 System::Void CargoTransportation::MyFormOrder::buttonAdd_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	if (!(textBoxCustomer->Text->Length && textBoxFrom->Text->Length &&
-		textBoxTo->Text->Length && textBoxDistance->Text->Length  &&
-		textBoxCost->Text->Length && textBoxNameCargo->Text->Length  &&
+	if (!(textBoxCustomer->Text->Length &&
+		textBoxFrom->Text->Length &&
+		textBoxTo->Text->Length &&
+		textBoxDistance->Text->Length  &&
+		textBoxCost->Text->Length &&
+		textBoxNameCargo->Text->Length  &&
 		textBoxWeight->Text->Length)) {
 		MessageBox::Show("Введены не все данные!", "Внимание!");
 		return;
@@ -54,28 +67,26 @@ System::Void CargoTransportation::MyFormOrder::buttonAdd_Click(System::Object^ s
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query = "INSERT INTO order_db (order_owner, order_departure, order_arrival, lenght, price, order_cargo, weight, HavePartner)"+
-" VALUES ('"+ textBoxCustomer->Text +"', '"+textBoxFrom->Text+"', '" + textBoxTo->Text + "', " + textBoxDistance->Text + ", " + textBoxCost->Text + ", '" + textBoxNameCargo->Text + "', " + textBoxWeight->Text + ", "+HavePartner+") ;"; //Текст завпрос
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
-
-	if (dbCommand->ExecuteNonQuery() == 1) {
+	String^ TABLE = "order_db";
+	String^ COLUMN = "order_owner, order_departure, order_arrival, distance, price, order_cargo, weight, HavePartner";
+	String^ VALUES = "'"
+		+ textBoxCustomer->Text + "', '"
+		+ textBoxFrom->Text + "', '"
+		+ textBoxTo->Text + "', "
+		+ textBoxDistance->Text + ", " 
+		+ textBoxCost->Text + ", '"
+		+ textBoxNameCargo->Text + "', "
+		+ textBoxWeight->Text + ", "
+		+ HavePartner;
+	
+	if (InsertRow(dbConnection, TABLE, COLUMN, VALUES)) 
 		MessageBox::Show("Запись добавлена!");
-	}
-	else {
+	else 
 		MessageBox::Show("Ошибка при добавлений элемента в таблицу!", "Внимание!");
-	}
 
-	query = "SELECT * FROM order_db WHERE order_id IN(SELECT MAX(order_id) FROM order_db);";
-	dbCommand->CommandText = query;
-
-	auto dbReader = dbCommand->ExecuteReader();
-
-	while (dbReader->Read()) {
-		dataGridViewOrder->Rows->Add(dbReader[0], dbReader[1], dbReader[2], dbReader[3], dbReader[4], dbReader[5], dbReader[6], dbReader[7]);
-	}
+	MyFormOrder_Load(nullptr, nullptr);
 
 	//Закрываем соединение
-	dbReader->Close();
 	dbConnection->Close();
 
 	return System::Void();
@@ -115,26 +126,25 @@ System::Void CargoTransportation::MyFormOrder::buttonChange_Click(System::Object
 		"WHERE order_id = " + textBoxId->Text + ";";//Текст завпрос
 	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
 
-	if (dbCommand->ExecuteNonQuery() == 1) {
+	String^ TABLE = "order_db";
+	String^ WHERE = "order_id = " + textBoxId->Text;
+	String^ SET = 
+		"order_owner = '"+ textBoxCustomer->Text +
+		"', order_cargo = '"+textBoxNameCargo->Text+
+		"', order_departure = '" + textBoxFrom->Text +
+		"', order_arrival = '" + textBoxTo->Text +
+		"', price = " + textBoxCost->Text +
+		", weight = " + textBoxWeight->Text +
+		", distance = " + textBoxDistance->Text +
+		", HavePartner = " + HavePartner;
+
+	if (UpdateRow(dbConnection, TABLE, SET, WHERE))
 		MessageBox::Show("Запись обнавлена!");
-	}
-	else {
+	else 
 		MessageBox::Show("Ошибка при Обнавлении элемента таблицы!", "Внимание!");
-	}
+	
 
-
-	int index = dataGridViewOrder->SelectedRows[0]->Index;
-	auto row = dataGridViewOrder->Rows[index];
-
-	row->SetValues(textBoxId->Text,
-		textBoxCustomer->Text,
-		textBoxNameCargo->Text,
-		textBoxFrom->Text, 
-		textBoxTo->Text,
-		Convert::ToInt32(textBoxCost->Text),
-		Convert::ToInt32(textBoxWeight->Text),
-		Convert::ToInt32(textBoxDistance->Text));
-
+	MyFormOrder_Load(nullptr, nullptr);
 	//Закрываем соединение
 	dbConnection->Close();
 
@@ -145,7 +155,7 @@ System::Void CargoTransportation::MyFormOrder::buttonChange_Click(System::Object
 System::Void CargoTransportation::MyFormOrder::buttonDelete_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	if (!(textBoxId->Text->Length)) {
-		MessageBox::Show("Невыбрана ни одна строка!", "Внимание!");
+		MessageBox::Show("Выберите строку!", "Внимание!");
 		return;
 	}
 
@@ -160,15 +170,13 @@ System::Void CargoTransportation::MyFormOrder::buttonDelete_Click(System::Object
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query = "DELETE FROM order_db WHERE order_id = "+textBoxId->Text+" ;"; //Текст завпрос
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+	String^ TABLE = "order_db";
+	String^ WHERE = "order_id = " + textBoxId->Text;
 
-	if (dbCommand->ExecuteNonQuery() == 1) {
+	if(DeleteRow(dbConnection, TABLE, WHERE)) 
 		MessageBox::Show("Запись удалена!");
-	}
-	else {
+	else 
 		MessageBox::Show("Ошибка при удалени элемента из таблицу!", "Внимание!");
-	}
 
 	ClearTextBoxFormOrder();
 	
@@ -181,11 +189,7 @@ System::Void CargoTransportation::MyFormOrder::buttonDelete_Click(System::Object
 	return System::Void();
 }
 
-System::Void CargoTransportation::MyFormOrder::buttonExit_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	Application::Exit();
-	return System::Void();
-}
+/*-------------------------------------СОБЫТИЯ HOWER, LEAVE-----------------------------------------------*/
 
 System::Void CargoTransportation::MyFormOrder::button_MouseHover(System::Object^ sender, System::EventArgs^ e)
 {
@@ -201,9 +205,11 @@ System::Void CargoTransportation::MyFormOrder::button_MouseLeave(System::Object^
 	return System::Void();
 }
 
+/*-------------------------------------СОБЫТИЕ ЗАГРУЗКИ ФОРМЫ И ОБРАБОТЧИКИ ТЕКСТБОКСОВ-----------------------------------------------*/
+
 System::Void CargoTransportation::MyFormOrder::MyFormOrder_Load(System::Object^ sender, System::EventArgs^ e)
 {
-
+	dataGridViewOrder->Rows->Clear();
 	//подключение к БД
 	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
 	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
@@ -211,10 +217,10 @@ System::Void CargoTransportation::MyFormOrder::MyFormOrder_Load(System::Object^ 
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query = "SELECT * FROM order_db;"; //Текст завпрос
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
-	OleDbDataReader^ dbReader = dbCommand->ExecuteReader(); //считываем данные
+	String^ SELECT = "order_id, order_owner, order_cargo, order_departure, order_arrival, price, weight, distance";
+	String^ TABLE = "order_db";
 
+	auto dbReader = SelectRow(dbConnection,SELECT,TABLE);
 
 	//Проверяем данные
 	if (!dbReader->HasRows) {

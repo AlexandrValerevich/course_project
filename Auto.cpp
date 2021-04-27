@@ -3,9 +3,11 @@
 #include "Route.h"
 #include "Driver.h"
 #include "Finans.h"
-#include <Windows.h>
+#include "dbQuery.h"
 
 using namespace CargoTransportation;
+
+/*------------------------------------- ÕŒœ » œ≈–≈ Àﬁ◊≈Õ»ﬂ Ã≈∆ƒ” ‘Œ–Ã¿Ã» » ¬€’Œƒ-----------------------------------------------*/
 
 System::Void CargoTransportation::MyFormAuto::buttonOrder_Click(System::Object^ sender, System::EventArgs^ e)
 {
@@ -38,6 +40,14 @@ System::Void CargoTransportation::MyFormAuto::buttonFinans_Click(System::Object^
 	this->Hide();
 	return System::Void();
 }
+
+System::Void CargoTransportation::MyFormAuto::buttonExit_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	Application::Exit();
+	return System::Void();
+}
+
+/*------------------------------------- ÕŒœ » ADD, CHANCGE, DELETE-----------------------------------------------*/
 
 System::Void CargoTransportation::MyFormAuto::buttonAdd_Click(System::Object^ sender, System::EventArgs^ e)
 {
@@ -177,6 +187,8 @@ System::Void CargoTransportation::MyFormAuto::buttonDelete_Click(System::Object^
 	return System::Void();
 }
 
+/*-------------------------------------—Œ¡€“»ﬂ HOWER, LEAVE-----------------------------------------------*/
+
 System::Void CargoTransportation::MyFormAuto::button_MouseHover(System::Object^ sender, System::EventArgs^ e)
 {
 	Button^ temp = static_cast<Button^> (sender);
@@ -190,6 +202,8 @@ System::Void CargoTransportation::MyFormAuto::button_MouseLeave(System::Object^ 
 	temp->BackColor = Color::FromArgb(0, 48, 48, 48);
 	return System::Void();
 }
+
+/*-------------------------------------—Œ¡€“»≈ «¿√–”« » ‘Œ–Ã€ » Œ¡–¿¡Œ“◊» » “≈ —“¡Œ —Œ¬-----------------------------------------------*/
 
 System::Void CargoTransportation::MyFormAuto::MyFormAuto_Load(System::Object^ sender, System::EventArgs^ e)
 {
@@ -250,12 +264,6 @@ System::Void CargoTransportation::MyFormAuto::MyFormAuto_Load(System::Object^ se
 	//«‡Í˚‚‡ÂÏ ÒÓÂ‰ËÌÂÌËÂ
 	dbReader->Close();
 	dbConnection->Close();
-	return System::Void();
-}
-
-System::Void CargoTransportation::MyFormAuto::buttonExit_Click(System::Object^ sender, System::EventArgs^ e)
-{
-	Application::Exit();
 	return System::Void();
 }
 
