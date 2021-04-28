@@ -7,6 +7,8 @@
 
 using namespace CargoTransportation;
 
+/*-------------------------------------КНОПКИ ПЕРЕКЛЮЧЕНИЯ МЕЖДУ ФОРМАМИ И ВЫХОД-----------------------------------------------*/
+
 System::Void CargoTransportation::MyFormDriver::buttonOrder_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	MyFormOrder^ form = gcnew MyFormOrder();
@@ -39,6 +41,14 @@ System::Void CargoTransportation::MyFormDriver::buttonFinans_Click(System::Objec
 	return System::Void();
 }
 
+System::Void CargoTransportation::MyFormDriver::buttonExit_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	Application::Exit();
+	return System::Void();
+}
+
+/*-------------------------------------КНОПКИ ADD, CHANCGE, DELETE-----------------------------------------------*/
+
 System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	if (!(textBoxName->Text->Length &&
@@ -46,7 +56,8 @@ System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ 
 		textBoxPatronymic->Text->Length &&
 		textBoxDriverClass->Text->Length &&
 		textBoxStage->Text->Length &&
-		textBoxAutoBase->Text->Length)) {
+		textBoxAutoBase->Text->Length &&
+		textBoxPassport->Text->Length)) {
 		MessageBox::Show("Введены не все данные!", "Внимание!");
 		return;
 	}
@@ -60,7 +71,8 @@ System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ 
 			textBoxSurname->Text == cells[2]->Value->ToString() &&
 			textBoxPatronymic->Text == cells[3]->Value->ToString() &&
 			domainUpDownAuto->Text == cells[5]->Value->ToString() &&
-			textBoxAutoBase->Text == cells[6]->Value->ToString() 
+			textBoxAutoBase->Text == cells[6]->Value->ToString() &&
+			textBoxPassport->Text == cells[7]->Value->ToString()
 			) 
 		{
 			MessageBox::Show("Такой водитель уже есть!", "Внимание!");
@@ -68,8 +80,14 @@ System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ 
 		}
 	}
 
-	/*Строки с id табилц*/
-	String^ truck_id;
+	/*Строки с id таблиц*/
+	String^ Name = "'" + textBoxName->Text + "'";
+	String^ Surname = "'" + textBoxSurname->Text + "'";
+	String^ Patronymic = "'" + textBoxPatronymic->Text + "'";
+	String^ Autobase = "'" + textBoxAutoBase->Text + "'";
+	String^ Passport = "'" + textBoxPassport->Text + "'";
+	String^ DriverClass = textBoxDriverClass->Text;
+	String^ DriverStage = textBoxStage->Text;
 
 	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
 	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
@@ -77,13 +95,24 @@ System::Void CargoTransportation::MyFormDriver::buttonAdd_Click(System::Object^ 
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	/*Запрос на проверку есть ли у нас такой водитель?*/
-	String^ query = "SELECT truck_id FROM truck WHERE license_plate LIKE '"+domainUpDownAuto->Text+"';"; //Текст завпрос
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+	String^ TABLE = "driver";
+	String^ COLUMN = "driver_name, driver_surname, driver_middle_name,driver_class, autobase, job_stage, driver_passport";
+	String^ VALUES =
+		Name +
+		", " + Surname +
+		", " + Patronymic +
+		", " + DriverClass +
+		", " + Autobase +
+		", " + DriverStage +
+		", " + Passport;
 
-	auto dbReaderPerson= dbCommand->ExecuteReader();
+	if (InsertRow(dbConnection, TABLE, COLUMN, VALUES))
+		MessageBox::Show("Запись успешно добавлена!");
+	else
+		MessageBox::Show("Ошибка в момент заполнения!");
 	
-	
+	MyFormDriver_Load(nullptr, nullptr);
+
 	//Закрываем соединение*/
 	dbConnection->Close();
 	return System::Void();
@@ -105,18 +134,20 @@ System::Void CargoTransportation::MyFormDriver::buttonChange_Click(System::Objec
 		textBoxSurname->Text->Length &&
 		textBoxPatronymic->Text->Length &&
 		textBoxDriverClass->Text->Length &&
-		domainUpDownAuto->Text == "Все" &&
 		textBoxStage->Text->Length &&
-		textBoxAutoBase->Text->Length)) {
+		textBoxAutoBase->Text->Length &&
+		textBoxPassport->Text->Length)) {
 		MessageBox::Show("Введены не все данные!", "Внимание!");
 		return;
 	}
-
-	String^ driver_id = textBoxId->Text;
-	String^ person_id;
-	String^ truck_id;
-	String^ partner_id;
-	
+	String^ id          = textBoxId->Text;
+	String^ Name        = "'" + textBoxName->Text + "'";
+	String^ Surname     = "'" + textBoxSurname->Text + "'";
+	String^ Patronymic  = "'" + textBoxPatronymic->Text + "'";
+	String^ Autobase    = "'" + textBoxAutoBase->Text + "'";
+	String^ Passport    = "'" + textBoxPassport->Text + "'";
+	String^ DriverClass = textBoxDriverClass->Text;
+	String^ DriverStage = textBoxStage->Text;
 
 	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
 	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
@@ -124,99 +155,26 @@ System::Void CargoTransportation::MyFormDriver::buttonChange_Click(System::Objec
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	/*Считываем id_person, id_truck, id_partner*/
-	String^ query = "SELECT * FROM driver WHERE driver_id = "+driver_id+";";//Текст завпрос
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+	String^ TABLE = "driver";
+	String^ WHERE = "driver_id = " + id;
+	String^ SET = 
+		"driver_name = " + Name +
+		", driver_surname = " + Surname +
+		", driver_middle_name = " + Patronymic +
+		", driver_class = " + DriverClass +
+		", autobase = " + Autobase +
+		", job_stage = " + DriverStage +
+		", driver_passport = " + Passport;
 
-	auto dbReaderDriver = dbCommand->ExecuteReader();
+	if(UpdateRow(dbConnection, TABLE, SET, WHERE))
+		MessageBox::Show("Запись успешно обнавлена!");
+	else
+		MessageBox::Show("Ошибка в момент обновления!");
 
-	dbReaderDriver->Read();
-	person_id  = dbReaderDriver["person_id"]->ToString();
-	truck_id   = dbReaderDriver["truck_id"]->ToString();
-	partner_id = dbReaderDriver["partner_id"]->ToString();
-	
-	/*Закрываем соединение*/
-	dbReaderDriver->Close();
-
-	dbCommand->CommandText = "UPDATE person SET person_name = '"+textBoxName->Text+"', person_surname = '"+textBoxSurname->Text+"',"+
-		"person_middle_name = '"+textBoxPatronymic->Text+"' WHERE person_id = "+person_id+";";
-
-	if (dbCommand->ExecuteNonQuery() != 1) {
-		MessageBox::Show("Ошибка при обнавлении элемента таблицы!", "Внимание!");
-	}
-
-	/*Партнер*/
-	if (textBoxPartner->Text->Length) {
-		/*Если мы хотим добавить партнера, необходимо проверить его наличие*/
-		dbCommand->CommandText = "SELECT TOP 1 person_id FROM person WHERE person_surname LIKE '" + textBoxPartner->Text + "';";
-		auto dbReaderPartner = dbCommand->ExecuteReader();
-
-		/*Проверяем имеется ли такой человек*/
-		if (dbReaderPartner->HasRows) {
-			/*Если да, то считываем его id*/
-			dbReaderPartner->Read();
-			partner_id = dbReaderPartner[0]->ToString();
-		}
-		else {
-			MessageBox::Show("Партнера с такой Фамилией нет!", "Внимание!");
-			partner_id = "";
-		}
-
-		/*Закрываем соединение*/
-		dbReaderPartner->Close();
-	}
-	else {
-		partner_id = "";
-	}
-
-
-	/*Выбираем id автомобиля по номерному знаку*/
-	dbCommand->CommandText = "SELECT TOP 1 truck_id FROM truck WHERE license_plate LIKE '" + domainUpDownAuto->Text + "' ;";
-
-	auto dbReaderAuto = dbCommand->ExecuteReader();
-
-	if (dbReaderAuto->HasRows) {
-		dbReaderAuto->Read();
-		truck_id = dbReaderAuto[0]->ToString();
-	}
-	else {
-		MessageBox::Show("Автомобиля с таким номером нет!", "Внимание!");
-		return;
-	}
-	/*Закрываем Reader*/
-	dbReaderAuto->Close();
-
-	dbCommand->CommandText = "UPDATE driver SET person_id = " + person_id + ", truck_id = " + truck_id + ", partner_id = " + (partner_id == "" ? "0" : partner_id) + "," +
-		"job_stage = " + textBoxStage->Text + ", driver_class = " + textBoxDriverClass->Text + "," +
-		" autobase = '" + textBoxAutoBase->Text + "' WHERE driver_id = " + driver_id + ";";
-
-	if (dbCommand->ExecuteNonQuery() == 1) {
-		MessageBox::Show("Запрос успешно выполнен!");
-	}
-	else {
-		MessageBox::Show("Ошибка во время обновления запроса!","Внимание!");
-	}
-
-	dataGridViewDriver->Rows->Clear();
 	MyFormDriver_Load(nullptr, nullptr);
 
-	/*
-	int index = dataGridViewDriver->SelectedRows[0]->Index;
-	auto row = dataGridViewDriver->Rows[index];
-
-	row->SetValues(textBoxId->Text,
-		textBoxName->Text,
-		textBoxSurname->Text,
-		textBoxPatronymic->Text,
-		Convert::ToInt32(textBoxDriverClass->Text->Replace('.', ',')),
-		(partner_id == "" ? "" : textBoxPartner->Text),
-		textBoxAuto->Text,
-		textBoxAutoBase->Text,
-		Convert::ToInt32(textBoxStage->Text->Replace('.', ',')));
-		*/
 	//Закрываем соединение
 	dbConnection->Close();
-	return System::Void();
 	return System::Void();
 }
 
@@ -232,40 +190,52 @@ System::Void CargoTransportation::MyFormDriver::buttonDelete_Click(System::Objec
 		return;
 	}
 
+	String^ id = textBoxId->Text;
+
 	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
 	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
 
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query = "DELETE FROM driver WHERE driver_id = " + textBoxId->Text + " ;"; //Текст завпрос
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+	String^ TABLE = "arhive_driver";
+	String^ COLUMN = "driver_id";
+	String^ VALUES = id;
 
-	if (dbCommand->ExecuteNonQuery() == 1) {
+	if(InsertRow(dbConnection, TABLE, COLUMN, VALUES))
 		MessageBox::Show("Запись удалена!");
-	}
-	else {
+	else 
 		MessageBox::Show("Ошибка при удалени элемента из таблицу!", "Внимание!");
-	}
 
 	ClearTextBoxFormAuto();
-
-	int index = dataGridViewDriver->SelectedRows[0]->Index;
-	dataGridViewDriver->Rows->RemoveAt(index);
+	MyFormDriver_Load(nullptr, nullptr);
 
 	//Закрываем соединение
 	dbConnection->Close();
 	return System::Void();
 }
 
-System::Void CargoTransportation::MyFormDriver::buttonExit_Click(System::Object^ sender, System::EventArgs^ e)
+/*-------------------------------------СОБЫТИЯ HOWER, LEAVE-----------------------------------------------*/
+
+System::Void CargoTransportation::MyFormDriver::button_MouseHover(System::Object^ sender, System::EventArgs^ e)
 {
-	Application::Exit();
+	Button^ temp = static_cast<Button^> (sender);
+	temp->BackColor = Color::FromArgb(48, 48, 48);
 	return System::Void();
 }
 
+System::Void CargoTransportation::MyFormDriver::button_MouseLeave(System::Object^ sender, System::EventArgs^ e)
+{
+	Button^ temp = static_cast<Button^> (sender);
+	temp->BackColor = Color::FromArgb(0, 48, 48, 48);
+	return System::Void();
+}
+
+/*-------------------------------------СОБЫТИЕ ЗАГРУЗКИ ФОРМЫ И ОБРАБОТЧИКИ ТЕКСТБОКСОВ-----------------------------------------------*/
+
 System::Void CargoTransportation::MyFormDriver::MyFormDriver_Load(System::Object^ sender, System::EventArgs^ e)
 {
+	dataGridViewDriver->Rows->Clear();
 	//подключение к БД
 	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
 	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
@@ -273,39 +243,12 @@ System::Void CargoTransportation::MyFormDriver::MyFormDriver_Load(System::Object
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query =
-		"SELECT " +
-		"driver.driver_id, " +
-		"driver_name, " +
-		"driver_surname, " +
-		"driver_middle_name, " +
-		"driver_class, " +
-		"license_plate, " +
-		"autobase, " +
-		"job_stage, " +
-		"COUNT(order_id) AS Заказов, " +
-		"driver_passport " +
-		"FROM " +
-			"( " +
-				"( " +
-					"driver " +
-					"LEFT JOIN truck ON driver.truck_id = truck.truck_id " +
-				") " +
-			"INNER JOIN order_db ON driver.driver_id = order_db.driver_id " +
-			") " +
-		"GROUP BY " +
-		"driver.driver_id, " +
-		"driver_surname, " +
-		"driver_name, " +
-		"driver_middle_name, " +
-		"driver_class, " +
-		"license_plate, " +
-		"autobase, " +
-		"job_stage, " +
-		"driver_passport;"; //Текст завпрос
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
-	OleDbDataReader^ dbReader = dbCommand->ExecuteReader(); //считываем данные
-
+	String^ SELECT = "driver.driver_id, driver_name, driver_surname, driver_middle_name,driver_class, license_plate, autobase, job_stage, driver_passport, COUNT(order_id) AS Заказов";
+	String^ FROM = "(driver LEFT JOIN order_db ON driver.driver_id = order_db.driver_id) LEFT JOIN truck ON order_db.truck_id = truck.truck_id";
+	String^ GROUP_BY = "driver.driver_id, driver_name, driver_surname, driver_middle_name,driver_class, license_plate, autobase, job_stage, driver_passport";
+	String^ ORDER_BY = "10";
+	String^ WHERE = "driver.driver_id NOT IN (SELECT driver_id FROM arhive_driver)";
+	OleDbDataReader^ dbReader = SelectRow(dbConnection, SELECT, FROM, WHERE, ORDER_BY, GROUP_BY);
 
 	//Проверяем данные
 	if (!dbReader->HasRows) {
@@ -332,30 +275,16 @@ System::Void CargoTransportation::MyFormDriver::MyFormDriver_Load(System::Object
 	//Закрываем соединение
 	dbReader->Close();
 
-	dbCommand->CommandText = "SELECT license_plate FROM truck";
+	SELECT = "license_plate";
+	FROM = "truck";
 
-	dbReader = dbCommand->ExecuteReader();
+	dbReader = SelectRow(dbConnection, SELECT, FROM);
 
 	while (dbReader->Read()) {
 		domainUpDownAuto->Items->Add(dbReader[0]->ToString());
 	}
 
-
 	dbConnection->Close();
-	return System::Void();
-}
-
-System::Void CargoTransportation::MyFormDriver::button_MouseHover(System::Object^ sender, System::EventArgs^ e)
-{
-	Button^ temp = static_cast<Button^> (sender);
-	temp->BackColor = Color::FromArgb(48, 48, 48);
-	return System::Void();
-}
-
-System::Void CargoTransportation::MyFormDriver::button_MouseLeave(System::Object^ sender, System::EventArgs^ e)
-{
-	Button^ temp = static_cast<Button^> (sender);
-	temp->BackColor = Color::FromArgb(0, 48, 48, 48);
 	return System::Void();
 }
 
@@ -392,9 +321,28 @@ System::Void CargoTransportation::MyFormDriver::ClearTextBoxFormAuto()
 	textBoxSurname->Text = nullptr;
 	textBoxPatronymic->Text = nullptr;
 	textBoxDriverClass->Text = nullptr;
-	textBoxPartner->Text = nullptr;
 	domainUpDownAuto->Text = domainUpDownAuto->Items[0]->ToString();
 	textBoxAutoBase->Text = nullptr;
 	textBoxStage->Text = nullptr;
+	return System::Void();
+}
+
+System::Void CargoTransportation::MyFormDriver::domainUpDownAuto_SelectedItemChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	if (dataGridViewDriver->SelectedRows->Count == 1)
+		return;
+
+	auto rows = dataGridViewDriver->Rows;
+
+	for (int i = 0; i < rows->Count - 1; i++) {
+		rows[i]->Visible = true;
+	}
+
+	if (domainUpDownAuto->Text != "Все")
+		for (int i = 0; i < rows->Count - 1; i++) 
+			if(rows[i]->Cells["truck_num"]->Value != domainUpDownAuto->Text)
+				rows[i]->Visible = false;
+		
+	
 	return System::Void();
 }

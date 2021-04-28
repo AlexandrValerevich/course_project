@@ -61,17 +61,16 @@ OleDbDataReader^ SelectRow(
 
 	String^ query = "SELECT " + SELECT + " FROM " + FROM; //начало запроса
 	
+	if (!String::IsNullOrEmpty(WHERE))
+		query += " WHERE " + WHERE;
+
 	if (!String::IsNullOrEmpty(GROUP_BY)) {
 		query += " GROUP BY " + GROUP_BY;
 		if (!String::IsNullOrEmpty(HAVING)) {
 			query += " HAVING " + HAVING;
 		}
 	}
-
-	if (!String::IsNullOrEmpty(WHERE))
-		query += " WHERE " + WHERE;
 	
-
 	if (!String::IsNullOrEmpty(ORDER_BY))
 		query += " ORDER BY " + ORDER_BY;
 	

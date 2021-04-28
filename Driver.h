@@ -95,6 +95,20 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::TextBox^ textBoxId;
 	private: System::Windows::Forms::Label^ label8;
+
+
+
+
+
+
+
+
+
+
+
+	private: System::Windows::Forms::DomainUpDown^ domainUpDownAuto;
+	private: System::Windows::Forms::TextBox^ textBoxPassport;
+	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Name_driver;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Surname_driver;
@@ -103,10 +117,8 @@ namespace CargoTransportation
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ truck_num;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ AutoBase;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Stage;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ completed_order;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Passport;
-
-	private: System::Windows::Forms::DomainUpDown^ domainUpDownAuto;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ completed_order;
 
 
 
@@ -186,16 +198,6 @@ namespace CargoTransportation
 			this->buttonRoute = (gcnew System::Windows::Forms::Button());
 			this->buttonAuto = (gcnew System::Windows::Forms::Button());
 			this->dataGridViewDriver = (gcnew System::Windows::Forms::DataGridView());
-			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Name_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Surname_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Patronymic_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->driver_class = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->truck_num = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->AutoBase = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Stage = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->completed_order = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Passport = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBoxName = (gcnew System::Windows::Forms::TextBox());
@@ -216,6 +218,18 @@ namespace CargoTransportation
 			this->textBoxId = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->domainUpDownAuto = (gcnew System::Windows::Forms::DomainUpDown());
+			this->textBoxPassport = (gcnew System::Windows::Forms::TextBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Name_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Surname_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Patronymic_driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->driver_class = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->truck_num = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->AutoBase = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Stage = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Passport = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->completed_order = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewDriver))->BeginInit();
 			this->SuspendLayout();
@@ -390,7 +404,7 @@ namespace CargoTransportation
 			this->dataGridViewDriver->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(10) {
 				this->id,
 					this->Name_driver, this->Surname_driver, this->Patronymic_driver, this->driver_class, this->truck_num, this->AutoBase, this->Stage,
-					this->completed_order, this->Passport
+					this->Passport, this->completed_order
 			});
 			this->dataGridViewDriver->Location = System::Drawing::Point(417, 41);
 			this->dataGridViewDriver->Name = L"dataGridViewDriver";
@@ -398,76 +412,6 @@ namespace CargoTransportation
 			this->dataGridViewDriver->Size = System::Drawing::Size(471, 350);
 			this->dataGridViewDriver->TabIndex = 3;
 			this->dataGridViewDriver->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormDriver::FillingTextBoxFormDriver);
-			// 
-			// id
-			// 
-			this->id->HeaderText = L"id";
-			this->id->Name = L"id";
-			this->id->ReadOnly = true;
-			this->id->Visible = false;
-			this->id->Width = 42;
-			// 
-			// Name_driver
-			// 
-			this->Name_driver->HeaderText = L"Имя";
-			this->Name_driver->Name = L"Name_driver";
-			this->Name_driver->ReadOnly = true;
-			this->Name_driver->Width = 57;
-			// 
-			// Surname_driver
-			// 
-			this->Surname_driver->HeaderText = L"Фамилия";
-			this->Surname_driver->Name = L"Surname_driver";
-			this->Surname_driver->ReadOnly = true;
-			this->Surname_driver->Width = 87;
-			// 
-			// Patronymic_driver
-			// 
-			this->Patronymic_driver->HeaderText = L"Отчество";
-			this->Patronymic_driver->Name = L"Patronymic_driver";
-			this->Patronymic_driver->ReadOnly = true;
-			this->Patronymic_driver->Width = 85;
-			// 
-			// driver_class
-			// 
-			this->driver_class->HeaderText = L"Классность";
-			this->driver_class->Name = L"driver_class";
-			this->driver_class->ReadOnly = true;
-			this->driver_class->Width = 96;
-			// 
-			// truck_num
-			// 
-			this->truck_num->HeaderText = L"Номер авто";
-			this->truck_num->Name = L"truck_num";
-			this->truck_num->ReadOnly = true;
-			// 
-			// AutoBase
-			// 
-			this->AutoBase->HeaderText = L"Автобаза";
-			this->AutoBase->Name = L"AutoBase";
-			this->AutoBase->ReadOnly = true;
-			this->AutoBase->Width = 84;
-			// 
-			// Stage
-			// 
-			this->Stage->HeaderText = L"Стаж";
-			this->Stage->Name = L"Stage";
-			this->Stage->ReadOnly = true;
-			this->Stage->Width = 60;
-			// 
-			// completed_order
-			// 
-			this->completed_order->HeaderText = L"Заказов";
-			this->completed_order->Name = L"completed_order";
-			this->completed_order->ReadOnly = true;
-			this->completed_order->Width = 77;
-			// 
-			// Passport
-			// 
-			this->Passport->HeaderText = L"Пасспорт";
-			this->Passport->Name = L"Passport";
-			this->Passport->ReadOnly = true;
-			this->Passport->Width = 86;
 			// 
 			// label1
 			// 
@@ -535,7 +479,7 @@ namespace CargoTransportation
 			this->textBoxDriverClass->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxDriverClass->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxDriverClass->Location = System::Drawing::Point(274, 194);
+			this->textBoxDriverClass->Location = System::Drawing::Point(274, 234);
 			this->textBoxDriverClass->Name = L"textBoxDriverClass";
 			this->textBoxDriverClass->Size = System::Drawing::Size(112, 21);
 			this->textBoxDriverClass->TabIndex = 10;
@@ -547,7 +491,7 @@ namespace CargoTransportation
 			this->labelClassnoDriversClass->AutoSize = true;
 			this->labelClassnoDriversClass->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->labelClassnoDriversClass->Location = System::Drawing::Point(185, 197);
+			this->labelClassnoDriversClass->Location = System::Drawing::Point(185, 237);
 			this->labelClassnoDriversClass->Name = L"labelClassnoDriversClass";
 			this->labelClassnoDriversClass->Size = System::Drawing::Size(87, 18);
 			this->labelClassnoDriversClass->TabIndex = 9;
@@ -560,7 +504,7 @@ namespace CargoTransportation
 			this->label->AutoSize = true;
 			this->label->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label->Location = System::Drawing::Point(187, 224);
+			this->label->Location = System::Drawing::Point(187, 264);
 			this->label->Name = L"label";
 			this->label->Size = System::Drawing::Size(43, 18);
 			this->label->TabIndex = 13;
@@ -643,7 +587,7 @@ namespace CargoTransportation
 			this->textBoxStage->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxStage->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxStage->Location = System::Drawing::Point(274, 247);
+			this->textBoxStage->Location = System::Drawing::Point(274, 287);
 			this->textBoxStage->Name = L"textBoxStage";
 			this->textBoxStage->Size = System::Drawing::Size(112, 21);
 			this->textBoxStage->TabIndex = 33;
@@ -655,7 +599,7 @@ namespace CargoTransportation
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label4->Location = System::Drawing::Point(187, 250);
+			this->label4->Location = System::Drawing::Point(187, 290);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(45, 18);
 			this->label4->TabIndex = 32;
@@ -667,7 +611,7 @@ namespace CargoTransportation
 			this->textBoxAutoBase->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxAutoBase->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxAutoBase->Location = System::Drawing::Point(274, 274);
+			this->textBoxAutoBase->Location = System::Drawing::Point(274, 314);
 			this->textBoxAutoBase->Name = L"textBoxAutoBase";
 			this->textBoxAutoBase->Size = System::Drawing::Size(112, 21);
 			this->textBoxAutoBase->TabIndex = 37;
@@ -679,7 +623,7 @@ namespace CargoTransportation
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label6->Location = System::Drawing::Point(187, 277);
+			this->label6->Location = System::Drawing::Point(187, 317);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(75, 18);
 			this->label6->TabIndex = 36;
@@ -713,12 +657,106 @@ namespace CargoTransportation
 			// domainUpDownAuto
 			// 
 			this->domainUpDownAuto->Items->Add(L"Все");
-			this->domainUpDownAuto->Location = System::Drawing::Point(274, 221);
+			this->domainUpDownAuto->Location = System::Drawing::Point(274, 261);
 			this->domainUpDownAuto->Name = L"domainUpDownAuto";
 			this->domainUpDownAuto->ReadOnly = true;
 			this->domainUpDownAuto->Size = System::Drawing::Size(112, 21);
 			this->domainUpDownAuto->TabIndex = 41;
 			this->domainUpDownAuto->Text = L"Все";
+			this->domainUpDownAuto->SelectedItemChanged += gcnew System::EventHandler(this, &MyFormDriver::domainUpDownAuto_SelectedItemChanged);
+			// 
+			// textBoxPassport
+			// 
+			this->textBoxPassport->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left));
+			this->textBoxPassport->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->textBoxPassport->Location = System::Drawing::Point(274, 166);
+			this->textBoxPassport->Name = L"textBoxPassport";
+			this->textBoxPassport->Size = System::Drawing::Size(112, 21);
+			this->textBoxPassport->TabIndex = 43;
+			// 
+			// label5
+			// 
+			this->label5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left));
+			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label5->Location = System::Drawing::Point(187, 169);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(76, 18);
+			this->label5->TabIndex = 42;
+			this->label5->Text = L"Пасспорт:";
+			// 
+			// id
+			// 
+			this->id->HeaderText = L"id";
+			this->id->Name = L"id";
+			this->id->ReadOnly = true;
+			this->id->Visible = false;
+			this->id->Width = 42;
+			// 
+			// Name_driver
+			// 
+			this->Name_driver->HeaderText = L"Имя";
+			this->Name_driver->Name = L"Name_driver";
+			this->Name_driver->ReadOnly = true;
+			this->Name_driver->Width = 57;
+			// 
+			// Surname_driver
+			// 
+			this->Surname_driver->HeaderText = L"Фамилия";
+			this->Surname_driver->Name = L"Surname_driver";
+			this->Surname_driver->ReadOnly = true;
+			this->Surname_driver->Width = 87;
+			// 
+			// Patronymic_driver
+			// 
+			this->Patronymic_driver->HeaderText = L"Отчество";
+			this->Patronymic_driver->Name = L"Patronymic_driver";
+			this->Patronymic_driver->ReadOnly = true;
+			this->Patronymic_driver->Width = 85;
+			// 
+			// driver_class
+			// 
+			this->driver_class->HeaderText = L"Классность";
+			this->driver_class->Name = L"driver_class";
+			this->driver_class->ReadOnly = true;
+			this->driver_class->Width = 96;
+			// 
+			// truck_num
+			// 
+			this->truck_num->HeaderText = L"Номер авто";
+			this->truck_num->Name = L"truck_num";
+			this->truck_num->ReadOnly = true;
+			// 
+			// AutoBase
+			// 
+			this->AutoBase->HeaderText = L"Автобаза";
+			this->AutoBase->Name = L"AutoBase";
+			this->AutoBase->ReadOnly = true;
+			this->AutoBase->Width = 84;
+			// 
+			// Stage
+			// 
+			this->Stage->HeaderText = L"Стаж";
+			this->Stage->Name = L"Stage";
+			this->Stage->ReadOnly = true;
+			this->Stage->Width = 60;
+			// 
+			// Passport
+			// 
+			this->Passport->HeaderText = L"Пасспорт";
+			this->Passport->Name = L"Passport";
+			this->Passport->ReadOnly = true;
+			this->Passport->Width = 86;
+			// 
+			// completed_order
+			// 
+			this->completed_order->HeaderText = L"Заказов";
+			this->completed_order->Name = L"completed_order";
+			this->completed_order->ReadOnly = true;
+			this->completed_order->Width = 77;
 			// 
 			// MyFormDriver
 			// 
@@ -726,6 +764,8 @@ namespace CargoTransportation
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScrollMargin = System::Drawing::Size(10, 10);
 			this->ClientSize = System::Drawing::Size(900, 600);
+			this->Controls->Add(this->textBoxPassport);
+			this->Controls->Add(this->label5);
 			this->Controls->Add(this->domainUpDownAuto);
 			this->Controls->Add(this->textBoxId);
 			this->Controls->Add(this->label8);
@@ -778,6 +818,7 @@ private: System::Void button_MouseHover(System::Object^ sender, System::EventArg
 private: System::Void button_MouseLeave(System::Object^ sender, System::EventArgs^ e);
 private: System::Void FillingTextBoxFormDriver(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 private: System::Void ClearTextBoxFormAuto();
+private: System::Void domainUpDownAuto_SelectedItemChanged(System::Object^ sender, System::EventArgs^ e);
 };
 
 

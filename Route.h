@@ -56,9 +56,9 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Button^ buttonOrder;
 	private: System::Windows::Forms::Button^ buttonRoute;
-	private: System::Windows::Forms::TextBox^ textBoxAuto;
+
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::TextBox^ textBoxDriver;
+
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::TextBox^ textBoxId;
 	private: System::Windows::Forms::Label^ label8;
@@ -77,6 +77,8 @@ namespace CargoTransportation
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Driver;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Auto;
 	private: System::Windows::Forms::DataGridViewCheckBoxColumn^ HavePartner;
+	private: System::Windows::Forms::DomainUpDown^ domainUpDownDriver;
+	private: System::Windows::Forms::DomainUpDown^ domainUpDown1;
 
 
 
@@ -125,13 +127,13 @@ namespace CargoTransportation
 			this->buttonAdd = (gcnew System::Windows::Forms::Button());
 			this->buttonChange = (gcnew System::Windows::Forms::Button());
 			this->buttonDelete = (gcnew System::Windows::Forms::Button());
-			this->textBoxAuto = (gcnew System::Windows::Forms::TextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->textBoxDriver = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->textBoxId = (gcnew System::Windows::Forms::TextBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->checkBoxPartner = (gcnew System::Windows::Forms::CheckBox());
+			this->domainUpDownDriver = (gcnew System::Windows::Forms::DomainUpDown());
+			this->domainUpDown1 = (gcnew System::Windows::Forms::DomainUpDown());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewRoute))->BeginInit();
 			this->SuspendLayout();
@@ -499,17 +501,6 @@ namespace CargoTransportation
 			this->buttonDelete->Visible = false;
 			this->buttonDelete->Click += gcnew System::EventHandler(this, &MyFormRoute::buttonDelete_Click);
 			// 
-			// textBoxAuto
-			// 
-			this->textBoxAuto->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBoxAuto->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxAuto->Location = System::Drawing::Point(278, 302);
-			this->textBoxAuto->Name = L"textBoxAuto";
-			this->textBoxAuto->ReadOnly = true;
-			this->textBoxAuto->Size = System::Drawing::Size(112, 21);
-			this->textBoxAuto->TabIndex = 25;
-			// 
 			// label5
 			// 
 			this->label5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
@@ -522,16 +513,6 @@ namespace CargoTransportation
 			this->label5->Size = System::Drawing::Size(43, 18);
 			this->label5->TabIndex = 24;
 			this->label5->Text = L"Авто:";
-			// 
-			// textBoxDriver
-			// 
-			this->textBoxDriver->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBoxDriver->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxDriver->Location = System::Drawing::Point(278, 275);
-			this->textBoxDriver->Name = L"textBoxDriver";
-			this->textBoxDriver->Size = System::Drawing::Size(112, 21);
-			this->textBoxDriver->TabIndex = 23;
 			// 
 			// label6
 			// 
@@ -586,18 +567,38 @@ namespace CargoTransportation
 			this->checkBoxPartner->Text = L"Партнер";
 			this->checkBoxPartner->UseVisualStyleBackColor = true;
 			// 
+			// domainUpDownDriver
+			// 
+			this->domainUpDownDriver->Items->Add(L"Все");
+			this->domainUpDownDriver->Location = System::Drawing::Point(278, 275);
+			this->domainUpDownDriver->Name = L"domainUpDownDriver";
+			this->domainUpDownDriver->ReadOnly = true;
+			this->domainUpDownDriver->Size = System::Drawing::Size(112, 21);
+			this->domainUpDownDriver->TabIndex = 31;
+			this->domainUpDownDriver->Text = L"Все";
+			// 
+			// domainUpDown1
+			// 
+			this->domainUpDown1->Items->Add(L"Все");
+			this->domainUpDown1->Location = System::Drawing::Point(278, 302);
+			this->domainUpDown1->Name = L"domainUpDown1";
+			this->domainUpDown1->ReadOnly = true;
+			this->domainUpDown1->Size = System::Drawing::Size(112, 21);
+			this->domainUpDown1->TabIndex = 32;
+			this->domainUpDown1->Text = L"Все";
+			// 
 			// MyFormRoute
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 15);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScrollMargin = System::Drawing::Size(10, 10);
 			this->ClientSize = System::Drawing::Size(900, 600);
+			this->Controls->Add(this->domainUpDown1);
+			this->Controls->Add(this->domainUpDownDriver);
 			this->Controls->Add(this->checkBoxPartner);
 			this->Controls->Add(this->textBoxId);
 			this->Controls->Add(this->label8);
-			this->Controls->Add(this->textBoxAuto);
 			this->Controls->Add(this->label5);
-			this->Controls->Add(this->textBoxDriver);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->buttonDelete);
 			this->Controls->Add(this->buttonChange);
