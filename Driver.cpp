@@ -275,13 +275,16 @@ System::Void CargoTransportation::MyFormDriver::MyFormDriver_Load(System::Object
 	//Закрываем соединение
 	dbReader->Close();
 
-	SELECT = "license_plate";
-	FROM = "truck";
+	if (domainUpDownAuto->Items->Count == 1) {
+		SELECT = "license_plate";
+		FROM = "truck";
+		WHERE = "truck_id NOT IN (SELECT truck_id FROM arhive_truck)";
 
-	dbReader = SelectRow(dbConnection, SELECT, FROM);
+		dbReader = SelectRow(dbConnection, SELECT, FROM, WHERE);
 
-	while (dbReader->Read()) {
-		domainUpDownAuto->Items->Add(dbReader[0]->ToString());
+		while (dbReader->Read()) {
+			domainUpDownAuto->Items->Add(dbReader[0]->ToString());
+		}
 	}
 
 	dbConnection->Close();

@@ -28,7 +28,7 @@ String^ SelectID(
 
 	String^ id;
 
-	String^ query = "SELECT TOP 1" + SELECT_ID + " FROM " + FROM + " WHERE " + WHERE + " ;";
+	String^ query = "SELECT TOP 1 " + SELECT_ID + " FROM " + FROM + " WHERE " + WHERE + " ;";
 	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
 
 	auto dbReaderID = dbCommand->ExecuteReader();

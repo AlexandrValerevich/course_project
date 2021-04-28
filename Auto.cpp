@@ -149,13 +149,10 @@ System::Void CargoTransportation::MyFormAuto::buttonDelete_Click(System::Object^
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query = "DELETE FROM truck WHERE truck_id = " + textBoxId->Text + " ;"; //Текст завпрос
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
-
-	String^ FROM = "truck";
-	String^ WHERE = "truck_id = " + textBoxId->Text;
-
-	if(DeleteRow(dbConnection,FROM, WHERE) ) 
+	String^ TABLE = "arhive_truck";
+	String^ COLUMN = "truck_id";
+	String^ VALUES = textBoxId->Text;
+	if(InsertRow(dbConnection,TABLE, COLUMN, VALUES)) 
 		MessageBox::Show("Запись удалена!");
 	else 
 		MessageBox::Show("Ошибка при удалени элемента из таблицу!", "Внимание!");
@@ -203,8 +200,9 @@ System::Void CargoTransportation::MyFormAuto::MyFormAuto_Load(System::Object^ se
 	String^ SELECT   = "truck.truck_id, truck_name, license_plate, load_capacity, fuel_consumption, trailer_length, COUNT(order_id) AS Заказов";
 	String^ FROM     = "truck LEFT JOIN order_db ON order_db.truck_id = truck.truck_id";
 	String^ GROUP_BY = "truck.truck_id, truck_name, license_plate, load_capacity, fuel_consumption, trailer_length";
+	String^ WHERE    = "truck.truck_id NOT IN (SELECT truck_id FROM arhive_truck)";
 
-	auto dbReader = SelectRow(dbConnection, SELECT, FROM, nullptr, nullptr, GROUP_BY);
+	auto dbReader = SelectRow(dbConnection, SELECT, FROM, WHERE, nullptr, GROUP_BY);
 
 	//Проверяем данные
 	if (!dbReader->HasRows) {
