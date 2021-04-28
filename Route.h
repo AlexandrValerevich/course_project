@@ -88,6 +88,7 @@ namespace CargoTransportation
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Driver;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Auto;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Partner;
+	private: System::Windows::Forms::CheckBox^ checkBoxPartner;
 
 
 
@@ -127,6 +128,13 @@ namespace CargoTransportation
 			this->buttonAuto = (gcnew System::Windows::Forms::Button());
 			this->buttonDriver = (gcnew System::Windows::Forms::Button());
 			this->dataGridViewRoute = (gcnew System::Windows::Forms::DataGridView());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Depature = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Arrival = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Distance = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Auto = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Partner = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBoxCity_1 = (gcnew System::Windows::Forms::TextBox());
@@ -145,13 +153,7 @@ namespace CargoTransportation
 			this->domainUpDownAuto = (gcnew System::Windows::Forms::DomainUpDown());
 			this->domainUpDownPartner = (gcnew System::Windows::Forms::DomainUpDown());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Depature = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Arrival = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Distance = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Driver = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Auto = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Partner = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->checkBoxPartner = (gcnew System::Windows::Forms::CheckBox());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridViewRoute))->BeginInit();
 			this->SuspendLayout();
@@ -332,6 +334,60 @@ namespace CargoTransportation
 			this->dataGridViewRoute->Size = System::Drawing::Size(471, 350);
 			this->dataGridViewRoute->TabIndex = 3;
 			this->dataGridViewRoute->RowEnter += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyFormRoute::FillingTextBoxFormRoute);
+			// 
+			// id
+			// 
+			this->id->HeaderText = L"id";
+			this->id->Name = L"id";
+			this->id->ReadOnly = true;
+			this->id->Visible = false;
+			this->id->Width = 42;
+			// 
+			// Depature
+			// 
+			this->Depature->HeaderText = L"г. Отправления";
+			this->Depature->MinimumWidth = 120;
+			this->Depature->Name = L"Depature";
+			this->Depature->ReadOnly = true;
+			this->Depature->Width = 120;
+			// 
+			// Arrival
+			// 
+			this->Arrival->HeaderText = L"г. Прибытия";
+			this->Arrival->MinimumWidth = 120;
+			this->Arrival->Name = L"Arrival";
+			this->Arrival->ReadOnly = true;
+			this->Arrival->Width = 120;
+			// 
+			// Distance
+			// 
+			this->Distance->HeaderText = L"Расстояние";
+			this->Distance->Name = L"Distance";
+			this->Distance->ReadOnly = true;
+			this->Distance->Width = 99;
+			// 
+			// Driver
+			// 
+			this->Driver->HeaderText = L"Водитель";
+			this->Driver->Name = L"Driver";
+			this->Driver->ReadOnly = true;
+			this->Driver->Width = 87;
+			// 
+			// Auto
+			// 
+			this->Auto->HeaderText = L"Авто";
+			this->Auto->Name = L"Auto";
+			this->Auto->ReadOnly = true;
+			this->Auto->Width = 59;
+			// 
+			// Partner
+			// 
+			this->Partner->HeaderText = L"Партнер";
+			this->Partner->Name = L"Partner";
+			this->Partner->ReadOnly = true;
+			this->Partner->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+			this->Partner->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
+			this->Partner->Width = 63;
 			// 
 			// label1
 			// 
@@ -563,59 +619,21 @@ namespace CargoTransportation
 			this->label7->TabIndex = 33;
 			this->label7->Text = L"Партнер:";
 			// 
-			// id
+			// checkBoxPartner
 			// 
-			this->id->HeaderText = L"id";
-			this->id->Name = L"id";
-			this->id->ReadOnly = true;
-			this->id->Visible = false;
-			this->id->Width = 42;
-			// 
-			// Depature
-			// 
-			this->Depature->HeaderText = L"г. Отправления";
-			this->Depature->MinimumWidth = 120;
-			this->Depature->Name = L"Depature";
-			this->Depature->ReadOnly = true;
-			this->Depature->Width = 120;
-			// 
-			// Arrival
-			// 
-			this->Arrival->HeaderText = L"г. Прибытия";
-			this->Arrival->MinimumWidth = 120;
-			this->Arrival->Name = L"Arrival";
-			this->Arrival->ReadOnly = true;
-			this->Arrival->Width = 120;
-			// 
-			// Distance
-			// 
-			this->Distance->HeaderText = L"Расстояние";
-			this->Distance->Name = L"Distance";
-			this->Distance->ReadOnly = true;
-			this->Distance->Width = 99;
-			// 
-			// Driver
-			// 
-			this->Driver->HeaderText = L"Водитель";
-			this->Driver->Name = L"Driver";
-			this->Driver->ReadOnly = true;
-			this->Driver->Width = 87;
-			// 
-			// Auto
-			// 
-			this->Auto->HeaderText = L"Авто";
-			this->Auto->Name = L"Auto";
-			this->Auto->ReadOnly = true;
-			this->Auto->Width = 59;
-			// 
-			// Partner
-			// 
-			this->Partner->HeaderText = L"Партнер";
-			this->Partner->Name = L"Partner";
-			this->Partner->ReadOnly = true;
-			this->Partner->Resizable = System::Windows::Forms::DataGridViewTriState::True;
-			this->Partner->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
-			this->Partner->Width = 63;
+			this->checkBoxPartner->AutoSize = true;
+			this->checkBoxPartner->FlatAppearance->BorderSize = 0;
+			this->checkBoxPartner->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->checkBoxPartner->Location = System::Drawing::Point(190, 369);
+			this->checkBoxPartner->Margin = System::Windows::Forms::Padding(0);
+			this->checkBoxPartner->Name = L"checkBoxPartner";
+			this->checkBoxPartner->RightToLeft = System::Windows::Forms::RightToLeft::Yes;
+			this->checkBoxPartner->Size = System::Drawing::Size(131, 22);
+			this->checkBoxPartner->TabIndex = 35;
+			this->checkBoxPartner->Text = L"Без напарника";
+			this->checkBoxPartner->UseVisualStyleBackColor = true;
+			this->checkBoxPartner->CheckedChanged += gcnew System::EventHandler(this, &MyFormRoute::checkBoxPartner_CheckedChanged);
 			// 
 			// MyFormRoute
 			// 
@@ -623,6 +641,7 @@ namespace CargoTransportation
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScrollMargin = System::Drawing::Size(10, 10);
 			this->ClientSize = System::Drawing::Size(900, 600);
+			this->Controls->Add(this->checkBoxPartner);
 			this->Controls->Add(this->domainUpDownPartner);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->domainUpDownAuto);
@@ -650,7 +669,6 @@ namespace CargoTransportation
 			this->Name = L"MyFormRoute";
 			this->ShowIcon = false;
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			this->Text = L"s";
 			this->Load += gcnew System::EventHandler(this, &MyFormRoute::MyFormRoute_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
@@ -674,8 +692,7 @@ private: System::Void button_MouseHover(System::Object^ sender, System::EventArg
 private: System::Void button_MouseLeave(System::Object^ sender, System::EventArgs^ e);
 private: System::Void ClearTextBoxFormRoute();
 private: System::Void FillingTextBoxFormRoute(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
-
-
+private: System::Void checkBoxPartner_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 };
 
 

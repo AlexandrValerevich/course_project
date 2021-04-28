@@ -270,3 +270,17 @@ System::Void CargoTransportation::MyFormRoute::FillingTextBoxFormRoute(System::O
 
 	return System::Void();
 }
+
+System::Void CargoTransportation::MyFormRoute::checkBoxPartner_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	if (checkBoxPartner->Checked) {
+		for (int i = 0; i < dataGridViewRoute->Rows->Count - 1; i++)
+			if (!String::IsNullOrEmpty(dataGridViewRoute->Rows[i]->Cells["Partner"]->Value->ToString()))
+				dataGridViewRoute->Rows[i]->Visible = false;
+	}
+	else {
+		for (int i = 0; i < dataGridViewRoute->Rows->Count - 1; i++)
+				dataGridViewRoute->Rows[i]->Visible = true;
+	}
+	return System::Void();
+}

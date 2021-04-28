@@ -3,8 +3,11 @@
 #include "Route.h"
 #include "Driver.h"
 #include "Finans.h"
+#include "dbQuery.h"
 
 using namespace CargoTransportation;
+
+/*------------------------------------- ÕŒœ » œ≈–≈ Àﬁ◊≈Õ»ﬂ Ã≈∆ƒ” ‘Œ–Ã¿Ã» » ¬€’Œƒ-----------------------------------*/
 
 System::Void CargoTransportation::MyFormFinans::buttonOrder_Click(System::Object^ sender, System::EventArgs^ e)
 {
@@ -38,6 +41,14 @@ System::Void CargoTransportation::MyFormFinans::buttonRoute_Click(System::Object
 	return System::Void();
 }
 
+System::Void CargoTransportation::MyFormFinans::buttonExit_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	Application::Exit();
+	return System::Void();
+}
+
+/*------------------------------------- ÕŒœ » ADD, CHANCGE, DELETE-----------------------------------------------*/
+
 System::Void CargoTransportation::MyFormFinans::buttonAdd_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	return System::Void();
@@ -53,11 +64,23 @@ System::Void CargoTransportation::MyFormFinans::buttonDelete_Click(System::Objec
 	return System::Void();
 }
 
-System::Void CargoTransportation::MyFormFinans::buttonExit_Click(System::Object^ sender, System::EventArgs^ e)
+/*-------------------------------------—Œ¡€“»ﬂ HOWER, LEAVE-----------------------------------------------*/
+
+System::Void CargoTransportation::MyFormFinans::button_MouseHover(System::Object^ sender, System::EventArgs^ e)
 {
-	Application::Exit();
+	Button^ temp = static_cast<Button^> (sender);
+	temp->BackColor = Color::FromArgb(48, 48, 48);
 	return System::Void();
 }
+
+System::Void CargoTransportation::MyFormFinans::button_MouseLeave(System::Object^ sender, System::EventArgs^ e)
+{
+	Button^ temp = static_cast<Button^> (sender);
+	temp->BackColor = Color::FromArgb(0, 48, 48, 48);
+	return System::Void();
+}
+
+/*-------------------------------------—Œ¡€“»≈ «¿√–”« » ‘Œ–Ã€ » Œ¡–¿¡Œ“◊» » “≈ —“¡Œ —Œ¬------------------------*/
 
 System::Void CargoTransportation::MyFormFinans::MyFormFinans_Load(System::Object^ sender, System::EventArgs^ e)
 {
@@ -68,11 +91,10 @@ System::Void CargoTransportation::MyFormFinans::MyFormFinans_Load(System::Object
 	//‚˚ÔÓÎÌËÚ¸ Á‡ÔÓÒ Í ¡ƒ
 	dbConnection->Open(); //ÓÚÍ˚‚‡ÂÏ ÒÓÂ‰ËÌÂÌËÂ
 
-	String^ query = "SELECT order_id, order_db.order_owner, order_db.price, Round(lenght*fuel_consumption,2) AS cost, price - cost AS Profit"+
-		" FROM truck INNER JOIN(driver INNER JOIN order_db ON driver.driver_id = order_db.driver_id) ON truck.truck_id = driver.truck_id;"; //“ÂÍÒÚ Á‡‚ÔÓÒ
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //¬˚ÔÓÎÌÂÌËÂ ÍÓÏ‡Ì‰˚
-	OleDbDataReader^ dbReader = dbCommand->ExecuteReader(); //Ò˜ËÚ˚‚‡ÂÏ ‰‡ÌÌ˚Â
+	String^ SELECT = "order_id,order_owner, price AS ÷ÂÌ‡, Round(distance*fuel_consumption,2) AS »Á‰ÂÊÍË, Round(÷ÂÌ‡-»Á‰ÂÊÍË,2) AS œË·˚Î¸";
+	String^ FROM   = "order_db INNER JOIN truck ON order_db.truck_id = truck.truck_id";
 
+	OleDbDataReader^ dbReader = SelectRow(dbConnection, SELECT, FROM); //Ò˜ËÚ˚‚‡ÂÏ ‰‡ÌÌ˚Â
 
 	//œÓ‚ÂˇÂÏ ‰‡ÌÌ˚Â
 	if (!dbReader->HasRows) {
@@ -95,20 +117,6 @@ System::Void CargoTransportation::MyFormFinans::MyFormFinans_Load(System::Object
 	//«‡Í˚‚‡ÂÏ ÒÓÂ‰ËÌÂÌËÂ
 	dbReader->Close();
 	dbConnection->Close();
-	return System::Void();
-}
-
-System::Void CargoTransportation::MyFormFinans::button_MouseHover(System::Object^ sender, System::EventArgs^ e)
-{
-	Button^ temp = static_cast<Button^> (sender);
-	temp->BackColor = Color::FromArgb(48, 48, 48);
-	return System::Void();
-}
-
-System::Void CargoTransportation::MyFormFinans::button_MouseLeave(System::Object^ sender, System::EventArgs^ e)
-{
-	Button^ temp = static_cast<Button^> (sender);
-	temp->BackColor = Color::FromArgb(0, 48, 48, 48);
 	return System::Void();
 }
 

@@ -59,8 +59,6 @@ System::Void CargoTransportation::MyFormOrder::buttonAdd_Click(System::Object^ s
 		return;
 	}
 
-	bool HavePartner = Convert::ToInt32(textBoxDistance->Text) > 500 ? true : false;
-
 	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
 	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
 
@@ -68,7 +66,7 @@ System::Void CargoTransportation::MyFormOrder::buttonAdd_Click(System::Object^ s
 	dbConnection->Open(); //открываем соединение
 
 	String^ TABLE = "order_db";
-	String^ COLUMN = "order_owner, order_departure, order_arrival, distance, price, order_cargo, weight, HavePartner";
+	String^ COLUMN = "order_owner, order_departure, order_arrival, distance, price, order_cargo, weight";
 	String^ VALUES = "'"
 		+ textBoxCustomer->Text + "', '"
 		+ textBoxFrom->Text + "', '"
@@ -76,8 +74,7 @@ System::Void CargoTransportation::MyFormOrder::buttonAdd_Click(System::Object^ s
 		+ textBoxDistance->Text + ", " 
 		+ textBoxCost->Text + ", '"
 		+ textBoxNameCargo->Text + "', "
-		+ textBoxWeight->Text + ", "
-		+ HavePartner;
+		+ textBoxWeight->Text ;
 	
 	if (InsertRow(dbConnection, TABLE, COLUMN, VALUES)) 
 		MessageBox::Show("Запись добавлена!");
