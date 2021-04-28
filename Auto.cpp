@@ -64,33 +64,23 @@ System::Void CargoTransportation::MyFormAuto::buttonAdd_Click(System::Object^ se
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query = "INSERT INTO truck (truck_name, license_plate, load_capacity, fuel_consumption, trailer_length)" +
-		" VALUES ('" + textBoxMark->Text + "', '" + textBoxNumber->Text + "', " + textBoxTonnage->Text + ", " + textBoxExpences->Text + ", " + textBoxLenght->Text + ") ;"; //Текст завпрос
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+	String^ INTO = "truck";
+	String^ COLUMN = "truck_name, license_plate, load_capacity, fuel_consumption, trailer_length";
+	String^ VALUES = 
+		"'" + textBoxMark->Text + 
+		"', '" + textBoxNumber->Text + 
+		"', " + textBoxTonnage->Text + 
+		", " + textBoxExpences->Text + 
+		", " + textBoxLenght->Text;
 
-	if (dbCommand->ExecuteNonQuery() == 1) {
+	if(InsertRow(dbConnection, INTO, COLUMN, VALUES))
 		MessageBox::Show("Запись добавлена!");
-	}
-	else {
+	else 
 		MessageBox::Show("Ошибка при добавлений элемента в таблицу!", "Внимание!");
-	}
-
-	query = "SELECT * FROM truck WHERE truck_id IN(SELECT MAX(truck_id) FROM truck);";
-	dbCommand->CommandText = query;
-
-	auto dbReader = dbCommand->ExecuteReader();
-
-	while (dbReader->Read()) {
-		dataGridViewAuto->Rows->Add(dbReader[0],
-			dbReader[1],
-			dbReader[2],
-			Convert::ToDouble(dbReader[3]),
-			Convert::ToDouble(dbReader[4]),
-			Convert::ToDouble(dbReader[5]));
-	}
+	
+	MyFormAuto_Load(nullptr, nullptr);
 
 	//Закрываем соединение
-	dbReader->Close();
 	dbConnection->Close();
 	return System::Void();
 }
@@ -120,29 +110,21 @@ System::Void CargoTransportation::MyFormAuto::buttonChange_Click(System::Object^
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query = "UPDATE truck SET  truck_name = '" + textBoxMark->Text + "',license_plate ='" + textBoxNumber->Text + "'," +
-		" load_capacity = " + textBoxTonnage->Text + ", " +
-		" fuel_consumption = " + textBoxExpences->Text + ", trailer_length = " + textBoxLenght->Text + " "
-		"WHERE truck_id = " + textBoxId->Text + ";";//Текст завпрос
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
+	String^ UPDATE = "truck";
+	String^ SET = 
+		"truck_name = '" + textBoxMark->Text + 
+		"',license_plate ='" + textBoxNumber->Text +
+		"', load_capacity = " + textBoxTonnage->Text  +
+		", fuel_consumption = " + textBoxExpences->Text + 
+		", trailer_length = " + textBoxLenght->Text;
+	String^ WHERE = "truck_id = " + textBoxId->Text;
 
-	if (dbCommand->ExecuteNonQuery() == 1) {
+	if(UpdateRow(dbConnection, UPDATE, SET, WHERE))
 		MessageBox::Show("Запись обнавлена!");
-	}
-	else {
+	else 
 		MessageBox::Show("Ошибка при Обнавлении элемента таблицы!", "Внимание!");
-	}
-
-
-	int index = dataGridViewAuto->SelectedRows[0]->Index;
-	auto row = dataGridViewAuto->Rows[index];
-
-	row->SetValues(textBoxId->Text,
-		textBoxMark->Text,
-		textBoxNumber->Text,
-		Convert::ToDouble(textBoxTonnage->Text->Replace('.',',')),
-		Convert::ToDouble(textBoxExpences->Text->Replace('.', ',')),
-		Convert::ToDouble(textBoxLenght->Text->Replace('.', ',')));
+	
+	MyFormAuto_Load(nullptr, nullptr);
 
 	//Закрываем соединение
 	dbConnection->Close();
@@ -170,12 +152,14 @@ System::Void CargoTransportation::MyFormAuto::buttonDelete_Click(System::Object^
 	String^ query = "DELETE FROM truck WHERE truck_id = " + textBoxId->Text + " ;"; //Текст завпрос
 	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
 
-	if (dbCommand->ExecuteNonQuery() == 1) {
+	String^ FROM = "truck";
+	String^ WHERE = "truck_id = " + textBoxId->Text;
+
+	if(DeleteRow(dbConnection,FROM, WHERE) ) 
 		MessageBox::Show("Запись удалена!");
-	}
-	else {
+	else 
 		MessageBox::Show("Ошибка при удалени элемента из таблицу!", "Внимание!");
-	}
+	
 
 	ClearTextBoxFormAuto();
 
@@ -207,6 +191,8 @@ System::Void CargoTransportation::MyFormAuto::button_MouseLeave(System::Object^ 
 
 System::Void CargoTransportation::MyFormAuto::MyFormAuto_Load(System::Object^ sender, System::EventArgs^ e)
 {
+	dataGridViewAuto->Rows->Clear();
+
 	//подключение к БД
 	String^ connectionString = "provider=Microsoft.ACE.OLEDB.12.0;Data Source=kuafer.accdb"; //строка подключения 
 	OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
@@ -214,35 +200,11 @@ System::Void CargoTransportation::MyFormAuto::MyFormAuto_Load(System::Object^ se
 	//выполнить запрос к БД
 	dbConnection->Open(); //открываем соединение
 
-	String^ query = "SELECT "+
-		"truck.truck_id, "+
-		"truck.truck_name, "+
-		"truck.license_plate, "+
-		"truck.load_capacity, "+
-		"truck.fuel_consumption, "+
- 		"truck.trailer_length, "+
-		"COUNT(order_id) "+
-		"FROM "+
-		"( "+
-			"SELECT "+
-			"driver.driver_id, "+
-			"order_id, "+
-			"truck_id "+
-			"FROM "+
-			"driver "+
-			"INNER JOIN order_db ON driver.driver_id = order_db.driver_id "+
-		") AS q "+
-		"INNER JOIN truck ON truck.truck_id = q.truck_id "+
-		"GROUP BY "+
-		"truck.truck_id, "+
-		"truck.truck_name, "+
-		"truck.license_plate, "+
-		"truck.load_capacity, "+
- 		"truck.fuel_consumption, "+
-		"truck.trailer_length;"; //Текст завпрос
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
-	OleDbDataReader^ dbReader = dbCommand->ExecuteReader(); //считываем данные
+	String^ SELECT   = "truck.truck_id, truck_name, license_plate, load_capacity, fuel_consumption, trailer_length, COUNT(order_id) AS Заказов";
+	String^ FROM     = "truck LEFT JOIN order_db ON order_db.truck_id = truck.truck_id";
+	String^ GROUP_BY = "truck.truck_id, truck_name, license_plate, load_capacity, fuel_consumption, trailer_length";
 
+	auto dbReader = SelectRow(dbConnection, SELECT, FROM, nullptr, nullptr, GROUP_BY);
 
 	//Проверяем данные
 	if (!dbReader->HasRows) {

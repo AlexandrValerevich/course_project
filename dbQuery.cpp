@@ -59,7 +59,7 @@ OleDbDataReader^ SelectRow(
 		return nullptr;
 	}
 
-	String^ query = "SELECT " + SELECT + " FROM " + FROM;
+	String^ query = "SELECT " + SELECT + " FROM " + FROM; //начало запроса
 	
 	if (!String::IsNullOrEmpty(GROUP_BY)) {
 		query += " GROUP BY " + GROUP_BY;
@@ -75,11 +75,10 @@ OleDbDataReader^ SelectRow(
 	if (!String::IsNullOrEmpty(ORDER_BY))
 		query += " ORDER BY " + ORDER_BY;
 	
-	query += " ;";
+	query += " ;"; //конец запроса
 
-	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Выполнение команды
-
-	return dbCommand->ExecuteReader();;
+	OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection); //Создание команды
+	return dbCommand->ExecuteReader(); //Выполнение команды
 }
 
 bool InsertRow(
@@ -163,10 +162,10 @@ bool UpdateRow(
 
 bool DeleteRow(
 	OleDbConnection^ dbConnection,
-	String^ TABLE,
+	String^ FROM,
 	String^ WHERE)
 {
-	String^ query = "DELETE FROM " + TABLE +  " WHERE " + WHERE + " ;";
+	String^ query = "DELETE FROM " + FROM +  " WHERE " + WHERE + " ;";
 	auto dbCommand = gcnew OleDbCommand(query, dbConnection);
 
 	if (dbCommand->ExecuteNonQuery() == 1) {

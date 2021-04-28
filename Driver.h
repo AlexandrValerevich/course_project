@@ -89,8 +89,8 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::TextBox^ textBoxStage;
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::TextBox^ textBoxPartner;
-	private: System::Windows::Forms::Label^ label5;
+
+
 	private: System::Windows::Forms::TextBox^ textBoxAutoBase;
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::TextBox^ textBoxId;
@@ -211,8 +211,6 @@ namespace CargoTransportation
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->textBoxStage = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->textBoxPartner = (gcnew System::Windows::Forms::TextBox());
-			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->textBoxAutoBase = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->textBoxId = (gcnew System::Windows::Forms::TextBox());
@@ -664,36 +662,12 @@ namespace CargoTransportation
 			this->label4->Text = L"Стаж:";
 			this->label4->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
-			// textBoxPartner
-			// 
-			this->textBoxPartner->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left));
-			this->textBoxPartner->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxPartner->Location = System::Drawing::Point(274, 292);
-			this->textBoxPartner->Name = L"textBoxPartner";
-			this->textBoxPartner->Size = System::Drawing::Size(112, 21);
-			this->textBoxPartner->TabIndex = 35;
-			// 
-			// label5
-			// 
-			this->label5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left));
-			this->label5->AutoSize = true;
-			this->label5->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label5->Location = System::Drawing::Point(187, 295);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(71, 18);
-			this->label5->TabIndex = 34;
-			this->label5->Text = L"Партнер:";
-			this->label5->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
-			// 
 			// textBoxAutoBase
 			// 
 			this->textBoxAutoBase->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left));
 			this->textBoxAutoBase->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->textBoxAutoBase->Location = System::Drawing::Point(274, 319);
+			this->textBoxAutoBase->Location = System::Drawing::Point(274, 274);
 			this->textBoxAutoBase->Name = L"textBoxAutoBase";
 			this->textBoxAutoBase->Size = System::Drawing::Size(112, 21);
 			this->textBoxAutoBase->TabIndex = 37;
@@ -705,7 +679,7 @@ namespace CargoTransportation
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Montserrat", 9.749999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label6->Location = System::Drawing::Point(187, 322);
+			this->label6->Location = System::Drawing::Point(187, 277);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(75, 18);
 			this->label6->TabIndex = 36;
@@ -757,8 +731,6 @@ namespace CargoTransportation
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->textBoxAutoBase);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->textBoxPartner);
-			this->Controls->Add(this->label5);
 			this->Controls->Add(this->textBoxStage);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->textBoxPatronymic);

@@ -47,6 +47,6 @@ bool UpdateRow(
 /*¬озвращает true если строка успешно удалена*/
 bool DeleteRow(
 	OleDbConnection^ dbConnection,
-	String^ TABLE,
+	String^ FROM,
 	String^ WHERE);
 
