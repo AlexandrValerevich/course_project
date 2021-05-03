@@ -42,7 +42,6 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Button^ buttonDriver;
 	private: System::Windows::Forms::Button^ buttonFinans;
 	private: System::Windows::Forms::DataGridView^ dataGridViewRoute;
-
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::TextBox^ textBoxCity_1;
@@ -56,27 +55,10 @@ namespace CargoTransportation
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Button^ buttonOrder;
 	private: System::Windows::Forms::Button^ buttonRoute;
-
 	private: System::Windows::Forms::Label^ label5;
-
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::TextBox^ textBoxId;
 	private: System::Windows::Forms::Label^ label8;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::DomainUpDown^ domainUpDownDriver;
 	private: System::Windows::Forms::DomainUpDown^ domainUpDownAuto;
 	private: System::Windows::Forms::DomainUpDown^ domainUpDownPartner;
@@ -89,21 +71,6 @@ namespace CargoTransportation
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Auto;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Partner;
 	private: System::Windows::Forms::CheckBox^ checkBoxPartner;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	protected:
 
 	private:

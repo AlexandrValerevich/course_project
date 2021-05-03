@@ -258,16 +258,16 @@ System::Void CargoTransportation::MyFormDriver::MyFormDriver_Load(System::Object
 		//Заполняем данные в таблицу
 		while (dbReader->Read()) {
 			dataGridViewDriver->Rows->Add(
-				dbReader[0],
-				dbReader[1],
-				dbReader[2],
-				dbReader[3],
-				dbReader[4],
-				dbReader[5],
-				dbReader[6],
-				dbReader[7],
-				dbReader[8],
-				dbReader[9]);
+				dbReader[0]->ToString(),
+				dbReader[1]->ToString(),
+				dbReader[2]->ToString(),
+				dbReader[3]->ToString(),
+				Convert::ToInt32(dbReader[4]),
+				dbReader[5]->ToString(),
+				dbReader[6]->ToString(),
+				Convert::ToInt32(dbReader[7]),
+				dbReader[8]->ToString(),
+				Convert::ToInt32(dbReader[9]));
 		}
 	}
 
@@ -314,6 +314,7 @@ System::Void CargoTransportation::MyFormDriver::FillingTextBoxFormDriver(System:
 	domainUpDownAuto->Text = cells[5]->Value->ToString();
 	textBoxAutoBase->Text = cells[6]->Value->ToString();
 	textBoxStage->Text = cells[7]->Value->ToString();
+	textBoxPassport->Text = cells[8]->Value->ToString();
 	return System::Void();
 }
 
@@ -343,7 +344,7 @@ System::Void CargoTransportation::MyFormDriver::domainUpDownAuto_SelectedItemCha
 
 	if (domainUpDownAuto->Text != "Все")
 		for (int i = 0; i < rows->Count - 1; i++) 
-			if(rows[i]->Cells["truck_num"]->Value != domainUpDownAuto->Text)
+			if(rows[i]->Cells["truck_num"]->Value->ToString() != domainUpDownAuto->Text)
 				rows[i]->Visible = false;
 		
 	

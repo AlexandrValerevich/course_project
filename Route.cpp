@@ -184,13 +184,13 @@ System::Void CargoTransportation::MyFormRoute::MyFormRoute_Load(System::Object^ 
 		//Заполняем данные в таблицу
 		while (dbReader->Read()) {
 			dataGridViewRoute->Rows->Add(
-				dbReader[0],
-				dbReader[1],
-				dbReader[2],
+				dbReader[0]->ToString(),
+				dbReader[1]->ToString(),
+				dbReader[2]->ToString(),
 				Convert::ToInt32(dbReader[3]),
-				dbReader[4],
-				dbReader[5],
-				dbReader[6]);
+				dbReader[4]->ToString(),
+				dbReader[5]->ToString(),
+				dbReader[6]->ToString());
 		}
 	}
 	dbReader->Close();
@@ -273,14 +273,24 @@ System::Void CargoTransportation::MyFormRoute::FillingTextBoxFormRoute(System::O
 
 System::Void CargoTransportation::MyFormRoute::checkBoxPartner_CheckedChanged(System::Object^ sender, System::EventArgs^ e)
 {
-	if (checkBoxPartner->Checked) {
-		for (int i = 0; i < dataGridViewRoute->Rows->Count - 1; i++)
-			if (!String::IsNullOrEmpty(dataGridViewRoute->Rows[i]->Cells["Partner"]->Value->ToString()))
+	int Num;
+	if (checkBoxPartner->Checked) 
+	{
+		for (int i = 0; i < dataGridViewRoute->Rows->Count - 1; i++) 
+		{
+			bool IsNum = Int32::TryParse(dataGridViewRoute->Rows[i]->Cells["Distance"]->Value->ToString(), Num);
+			if (IsNum && Num > 500)
 				dataGridViewRoute->Rows[i]->Visible = false;
+		}
 	}
-	else {
+	else 
+	{
 		for (int i = 0; i < dataGridViewRoute->Rows->Count - 1; i++)
 				dataGridViewRoute->Rows[i]->Visible = true;
 	}
 	return System::Void();
 }
+
+
+
+
